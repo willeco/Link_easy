@@ -29,13 +29,11 @@ public class Graph extends AppCompatActivity {
 
     protected LineChartView lineChartView;
 
+    //test branche Willy
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        //CHECK Kauch 2
-
 
         setContentView(R.layout.activity_graph);
         Toolbar toolbar = findViewById(R.id.toolbar);
