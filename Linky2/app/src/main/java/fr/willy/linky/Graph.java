@@ -34,7 +34,7 @@ public class Graph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        //test branche kauche 3.1
+        //test encore encore
 
 
         setContentView(R.layout.activity_graph);
