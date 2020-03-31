@@ -34,7 +34,7 @@ public class Graph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        //CHECK Kauch 2
+        //test branche kauche 3.1
 
 
         setContentView(R.layout.activity_graph);
