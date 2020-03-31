@@ -34,7 +34,7 @@ public class Graph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        //NOOOOON
+        //CHECK
 
         setContentView(R.layout.activity_graph);
         Toolbar toolbar = findViewById(R.id.toolbar);
