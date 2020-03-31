@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorLinky">#B0DE2A</color>
+    <color name="colorLinkyBar">#5C9416</color>
+    <color name="colorSlideBar">#213309</color>
+    <color name="colorWidget">#AFBD9C</color>
+</resources>

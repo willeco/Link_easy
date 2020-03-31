@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <Button
+        android:id="@+id/button_change_activity"
+        android:layout_width="142dp"
+        android:layout_height="48dp"
+        android:layout_marginVertical="100dp"
+        android:text="Afficher Graph"
+        app:layout_constraintTop_toBottomOf="@+id/text_HC" />
+
+    <Button
+        android:id="@+id/button_demande_tele_info"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_marginVertical="30dp"
+        android:layout_marginTop="28dp"
+        android:text="Demande de télé-information"
+        app:layout_constraintTop_toBottomOf="@+id/text_HC"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/title_config"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLinky"
+        android:text="Configuration réseau"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <TextView
+        android:id="@+id/title_etat_co"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:background="@color/colorLinky"
+        android:text="Etat de la connection"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@+id/text_Port_phone2er"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/title_tele_info_data"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:background="@color/colorLinky"
+        android:text="Télé-information"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@+id/field_etat"
+        tools:layout_editor_absoluteX="27dp" />
+
+    <TextView
+        android:id="@+id/text_IP_ER"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:layout_marginLeft="15dp"
+        android:text="Adresse IP du module radio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_config" />
+
+    <TextView
+        android:id="@+id/text_IP_Phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="Adresse IP du smartphone"
+        app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
+        app:layout_constraintTop_toBottomOf="@+id/text_IP_ER" />
+
+
+    <TextView
+        android:id="@+id/text_Port_phone2er"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="Port : smartphone vers ER"
+        app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
+        app:layout_constraintTop_toBottomOf="@+id/text_IP_Phone" />
+
+    <TextView
+        android:id="@+id/text_Nb_trames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="Nombre de trames reçues"
+        app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
+        app:layout_constraintTop_toBottomOf="@+id/title_etat_co" />
+
+    <TextView
+        android:id="@+id/text_etat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="Etat"
+        app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
+        app:layout_constraintTop_toBottomOf="@+id/text_Nb_trames" />
+
+    <TextView
+        android:id="@+id/text_HC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="Index heures creuses (H.C)"
+        app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
+        app:layout_constraintTop_toBottomOf="@+id/text_HP" />
+
+    <TextView
+        android:id="@+id/text_HP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="Index heures pleines (H.P)"
+        app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
+        app:layout_constraintTop_toBottomOf="@+id/text_PAPP" />
+
+    <TextView
+        android:id="@+id/text_PAPP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="Puissance apparente (V.A)"
+        app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
+        app:layout_constraintTop_toBottomOf="@+id/text_ad_linky" />
+
+    <TextView
+        android:id="@+id/text_ad_linky"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="Adresse compteur linky"
+        app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
+        app:layout_constraintTop_toBottomOf="@+id/title_tele_info_data" />
+
+    <EditText
+        android:id="@+id/field_HC"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="0dp"
+        android:layout_toRightOf="@id/text_HC"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_HC"
+        app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
+
+    <EditText
+        android:id="@+id/field_HP"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_HC"
+        android:layout_marginVertical="0dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_HP"
+        app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
+
+    <EditText
+        android:id="@+id/field_PAPP"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_HC"
+        android:layout_marginVertical="0dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_PAPP"
+        app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
+
+    <EditText
+        android:id="@+id/field_Ad_linky"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_HC"
+        android:layout_marginVertical="0dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_ad_linky"
+        app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
+
+    <EditText
+        android:id="@+id/field_IP_ER"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_HC"
+        android:layout_marginVertical="0dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_IP_ER"
+        app:layout_constraintStart_toEndOf="@+id/text_IP_ER" />
+
+    <EditText
+        android:id="@+id/field_IP_Phone"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_HC"
+        android:layout_marginVertical="0dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_IP_Phone"
+        app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
+
+
+    <EditText
+        android:id="@+id/field_Port_phone2er"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_HC"
+        android:layout_marginVertical="0dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_Port_phone2er"
+        app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
+
+    <EditText
+        android:id="@+id/field_Nb_trâmes"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_HC"
+        android:layout_marginVertical="0dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_Nb_trames"
+        app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
+
+    <EditText
+        android:id="@+id/field_etat"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_HC"
+        android:layout_marginVertical="0dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_etat"
+        app:layout_constraintStart_toEndOf="@+id/text_etat" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
