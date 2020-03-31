@@ -34,7 +34,9 @@ public class Graph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        //CHECK origin master kauche
+        //test encore encore
+        //test pull pour Kauch
+        //test commit kauche 1000 et 1 fois
 
 
         setContentView(R.layout.activity_graph);
