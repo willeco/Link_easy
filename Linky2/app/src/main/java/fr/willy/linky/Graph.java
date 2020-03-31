@@ -29,7 +29,7 @@ public class Graph extends AppCompatActivity {
 
     protected LineChartView lineChartView;
 
-    //test branche Willy
+    //test final branche willy
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
