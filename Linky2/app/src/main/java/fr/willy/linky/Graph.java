@@ -35,6 +35,7 @@ public class Graph extends AppCompatActivity {
 
 
         //test encore encore
+        //test pull pour Kauch
 
 
         setContentView(R.layout.activity_graph);
