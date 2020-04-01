@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Affectation par défaut
         // -----------------------------------------------------------------------------------------
-        tview_ip_er.setText(        "erlinky.home");
+        tview_ip_er.setText(        "86.253.121.174");
         tview_port_phone2er.setText(  String.valueOf(10001));
         m_tview_nb_trames.setText(    String.valueOf(0));
         m_tview_ad_linky.setText(     " ");
@@ -97,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
         // -----------------------------------------------------------------------------------------
         get_my_ip_address();
 
+
+
+        //EBAUCHE BASE DE DONNE
+
+        /*
         FileOutputStream output = null;
         String test = "TEST";
 
@@ -112,7 +117,9 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        System.out.println("TEST");
+        System.out.println();
+
+    */
 
         // Association Bouton avec le handler handler_ask_tele_info
         // -----------------------------------------------------------------------------------------
@@ -122,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), Graph.class);
-                startActivityForResult(myIntent, 0);
+                startActivity(myIntent);
             }
         });
 

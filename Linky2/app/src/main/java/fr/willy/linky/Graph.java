@@ -36,7 +36,6 @@ public class Graph extends AppCompatActivity {
 
         //test encore encore
         //test pull pour Kauch
-        //test commit kauche 1000 et 1 fois
 
 
         setContentView(R.layout.activity_graph);
@@ -57,9 +56,6 @@ public class Graph extends AppCompatActivity {
     }
 
     private void drawInTime() {
-
-
-        //Recuperation des données
 
         String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
                 "Oct", "Nov", "Dec"};
