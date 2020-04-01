@@ -1,19 +1,20 @@
 package fr.willy.linky;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import lecho.lib.hellocharts.model.Axis;
@@ -24,18 +25,42 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
 
+import static android.media.CamcorderProfile.get;
+
 
 public class Graph extends AppCompatActivity {
 
     protected LineChartView lineChartView;
 
+    Handler handler = new Handler();
+    Runnable refresh;
+    float papp;
+    private List listPapp = new ArrayList();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        listPapp.add((float)0.0);
+        drawInTime(listPapp);
 
-        //test encore encore
-        //test pull pour Kauch
+        refresh = new Runnable() {
+            public void run() {
+                // Do something
+                papp = Float.parseFloat(DataHolder.getInstance().getData());
+                listPapp.add(papp);
+
+                Toast.makeText(getApplicationContext(), listPapp.toString(), Toast.LENGTH_LONG).show();
+
+                drawInTime(listPapp);
+
+                handler.postDelayed(refresh, 5000);
+            }
+        };
+        handler.post(refresh);
+
 
 
         setContentView(R.layout.activity_graph);
@@ -44,7 +69,7 @@ public class Graph extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        drawInTime();
+
 
         Button button_return_activity = findViewById(R.id.button_return_activity);
         button_return_activity.setOnClickListener(new View.OnClickListener() {
@@ -55,13 +80,12 @@ public class Graph extends AppCompatActivity {
         });
     }
 
-    private void drawInTime() {
+
+    private void drawInTime(List listPapp) {
 
         String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
                 "Oct", "Nov", "Dec"};
 
-        //Ici récupéré les valeurs des Puissances etc..
-        int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18};
 
         //These lists will be used to hold the data for Axis and Y-Axis
         List yAxisValues = new ArrayList();
@@ -75,8 +99,9 @@ public class Graph extends AppCompatActivity {
             axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
         }
 
-        for (int i = 0; i < yAxisData.length; i++){
-            yAxisValues.add(new PointValue(i, yAxisData[i]));
+        for (int i = 0; i < listPapp.size(); i++){
+            float floatData = (float)listPapp.get(i);
+            yAxisValues.add(new PointValue(i, floatData));
         }
 
         //This list will hold the line of the graph chart
