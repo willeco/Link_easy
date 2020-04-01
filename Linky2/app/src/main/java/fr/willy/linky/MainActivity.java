@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Affectation par défaut
         // -----------------------------------------------------------------------------------------
-        tview_ip_er.setText(        "erlinky.home");
+        tview_ip_er.setText(        "86.253.121.174");
         tview_port_phone2er.setText(  String.valueOf(10001));
         m_tview_nb_trames.setText(    String.valueOf(0));
         m_tview_ad_linky.setText(     " ");
