@@ -27,6 +27,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.text.format.Formatter;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -94,6 +98,29 @@ public class MainActivity extends AppCompatActivity {
         get_my_ip_address();
 
 
+
+        //EBAUCHE BASE DE DONNE
+
+        /*
+        FileOutputStream output = null;
+        String test = "TEST";
+
+        try{
+            output = openFileOutput(test,MODE_PRIVATE);
+            output.write(test.getBytes());
+            if(output != null){
+                output.close();
+            }
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        System.out.println();
+
+    */
+
         // Association Bouton avec le handler handler_ask_tele_info
         // -----------------------------------------------------------------------------------------
         button_ask_tele_info.setOnClickListener(handler_ask_tele_info);
@@ -102,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), Graph.class);
-                startActivityForResult(myIntent, 0);
+                startActivity(myIntent);
             }
         });
 
@@ -212,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
                 // https://stackoverflow.com/questions/11407943/this-handler-class-should-be-static-or-leaks-might-occur-incominghandler
                 // Lire le post 32 "Here is a generic example of using a weak reference and
                 // static handler class to resolve the problem (as recommended in the Lint documentation)"
+
 
                 try {
                      String papp;
