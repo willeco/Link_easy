@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         // -----------------------------------------------------------------------------------------
         get_my_ip_address();
 
-        //WILLY
+        //WILLY 2
 
         //EBAUCHE BASE DE DONNE
 
