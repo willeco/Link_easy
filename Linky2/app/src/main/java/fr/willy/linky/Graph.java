@@ -58,6 +58,9 @@ public class Graph extends AppCompatActivity {
 
     private void drawInTime() {
 
+
+        //Recuperation des données
+
         String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
                 "Oct", "Nov", "Dec"};
 
