@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         // -----------------------------------------------------------------------------------------
         get_my_ip_address();
 
-        //WILLY
+        //test pour david de la part de william
 
         //EBAUCHE BASE DE DONNE
 
