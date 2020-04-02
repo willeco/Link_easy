@@ -34,8 +34,10 @@ public class Graph extends AppCompatActivity {
 
     Handler handler = new Handler();
     Runnable refresh;
+
     float papp;
-    private List listPapp = new ArrayList();
+    private List listPapp;
+    private LineChartData data;
 
 
 
@@ -43,31 +45,35 @@ public class Graph extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        listPapp.add((float)0.0);
-        drawInTime(listPapp);
+        setContentView(R.layout.activity_graph);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        lineChartView = findViewById(R.id.chart);
+        setSupportActionBar(toolbar);
+
+        if(listPapp == null)
+        {
+            listPapp = new ArrayList();
+        }
 
         refresh = new Runnable() {
             public void run() {
+
                 // Do something
                 papp = Float.parseFloat(DataHolder.getInstance().getData());
                 listPapp.add(papp);
 
-                Toast.makeText(getApplicationContext(), listPapp.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), listPapp.toString(), Toast.LENGTH_LONG).show();
 
-                drawInTime(listPapp);
+                data = drawInTime(listPapp);
+                lineChartView.setLineChartData(data);
 
-                handler.postDelayed(refresh, 5000);
+                handler.postDelayed(refresh, 50);
             }
         };
         handler.post(refresh);
 
 
 
-        setContentView(R.layout.activity_graph);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        lineChartView = findViewById(R.id.chart);
-
-        setSupportActionBar(toolbar);
 
 
 
@@ -81,10 +87,9 @@ public class Graph extends AppCompatActivity {
     }
 
 
-    private void drawInTime(List listPapp) {
+    private LineChartData drawInTime(List listPapp) {
 
-        String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
-                "Oct", "Nov", "Dec"};
+        String[] axisData = {};
 
 
         //These lists will be used to hold the data for Axis and Y-Axis
@@ -113,7 +118,7 @@ public class Graph extends AppCompatActivity {
         data.setLines(lines);
 
         //Launch on the app
-        lineChartView.setLineChartData(data);
+        //lineChartView.setLineChartData(data);
 
         Axis axis = new Axis();
         axis.setValues(axisValues);
@@ -135,6 +140,8 @@ public class Graph extends AppCompatActivity {
         viewport.top =110;
         lineChartView.setMaximumViewport(viewport);
         lineChartView.setCurrentViewport(viewport);
+
+        return(data);
     }
 
 
