@@ -117,18 +117,10 @@ public class Graph extends AppCompatActivity {
         LineChartData data = new LineChartData();
         data.setLines(lines);
 
-        //Launch on the app
-        //lineChartView.setLineChartData(data);
-
-        Axis axis = new Axis();
-        axis.setValues(axisValues);
-        data.setAxisXBottom(axis);
 
         Axis yAxis = new Axis();
         data.setAxisYLeft(yAxis);
 
-        axis.setTextSize(16);
-        axis.setTextColor(Color.parseColor("#03A9F4"));
 
         yAxis.setTextColor(Color.parseColor("#03A9F4"));
         yAxis.setTextSize(16);
