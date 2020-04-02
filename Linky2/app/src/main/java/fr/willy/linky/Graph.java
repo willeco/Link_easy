@@ -114,6 +114,10 @@ public class Graph extends AppCompatActivity {
 
         //This list will hold the line of the graph chart
         List lines = new ArrayList();
+
+        //Enleve les points
+        line.setPointColor(5);
+
         lines.add(line);
 
         //Add the graph line to the overall data chart
