@@ -8,6 +8,8 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
+
+
 // -------------------------------------------------------------------------------------------------
 // Class contenant les méthodes de communication
 //
@@ -33,6 +35,7 @@ public class ClientUDP {
     private Thread                                      m_threadClientUDP;
     private LinkedBlockingQueue<DatagramPacket>         m_qEmission;
     private Handler                                     m_handler;
+    private Handler                                     graph_handler;
 
     // Codes utilisés par le handler de message
     public final static int CODE_CONNEXION                                      = 0;

@@ -38,6 +38,10 @@ import java.security.KeyStore;
 
 import java.util.Calendar;
 
+import java.io.Serializable;
+
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView    m_tview_hp;
     private ClientUDP   m_client_udp                    = null;
     private int         m_nb_trames_recues              = 0;
+    public int activity = 0;
+
+    private Handler         graph_handler;
+
+
 
 
     @Override
@@ -57,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState); //Creation du super
         setContentView(R.layout.activity_main);
+
 
         // ToolBar
         // -----------------------------------------------------------------------------------------
@@ -97,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         // -----------------------------------------------------------------------------------------
         get_my_ip_address();
 
-        //test pour david de la part de william 2
+
 
         //EBAUCHE BASE DE DONNE
 
@@ -119,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println();
 
-    */
+        */
+
 
         // Association Bouton avec le handler handler_ask_tele_info
         // -----------------------------------------------------------------------------------------
@@ -129,7 +140,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), Graph.class);
-                startActivity(myIntent);
+                activity = 1;
+                if(Integer.parseInt((m_tview_nb_trames.getText()).toString()) != 0) {
+                    startActivity(myIntent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Pas de données, pas de graphs !", Toast.LENGTH_LONG).show();
+                }
+                //L'app crash si on n'a pas demandé de TI
+
+
             }
         });
 
@@ -167,6 +187,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        activity = 0;
+        //Toast.makeText(getApplicationContext(), "Linky = OnStart()", Toast.LENGTH_LONG).show();
+    }
+
     // ---------------------------------------------------------------------------------------------
     // onStop
     // ---------------------------------------------------------------------------------------------
@@ -175,13 +202,17 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();  // Always call the superclass method first
 
         // Destruction du Thread ayant servi à envoyer et recevoir les messages UDP
-        if (m_client_udp != null)
-        {
-            m_client_udp.fermer();
+        if(activity == 0){
+            if (m_client_udp != null)
+            {
+                Toast.makeText(getApplicationContext(), "Linky : Fin du Thread", Toast.LENGTH_LONG).show();
+                m_client_udp.fermer();
+            }
         }
 
+
         // Avertir l'utilisateur
-        Toast.makeText(getApplicationContext(), "Linky: onStop called", Toast.LENGTH_LONG).show();
+       // Toast.makeText(getApplicationContext(), "Linky: onStop called", Toast.LENGTH_LONG).show();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -221,8 +252,20 @@ public class MainActivity extends AppCompatActivity {
         public void handleMessage(Message msg)
         {
             super.handleMessage(msg);
+
             if (msg.what == ClientUDP.CODE_RECEPTION)
             {
+
+                // ---------------------------------------------------------------------------------------------
+                // Test envoi a Graph
+
+
+
+
+                // ---------------------------------------------------------------------------------------------
+
+
+
                 m_nb_trames_recues += 1;
                 m_tview_nb_trames.setText(    String.valueOf(m_nb_trames_recues));
 
@@ -246,6 +289,8 @@ public class MainActivity extends AppCompatActivity {
                      JSONObject jsonObj = new JSONObject( trame_linky ); //passage de string à JSON
                      papp               = jsonObj.getString("PAPP");
                      m_tview_papp.setText(papp);
+                     DataHolder.getInstance().deleteData();
+                     DataHolder.getInstance().setData(papp);
                 } catch (Exception e) {
                 }
                 try {

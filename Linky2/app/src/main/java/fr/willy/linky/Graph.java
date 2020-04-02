@@ -1,19 +1,20 @@
 package fr.willy.linky;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import lecho.lib.hellocharts.model.Axis;
@@ -24,27 +25,60 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
 
+import static android.media.CamcorderProfile.get;
+
 
 public class Graph extends AppCompatActivity {
 
+
+    //Version Kauche
+
     protected LineChartView lineChartView;
+
+    Handler handler = new Handler();
+    Runnable refresh;
+
+    float papp;
+    private List listPapp;
+    private LineChartData data;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        //test encore encore
-        //test pull pour Kauch
-
-
         setContentView(R.layout.activity_graph);
         Toolbar toolbar = findViewById(R.id.toolbar);
         lineChartView = findViewById(R.id.chart);
-
         setSupportActionBar(toolbar);
 
-        drawInTime();
+        if(listPapp == null)
+        {
+            listPapp = new ArrayList();
+        }
+
+        refresh = new Runnable() {
+            public void run() {
+
+                // Do something
+                papp = Float.parseFloat(DataHolder.getInstance().getData());
+                listPapp.add(papp);
+
+                //Toast.makeText(getApplicationContext(), listPapp.toString(), Toast.LENGTH_LONG).show();
+
+                data = drawInTime(listPapp);
+                lineChartView.setLineChartData(data);
+
+                handler.postDelayed(refresh, 50);
+            }
+        };
+        handler.post(refresh);
+
+
+
+
+
 
         Button button_return_activity = findViewById(R.id.button_return_activity);
         button_return_activity.setOnClickListener(new View.OnClickListener() {
@@ -55,13 +89,11 @@ public class Graph extends AppCompatActivity {
         });
     }
 
-    private void drawInTime() {
 
-        String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
-                "Oct", "Nov", "Dec"};
+    private LineChartData drawInTime(List listPapp) {
 
-        //Ici récupéré les valeurs des Puissances etc..
-        int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18};
+        String[] axisData = {};
+
 
         //These lists will be used to hold the data for Axis and Y-Axis
         List yAxisValues = new ArrayList();
@@ -75,8 +107,9 @@ public class Graph extends AppCompatActivity {
             axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
         }
 
-        for (int i = 0; i < yAxisData.length; i++){
-            yAxisValues.add(new PointValue(i, yAxisData[i]));
+        for (int i = 0; i < listPapp.size(); i++){
+            float floatData = (float)listPapp.get(i);
+            yAxisValues.add(new PointValue(i, floatData));
         }
 
         //This list will hold the line of the graph chart
@@ -87,18 +120,10 @@ public class Graph extends AppCompatActivity {
         LineChartData data = new LineChartData();
         data.setLines(lines);
 
-        //Launch on the app
-        lineChartView.setLineChartData(data);
-
-        Axis axis = new Axis();
-        axis.setValues(axisValues);
-        data.setAxisXBottom(axis);
 
         Axis yAxis = new Axis();
         data.setAxisYLeft(yAxis);
 
-        axis.setTextSize(16);
-        axis.setTextColor(Color.parseColor("#03A9F4"));
 
         yAxis.setTextColor(Color.parseColor("#03A9F4"));
         yAxis.setTextSize(16);
@@ -110,6 +135,8 @@ public class Graph extends AppCompatActivity {
         viewport.top =110;
         lineChartView.setMaximumViewport(viewport);
         lineChartView.setCurrentViewport(viewport);
+
+        return(data);
     }
 
 

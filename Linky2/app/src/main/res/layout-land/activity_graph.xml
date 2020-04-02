@@ -24,13 +24,13 @@
 
     <lecho.lib.hellocharts.view.LineChartView
         android:id="@+id/chart"
-        android:layout_width="621dp"
-        android:layout_height="271dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="607dp"
+        android:layout_height="238dp"
+        android:layout_marginTop="20dp"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center"
         app:layout_constraintTop_toBottomOf="@+id/button_return_activity"
-        tools:layout_editor_absoluteX="55dp" />
+        tools:layout_editor_absoluteX="62dp" />
 
     <Button
         android:id="@+id/button_return_activity"
