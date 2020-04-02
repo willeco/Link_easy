@@ -30,6 +30,9 @@ import static android.media.CamcorderProfile.get;
 
 public class Graph extends AppCompatActivity {
 
+
+    //Version Kauche
+
     protected LineChartView lineChartView;
 
     Handler handler = new Handler();
