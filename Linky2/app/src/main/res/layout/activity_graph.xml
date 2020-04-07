@@ -36,6 +36,7 @@
     <Button
         android:id="@+id/button_return_activity"
         android:layout_width="wrap_content"
+        android:background="@color/colorLinky"
         android:layout_height="wrap_content"
         android:text="Retour"
         app:layout_anchorGravity="center" />

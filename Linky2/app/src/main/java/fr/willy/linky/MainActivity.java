@@ -77,18 +77,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Get widgets
         // -----------------------------------------------------------------------------------------
-        Button button_ask_tele_info     = findViewById(R.id.button_demande_tele_info);
-        Button button_change_activity   = findViewById(R.id.button_change_activity);
+        Button button_ask_tele_info      = findViewById(R.id.button_demande_tele_info);
+        Button button_change_activity    = findViewById(R.id.button_change_activity);
+        Button button_device_consumption = findViewById(R.id.button_device_consumption);
 
-        TextView tview_ip_er            = findViewById(R.id.field_IP_ER             );
-        m_tview_ip_phone                = findViewById(R.id.field_IP_Phone          );
-        TextView tview_port_phone2er    = findViewById(R.id.field_Port_phone2er     );
-        m_tview_nb_trames               = findViewById(R.id.field_Nb_trâmes         );
-        m_tview_ad_linky                = findViewById(R.id.field_Ad_linky          );
-        m_tview_papp                    = findViewById(R.id.field_PAPP              );
-        m_tview_hp                      = findViewById(R.id.field_HP                );
-        TextView tview_hc               = findViewById(R.id.field_HC                );
-        m_tview_etat                    = findViewById(R.id.field_etat);
+        TextView tview_ip_er             = findViewById(R.id.field_IP_ER             );
+        m_tview_ip_phone                 = findViewById(R.id.field_IP_Phone          );
+        TextView tview_port_phone2er     = findViewById(R.id.field_Port_phone2er     );
+        m_tview_nb_trames                = findViewById(R.id.field_Nb_trâmes         );
+        m_tview_ad_linky                 = findViewById(R.id.field_Ad_linky          );
+        m_tview_papp                     = findViewById(R.id.field_PAPP              );
+        m_tview_hp                       = findViewById(R.id.field_HP                );
+        TextView tview_hc                = findViewById(R.id.field_HC                );
+        m_tview_etat                     = findViewById(R.id.field_etat);
 
 
         // Affectation par défaut
@@ -150,6 +151,16 @@ public class MainActivity extends AppCompatActivity {
                 //L'app crash si on n'a pas demandé de TI
 
 
+            }
+        });
+
+        //permet de changer d'activité (consommation individuelle de chaque appareils de la maison)
+        button_device_consumption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntentDevice = new Intent(view.getContext(), Device.class);
+                activity = 1;
+                startActivity(myIntentDevice);
             }
         });
 
