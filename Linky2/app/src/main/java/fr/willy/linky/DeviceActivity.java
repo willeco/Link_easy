@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Device extends AppCompatActivity {
+public class DeviceActivity extends AppCompatActivity {
 
     /*
     L'idee c'est de pouvoir ajouter un appareil à la liste, pour pouvoir voir sa consommation energetique.
@@ -23,12 +23,27 @@ public class Device extends AppCompatActivity {
 
     private ArrayList<String> device_list ;
     private Button button_add_device;
-    private Device device;
+    private DeviceActivity device;
+    private DeviceDataBase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device);
+
+
+        //CREATION BDD
+        if(db == null)
+        {
+            DeviceDataBase db = new DeviceDataBase(this);
+        }
+
+        Devices a = new Devices(1, "Four", "666");
+
+        db.open();
+        db.insert(a);
+        //db.displayDevices();
+        db.close();
 
         device = this;
         button_add_device = findViewById(R.id.button_add_device);

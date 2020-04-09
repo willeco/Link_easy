@@ -110,28 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //EBAUCHE BASE DE DONNE
-
-        /*
-        FileOutputStream output = null;
-        String test = "TEST";
-
-        try{
-            output = openFileOutput(test,MODE_PRIVATE);
-            output.write(test.getBytes());
-            if(output != null){
-                output.close();
-            }
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-        System.out.println();
-
-        */
-
 
         // Association Bouton avec le handler handler_ask_tele_info
         // -----------------------------------------------------------------------------------------
@@ -158,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         button_device_consumption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntentDevice = new Intent(view.getContext(), Device.class);
+                Intent myIntentDevice = new Intent(view.getContext(), DeviceActivity.class);
                 activity = 1;
                 startActivity(myIntentDevice);
             }
