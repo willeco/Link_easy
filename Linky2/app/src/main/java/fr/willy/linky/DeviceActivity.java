@@ -42,6 +42,7 @@ public class DeviceActivity extends AppCompatActivity {
 
 
 
+
         device = this;
         button_add_device = findViewById(R.id.button_add_device);
 

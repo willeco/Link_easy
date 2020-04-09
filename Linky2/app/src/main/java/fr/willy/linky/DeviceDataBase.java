@@ -43,7 +43,7 @@ public class DeviceDataBase {
     public long insert(Devices device)
     {
         ContentValues values = new ContentValues();
-        //values.put(ID, device.getId());
+        values.put(ID, device.getId());
         values.put(NAME, device.getName());
         values.put(POWER, device.getPower());
         return bdd.insert(DEVICE_TABLE_NAME, null, values);
