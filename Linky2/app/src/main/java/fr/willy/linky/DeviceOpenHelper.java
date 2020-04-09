@@ -14,7 +14,7 @@ public class DeviceOpenHelper extends SQLiteOpenHelper {
     private static final String POWER = "power";
 
     private static final String DEVICE_TABLE_CREATE =
-            "CREATE TABLE " + DEVICE_TABLE_NAME + " (" + ID  + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NAME + " TEXT NOT NULL, "
+            "CREATE TABLE " + DEVICE_TABLE_NAME + " (" + ID  + " INTEGER PRIMARY KEY, " + NAME + " TEXT NOT NULL, "
                     + POWER + " TEXT NOT NULL);";
 
     public DeviceOpenHelper(Context context, String name, CursorFactory factory, int version)

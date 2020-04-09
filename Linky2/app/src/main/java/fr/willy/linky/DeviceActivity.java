@@ -34,9 +34,13 @@ public class DeviceActivity extends AppCompatActivity {
         db.open();
         db.removeAll();
 
-        Devices a = new Devices(155,"Four", "666");
+        Devices a = new Devices(db.getSize()+1,"Four", "666");
 
         db.insert(a);
+
+        Devices b = new Devices(db.getSize()+1,"Cafe", "666");
+
+        db.insert(b);
         db.displayDevices();
         db.close();
 

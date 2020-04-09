@@ -68,6 +68,22 @@ public class DeviceDataBase {
         bdd.execSQL("DELETE from "+ DEVICE_TABLE_NAME);
     }
 
+    public int getSize()
+    {
+        int i = 0;
+
+        Cursor cursor = bdd.rawQuery("SELECT * from " + DEVICE_TABLE_NAME, null);
+        if(cursor.getCount() != 0) {
+
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
+            {
+                i++;
+            }
+        }
+        return i;
+
+    }
+
     public Devices selectWithID(String[] args)
     {
         Cursor cursor = bdd.rawQuery("SELECT * from " + DEVICE_TABLE_NAME + " WHERE id = ? ", args);
