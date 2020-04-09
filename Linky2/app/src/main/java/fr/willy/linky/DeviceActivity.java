@@ -24,7 +24,7 @@ public class DeviceActivity extends AppCompatActivity {
     private ArrayList<String> device_list ;
     private Button button_add_device;
     private DeviceActivity device;
-    private DeviceDataBase db;
+    private DeviceDataBase db = new DeviceDataBase(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +32,10 @@ public class DeviceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_device);
 
 
-        //CREATION BDD
-        if(db == null)
-        {
-            DeviceDataBase db = new DeviceDataBase(this);
-        }
-
-        Devices a = new Devices(1, "Four", "666");
+        Devices a = new Devices(3, "Four", "666");
 
         db.open();
         db.insert(a);
-        //db.displayDevices();
         db.close();
 
         device = this;
