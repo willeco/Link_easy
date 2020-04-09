@@ -21,42 +21,6 @@ public class Device extends AppCompatActivity {
     Il faut donc trouver un moyen de proposer dans une liste déroulante diffrents appareils.
      */
 
-    /* Listes des appareils électriques potentiels :
-    four
-    lampes
-    machine à laver
-    portes de garage
-    lave vaiselle
-    seche linge
-    micro onde
-    grille pain
-    tele
-    hotte
-    frigo
-    congele
-    radiateur
-    imprimante
-    ordinateur
-    volets
-    portail éléctrique
-    aspirateur
-    clim
-    machine à coudre
-    seche cheveux
-    ustensile de cuisine
-    robot cuisine
-    lisseur cheveux
-    vmc
-    charge téléphone
-    tondeuse électrique
-    pompe à chaleur
-    detecteur de mouvements
-    alarme*
-    ballon d'eau chaude
-    outils exterieurs
-    charge voiture electrique
-     */
-
     private ArrayList<String> device_list ;
     private Button button_add_device;
     private Device device;

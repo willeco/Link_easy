@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:entries="@array/device_string"
-        android:backgroundTint="@color/colorWidget"
+        android:backgroundTint="@color/colorLinkyBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/device_popup_subtitle" />
