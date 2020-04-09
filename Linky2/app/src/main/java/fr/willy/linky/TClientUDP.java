@@ -94,6 +94,9 @@ public class TClientUDP implements Runnable {
                     // https://stackoverflow.com/questions/10055913/set-timeout-for-socket-receive
                     this.socket.setSoTimeout(1000);
 
+                    //Test
+
+
                     // recieve data until timeout
                     this.socket.receive(dp);
 
