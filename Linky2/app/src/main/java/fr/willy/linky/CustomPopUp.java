@@ -15,10 +15,8 @@ public class CustomPopUp extends Dialog {
     //constructor
     public CustomPopUp(Activity activity)
     {
-        super(activity, R.style.Theme_AppCompat_DayNight_Dialog);
+        super(activity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
         setContentView(R.layout.my_popup_device_adding_template);
-        //this.title        = "Mon titre";
-        //this.subtitle     = "Mon sous titre";
         this.confirm_text = findViewById(R.id.confirm_text);
         this.cancel_text  = findViewById(R.id.cancel_text);
         this.titleView    = findViewById(R.id.device_popup_title);
@@ -35,7 +33,5 @@ public class CustomPopUp extends Dialog {
 
     public void test_bluid(){
         show();
-        //titleView.setText(title);
-        //subtitleView.setText(subtitle);
     }
 }

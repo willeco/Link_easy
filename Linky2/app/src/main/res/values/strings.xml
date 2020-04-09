@@ -2,4 +2,13 @@
     <string name="app_name">Linkeasy</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_graph">Graph</string>
+    
+    <array name="device_string">
+        <item>Choisir appareil</item>
+        <item>Lampe</item>
+        <item>Four</item>
+        <item>Télévision</item>
+        <item>Aspirateur</item>
+        <item>Frigo</item>
+    </array>
 </resources>

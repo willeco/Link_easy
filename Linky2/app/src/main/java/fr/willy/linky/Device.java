@@ -72,32 +72,24 @@ public class Device extends AppCompatActivity {
         button_add_device.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                //creation d'un pop up pour ajouter un appareil
-                AlertDialog.Builder popup_device_adding = new AlertDialog.Builder(device);
-                popup_device_adding.setTitle("Ajout d'un appareil");
-                popup_device_adding.setMessage("Veuillez choisir votre appareil");
 
-                popup_device_adding.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                final CustomPopUp customPopUp = new CustomPopUp(device);
+                customPopUp.getConfirm_text().setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),"Votre appareil a bien été ajouté à votre liste", Toast.LENGTH_SHORT).show();
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(),"Appareil ajouté à la liste", Toast.LENGTH_SHORT).show();
+                        customPopUp.dismiss();
                     }
                 });
 
-                popup_device_adding.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                customPopUp.getCancel_text().setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),"Ajout de l'appreil annulé", Toast.LENGTH_SHORT).show();
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(),"Ajout annulé", Toast.LENGTH_SHORT).show();
+                        customPopUp.dismiss();
                     }
                 });
 
-                popup_device_adding.show();
-                */
-
-                CustomPopUp customPopUp = new CustomPopUp(device);
-                //customPopUp.setTitle("Ajout d'un appareil");
-                //customPopUp.setTitle("Veuillez choisir un appareil");
                 customPopUp.test_bluid();
             }
         });
