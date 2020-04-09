@@ -31,12 +31,16 @@ public class DeviceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device);
 
-
-        Devices a = new Devices(3, "Four", "666");
-
         db.open();
+        db.removeAll();
+
+        Devices a = new Devices(155,"Four", "666");
+
         db.insert(a);
+        db.displayDevices();
         db.close();
+
+
 
         device = this;
         button_add_device = findViewById(R.id.button_add_device);

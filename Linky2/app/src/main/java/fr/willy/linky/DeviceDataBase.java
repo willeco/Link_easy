@@ -43,7 +43,7 @@ public class DeviceDataBase {
     public long insert(Devices device)
     {
         ContentValues values = new ContentValues();
-        values.put(ID, device.getId());
+        //values.put(ID, device.getId());
         values.put(NAME, device.getName());
         values.put(POWER, device.getPower());
         return bdd.insert(DEVICE_TABLE_NAME, null, values);
@@ -61,6 +61,11 @@ public class DeviceDataBase {
     public int remove(int id)
     {
         return bdd.delete(DEVICE_TABLE_NAME, ID + " = " +id, null);
+    }
+
+    public void removeAll()
+    {
+        bdd.execSQL("DELETE from "+ DEVICE_TABLE_NAME);
     }
 
     public Devices selectWithID(String[] args)
