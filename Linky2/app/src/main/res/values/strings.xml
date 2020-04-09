@@ -1,5 +1,43 @@
 <resources>
-    <string name="app_name">Linky</string>
+    <string name="app_name">Linkeasy</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_graph">Graph</string>
+    
+    <array name="device_string">
+        <item>Choisir appareil</item>
+        <item>Lampe</item>
+        <item>Four</item>
+        <item>Télévision</item>
+        <item>Aspirateur</item>
+        <item>Frigo</item>
+        <item>Machine à laver</item>
+        <item>Portes de garage</item>
+        <item>Lave vaiselle</item>
+        <item>Seche linge</item>
+        <item>Micro-ondes</item>
+        <item>Grille pain</item>
+        <item>Hotte</item>
+        <item>Congele</item>
+        <item>Radiateur</item>
+        <item>Imprimante</item>
+        <item>Ordinateur</item>
+        <item>Volets</item>
+        <item>Portail éléctrique</item>
+        <item>Aspirateur</item>
+        <item>Clim</item>
+        <item>Machine à coudre</item>
+        <item>Seche cheveux</item>
+        <item>Ustensile de cuisine</item>
+        <item>Robot cuisine</item>
+        <item>Lisseur cheveux</item>
+        <item>Vmc</item>
+        <item>Charge téléphone</item>
+        <item>Tondeuse électrique</item>
+        <item>Pompe à chaleur</item>
+        <item>Detecteur de mouvements</item>
+        <item>Alarme</item>
+        <item>Ballon eau chaude</item>
+        <item>Outils exterieurs</item>
+        <item>Charge voiture electrique</item>
+    </array>
 </resources>
