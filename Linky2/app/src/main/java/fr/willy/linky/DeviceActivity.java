@@ -6,13 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class DeviceActivity extends AppCompatActivity {
+import static android.widget.Toast.makeText;
+
+public class DeviceActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     /*
     L'idee c'est de pouvoir ajouter un appareil à la liste, pour pouvoir voir sa consommation energetique.
@@ -45,8 +49,6 @@ public class DeviceActivity extends AppCompatActivity {
         db.close();
 
 
-
-
         device = this;
         button_add_device = findViewById(R.id.button_add_device);
 
@@ -58,7 +60,7 @@ public class DeviceActivity extends AppCompatActivity {
                 customPopUp.getConfirm_text().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(),"Appareil ajouté à la liste", Toast.LENGTH_SHORT).show();
+                        makeText(getApplicationContext(),"Appareil ajouté à la liste", Toast.LENGTH_SHORT).show();
                         customPopUp.dismiss();
                     }
                 });
@@ -66,13 +68,25 @@ public class DeviceActivity extends AppCompatActivity {
                 customPopUp.getCancel_text().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(),"Ajout annulé", Toast.LENGTH_SHORT).show();
+                        makeText(getApplicationContext(),"Ajout annulé", Toast.LENGTH_SHORT).show();
                         customPopUp.dismiss();
                     }
                 });
+                customPopUp.getSpinnerData();
 
                 customPopUp.test_bluid();
             }
         });
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        makeText(this, parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
