@@ -11,11 +11,15 @@ import android.widget.Toast;
 import static android.widget.Toast.makeText;
 
 public class CustomPopUp extends Dialog {
+    /*
+    Cette classe permet de générer un popup personnalisé.
+    Elle est associée à un layout spécifique nommé my_popup_device_adding_template.
+     */
 
     //fields
     private String title;
     private String subtitle;
-    private TextView confirm_text, cancel_text;
+    private TextView confirm_text, cancel_text; //bouton "confirmer" et "annuler" du popup
     private TextView titleView, subtitleView;
     private Spinner device_spinner;
     private Activity parent_activity;
@@ -24,7 +28,7 @@ public class CustomPopUp extends Dialog {
     public CustomPopUp(Activity activity)
     {
         super(activity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
-        setContentView(R.layout.my_popup_device_adding_template);
+        setContentView(R.layout.my_popup_device_adding_template); //on charge notre layout associé au popup
         //empeche l'utilisateur de fermer le popup en appuyant à
         //l'exterieur de celui-ci.
         this.setCancelable(false);
@@ -36,18 +40,24 @@ public class CustomPopUp extends Dialog {
         this.parent_activity = activity;
     }
 
+    //changer le titre du popup
     public void setTitle(String title){this.title = title;}
 
+    //changer le sous titre du popup
     public void setSubtitle(String subtitle){this.subtitle = subtitle;}
 
+    //recupere l'appareil selectionné dans le spinner (menu déroulant)
     public void getSpinnerData(){
         this.device_spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this.parent_activity);
     }
 
+    //recupere le champ "confirmer" du popup
     public TextView getConfirm_text(){return confirm_text;}
 
+    //recupere le champ "annuler" du popup
     public TextView getCancel_text(){return cancel_text;}
 
+    //affiche le popup
     public void test_bluid(){
         show();
     }
