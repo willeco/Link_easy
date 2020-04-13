@@ -47,8 +47,10 @@ public class CustomPopUp extends Dialog {
     public void setSubtitle(String subtitle){this.subtitle = subtitle;}
 
     //recupere l'appareil selectionné dans le spinner (menu déroulant)
-    public void getSpinnerData(){
-        this.device_spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this.parent_activity);
+    public String getSpinnerData(){
+        final String s = this.device_spinner.getSelectedItem().toString();
+        return s;
+        //this.device_spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this.parent_activity);
     }
 
     //recupere le champ "confirmer" du popup
