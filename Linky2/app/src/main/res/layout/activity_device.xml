@@ -43,8 +43,36 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/aspirateur"
+                android:src="@drawable/alarme"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/aspirateur" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ballon_eau_chaude"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/camera" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/charge_portable" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -54,18 +82,26 @@
                 android:src="@drawable/charge_voiture" />
 
             <ImageView
+                android:id="@+id/tele_lorette"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/clim"/>
+                android:src="@drawable/clim" />
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/congelateur" />
+                android:src="@drawable/congelateur"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/detecteur_de_mouvements" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -82,7 +118,6 @@
                 android:src="@drawable/frigo" />
 
             <ImageView
-                android:id="@+id/tele_lorette"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
@@ -94,7 +129,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/hotte"/>
+                android:src="@drawable/hotte" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -122,6 +157,13 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
+                android:src="@drawable/lisseur" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
                 android:src="@drawable/machine_a_coudre" />
 
             <ImageView
@@ -143,7 +185,31 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/pc" />
+                android:src="@drawable/outils_jardin"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/pc"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/point_interrogation"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/pompe_a_chaleur" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -171,6 +237,13 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
+                android:src="@drawable/robot_cuisine" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
                 android:src="@drawable/seche_cheveux" />
 
             <ImageView
@@ -185,44 +258,6 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/tv"
-                />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/volets"
-                />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/lisseur" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/vmc"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/robot_cuisine" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
                 android:src="@drawable/tondeuse_jardin" />
 
             <ImageView
@@ -230,49 +265,21 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/alarme" />
+                android:src="@drawable/tv" />
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/ballon_eau_chaude" />
+                android:src="@drawable/ustensiles_de_cuisine" />
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/pompe_a_chaleur" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/camera" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/charge_portable" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/outils_jardin" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/detecteur_de_mouvements" />
+                android:src="@drawable/vmc" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -280,7 +287,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:src="@drawable/ustensiles_de_cuisine"/>
+                android:src="@drawable/volets"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
