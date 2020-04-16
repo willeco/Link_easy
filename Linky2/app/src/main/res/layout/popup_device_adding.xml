@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorBackground"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
 
     <TextView
         android:id="@+id/device_popup_title"
-        android:layout_height="wrap_content"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLinkyBar"
         android:text="Ajout d'un appareil"
-        android:textSize="25dp"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:textSize="25dp"
         android:textStyle="bold"
-        android:background="@color/colorLinkyBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,10 +25,10 @@
         android:id="@+id/device_popup_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Veuillez choisir un appareil à ajouter"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:text="Veuillez choisir un appareil à ajouter"
         android:textColor="@color/colorLinky"
 
         android:textSize="18dp"
@@ -43,8 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:entries="@array/device_string"
         android:backgroundTint="@color/colorLinkyBar"
+        android:entries="@array/device_string"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/device_popup_subtitle" />
@@ -63,8 +62,8 @@
         android:id="@+id/cancel_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:text="Annuler"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"

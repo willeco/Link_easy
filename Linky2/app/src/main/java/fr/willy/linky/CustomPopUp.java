@@ -2,12 +2,15 @@ package fr.willy.linky;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.view.View.GONE;
 import static android.widget.Toast.makeText;
 
 public class CustomPopUp extends Dialog {
@@ -62,6 +65,48 @@ public class CustomPopUp extends Dialog {
     //affiche le popup
     public void test_bluid(){
         show();
+    }
+
+    //gérer configure
+    public void configuration_protocol(String device)
+    {
+        if(device.equals("Lampe"))
+        {
+            TextView deviceTextView = findViewById(R.id.textView);
+            TextView protocolTextView = findViewById(R.id.textView3);
+            final Button faitButton = findViewById(R.id.button);
+            final TextView timerTextView = findViewById(R.id.textView4);
+
+            faitButton.setVisibility(View.VISIBLE);
+            timerTextView.setVisibility(GONE);
+
+            deviceTextView.setText(device);
+            protocolTextView.setText("Alors voilà comment ça va se passer mon ptit pote, tu va te rapprocher de ta jolie lampe et tu va l'éteindre. Une fois que " +
+                    "c'est éteint tu va appuyer le bouton 'c'est fait' tu aura alors 3 secondes pour allumer puis 3 autres secondes pour l'éteindre !" +
+                    "Ne t'inquiète pas tout va bien se passer mon chaton");
+            faitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    faitButton.setVisibility(GONE);
+                    timerTextView.setVisibility(View.VISIBLE);
+                    //timerTextView.setTextColor();
+
+                    new CountDownTimer(30000, 1000) {
+
+                        public void onTick(long millisUntilFinished) {
+                            timerTextView.setText("seconds remaining: " + millisUntilFinished / 1000);
+                        }
+
+                        public void onFinish() {
+                            timerTextView.setText("done!");
+                        }
+                    }.start();
+
+
+                }
+            });
+        }
     }
 
 }
