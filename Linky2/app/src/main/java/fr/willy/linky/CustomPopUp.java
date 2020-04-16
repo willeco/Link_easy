@@ -13,7 +13,7 @@ import static android.widget.Toast.makeText;
 public class CustomPopUp extends Dialog {
     /*
     Cette classe permet de générer un popup personnalisé.
-    Elle est associée à un layout spécifique nommé my_popup_device_adding_template.
+    Elle est associée à un layout spécifique nommé popup_device_adding.
      */
 
     //fields
@@ -28,7 +28,7 @@ public class CustomPopUp extends Dialog {
     public CustomPopUp(Activity activity)
     {
         super(activity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
-        setContentView(R.layout.my_popup_device_adding_template); //on charge notre layout associé au popup
+        setContentView(R.layout.popup_device_adding); //on charge notre layout associé au popup
         //empeche l'utilisateur de fermer le popup en appuyant à
         //l'exterieur de celui-ci.
         this.setCancelable(false);

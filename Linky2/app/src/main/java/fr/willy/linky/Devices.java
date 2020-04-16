@@ -88,4 +88,6 @@ public class Devices {
     public String toString() {
         return "Appareil [id=" + id + ", nom=" + name + ", puissance=" + power + "]";
     }
+
+
 }
