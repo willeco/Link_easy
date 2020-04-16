@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+    <!--  ListRow Left sied Thumbnail image -->
+    <LinearLayout android:id="@+id/layout_thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dip"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip">
+
+        <ImageView
+            android:id="@+id/device_thumbnail"
+            android:layout_width="55dip"
+            android:layout_height="55dip"
+            android:src="@drawable/car_load"/>
+
+    </LinearLayout>
+
+    <!-- Type appareil -->
+
+    <!-- device name -->
+    <TextView
+        android:id="@+id/device_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/layout_thumbnail"
+        android:layout_marginStart="5dp"
+        android:layout_toRightOf="@+id/layout_thumbnail"
+        android:text="Chargeur de voiture"
+        android:textColor="@color/colorSlideBar"
+        android:textSize="14dip"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <!-- nickname -->
+    <TextView
+        android:id="@+id/device_nickname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/device_name"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/grey"
+        android:textSize="10dip"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/layout_thumbnail"
+        android:text="Installé dans le garage" />
+
+    <!-- power -->
+    <TextView
+        android:id="@+id/device_power"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/device_nickname"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/colorSlideBar"
+        android:textSize="10dip"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/layout_thumbnail"
+        android:text="Conso. en route : 10 Watts"
+        android:textStyle="bold" />
+
+    <!-- Standby power -->
+    <TextView
+        android:id="@+id/device_standby_power"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/device_power"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/grey"
+        android:textSize="10dip"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/layout_thumbnail"
+        android:text="Conso. en veille : 10 Watts" />
+
+    <!-- Consommation moyenne  -->
+    <TextView
+        android:id="@+id/text_mean_power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/device_name"
+        android:gravity="right"
+        android:text="Conso. moyenne"
+        android:layout_marginRight="5dip"
+        android:textSize="10dip"
+        android:textColor="@color/colorLinkyBar" />
+
+    <!-- Consommation moyenne  -->
+    <TextView
+        android:id="@+id/device_mean_power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/text_mean_power"
+        android:gravity="right"
+        android:text="10 Watts"
+        android:layout_marginRight="5dip"
+        android:textSize="16dip"
+        android:textColor="@color/colorSlideBar"
+        android:textStyle="bold"/>
+
+    <!-- taux utilisation  -->
+    <TextView
+        android:id="@+id/device_userate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/device_mean_power"
+        android:gravity="right"
+        android:text="Taux d'utilisation : 10 %"
+        android:layout_marginRight="5dip"
+        android:textSize="10dip"
+        android:textColor="@color/colorLinkyBar"/>
+
+</RelativeLayout>
