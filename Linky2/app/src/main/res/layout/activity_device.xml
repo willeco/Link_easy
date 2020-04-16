@@ -14,9 +14,8 @@
         android:background="@color/colorLinky"
         android:text="Ajouter un appareil"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="55dp" />
-
+        app:layout_constraintStart_toStartOf="parent" />
+    <!--
     <androidx.core.widget.NestedScrollView
         android:layout_width="409dp"
         android:layout_height="302dp"
@@ -33,13 +32,33 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="428dp">
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/dynamic_device_layout"
+            android:columnCount="3"
+            android:padding="10dp"
             />
-    </androidx.core.widget.NestedScrollView>
 
+    </androidx.core.widget.NestedScrollView>
+    -->
+
+    <ListView
+        android:id="@+id/list_device"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/button_add_device"
+        android:layout_above="@+id/delete_device"></ListView>
+
+    <Button
+        android:id="@+id/delete_device"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
+        android:layout_marginBottom="0dp"
+        android:text="Supprimer appareil" />
 
 </RelativeLayout>

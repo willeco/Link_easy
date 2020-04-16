@@ -5,23 +5,44 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * SQLiteOpenHelper qui est une classe d'assistance pour gérer la création de bases de données et la gestion des versions
+ * -------------------------------------------------------------------------------------------------
+ */
 public class DeviceOpenHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DEVICE_TABLE_NAME = "device";
-    private static final String ID = "id";
-    private static final String NAME = "name";
-    private static final String POWER = "power";
+    private static final String DEVICE_TABLE_NAME   = "device";
 
+    private static final    String ID                  = "id";
+    private static final    String NAME                = "name";
+    private static final    String NICKNAME            = "nickname";
+    private static final    String POWER               = "power";
+    private static final    String STANDBY_POWER       = "standbypower";
+    private static final    String MEAN_POWER          = "meanpower";
+    private static final    String USERATE             = "userate";
+
+    /**
+     * Préparation Instruction pour créer la table
+     * -------------------------------------------
+     */
     private static final String DEVICE_TABLE_CREATE =
             "CREATE TABLE " + DEVICE_TABLE_NAME + " (" + ID  + " INTEGER PRIMARY KEY, " + NAME + " TEXT NOT NULL, "
                     + POWER + " TEXT NOT NULL);";
 
+    /**
+     * Constructeur
+     * ------------
+     */
     public DeviceOpenHelper(Context context, String name, CursorFactory factory, int version)
     {
         super(context, name, factory, DATABASE_VERSION);
     }
 
+    /**
+     * On crée la table à partir de la requête écrite dans la variable CREATE_BDD
+     * ---------------------------------------------------------------------------
+     */
     @Override
     public void onCreate(SQLiteDatabase db)
     {
