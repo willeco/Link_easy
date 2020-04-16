@@ -96,6 +96,7 @@ public class CustomPopUp extends Dialog {
 
             final int[] pappOn = new int[1];
             final int[] pappOff = new int[1];
+            final int[] diffPapp = new int[1];
 
             ajouterButton.setVisibility(GONE);
             faitButton.setVisibility(View.VISIBLE);
@@ -125,7 +126,7 @@ public class CustomPopUp extends Dialog {
 
                         public void onFinish() {
                             pappOn[0] = Integer.parseInt(MainActivity.papp);
-                            protocolTextView.setText("ETEINT TON APPAREIL ! \n papp = "+pappOn[0]);
+                            protocolTextView.setText("ETEINT TON APPAREIL ! \n pappOn = "+pappOn[0]);
                             new CountDownTimer(5000, 1000) {
 
                                 public void onTick(long millisUntilFinished) {
@@ -136,7 +137,8 @@ public class CustomPopUp extends Dialog {
                                     pappOff[0] = Integer.parseInt(MainActivity.papp);
                                     faitButton.setText("AJOUTER APPAREIL");
                                     timerTextView.setVisibility(GONE);
-                                    protocolTextView.setText("OK on est bon \n papp = "+pappOff[0]);
+                                    diffPapp[0] = pappOn[0]-pappOff[0];
+                                    protocolTextView.setText("OK on est bon \n pappOff = "+pappOff[0]+"\n papp = "+diffPapp[0]);
                                     ajouterButton.setVisibility(View.VISIBLE);
                                 }
                             }.start();
