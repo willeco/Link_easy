@@ -32,6 +32,8 @@ public class CustomPopUp extends Dialog {
     //constructor
     public CustomPopUp(Activity activity, String popup)
     {
+
+
         super(activity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
         //on charge notre layout associé au popup
         if (popup.equals("adding")){
@@ -81,8 +83,9 @@ public class CustomPopUp extends Dialog {
     }
 
     //gérer configure
-    public void configuration_protocol(String device, final CustomPopUp popUp)
+    public void configuration_protocol(String device, final CustomPopUp popUp, final String ip_for_sending)
     {
+
         if(device.equals("Lampe"))
         {
             TextView deviceTextView = findViewById(R.id.textView);
@@ -90,6 +93,9 @@ public class CustomPopUp extends Dialog {
             final Button faitButton = findViewById(R.id.button);
             final TextView timerTextView = findViewById(R.id.textView4);
             final Button ajouterButton = findViewById(R.id.button2);
+
+            final int[] pappOn = new int[1];
+            final int[] pappOff = new int[1];
 
             ajouterButton.setVisibility(GONE);
             faitButton.setVisibility(View.VISIBLE);
@@ -101,9 +107,11 @@ public class CustomPopUp extends Dialog {
                     "c'est éteint tu va appuyer le bouton 'c'est fait' tu aura alors 3 secondes pour allumer puis 3 autres secondes pour l'éteindre !" +
                     "Ne t'inquiète pas tout va bien se passer mon chaton");
             faitButton.setOnClickListener(new View.OnClickListener() {
-                @SuppressLint("ResourceAsColor")
+
                 @Override
                 public void onClick(View v) {
+
+                    MainActivity.ask_tele_info(ip_for_sending,10001); //Récupéré l'addresse ip peut être
 
                     faitButton.setVisibility(GONE);
                     timerTextView.setVisibility(View.VISIBLE);
@@ -116,8 +124,8 @@ public class CustomPopUp extends Dialog {
                         }
 
                         public void onFinish() {
-                            //on recupere donnée papp device allumé
-                            protocolTextView.setText("ETEINT TON APPAREIL !");
+                            pappOn[0] = Integer.parseInt(MainActivity.papp);
+                            protocolTextView.setText("ETEINT TON APPAREIL ! \n papp = "+pappOn[0]);
                             new CountDownTimer(5000, 1000) {
 
                                 public void onTick(long millisUntilFinished) {
@@ -125,10 +133,10 @@ public class CustomPopUp extends Dialog {
                                 }
 
                                 public void onFinish() {
-                                    //on recupere donnée papp device eteint
+                                    pappOff[0] = Integer.parseInt(MainActivity.papp);
                                     faitButton.setText("AJOUTER APPAREIL");
                                     timerTextView.setVisibility(GONE);
-                                    protocolTextView.setText("OK on est bon");
+                                    protocolTextView.setText("OK on est bon \n papp = "+pappOff[0]);
                                     ajouterButton.setVisibility(View.VISIBLE);
                                 }
                             }.start();

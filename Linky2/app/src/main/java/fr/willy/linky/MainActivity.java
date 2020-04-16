@@ -25,6 +25,7 @@ import android.os.Message;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import android.text.format.Formatter;
 
@@ -46,18 +47,19 @@ import java.io.Serializable;
 public class MainActivity extends AppCompatActivity {
 
     // Variables privées de notre class Activité
-    private TextView    m_tview_etat;
+    static private TextView    m_tview_etat;
     private TextView    m_tview_ip_phone;
-    private TextView    m_tview_nb_trames;
-    private TextView    m_tview_papp;
-    private TextView    m_tview_ad_linky;
-    private TextView    m_tview_hp;
-    private ClientUDP   m_client_udp                    = null;
-    private int         m_nb_trames_recues              = 0;
+    static private TextView    m_tview_nb_trames;
+    static private TextView    m_tview_papp;
+    static private TextView    m_tview_ad_linky;
+    static private TextView    m_tview_hp;
+    static private ClientUDP   m_client_udp                    = null;
+    static private int         m_nb_trames_recues              = 0;
     public int activity = 0;
 
     private Handler         graph_handler;
 
+    static String papp;
 
 
 
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         Button button_change_activity    = findViewById(R.id.button_change_activity);
         Button button_device_consumption = findViewById(R.id.button_device_consumption);
 
-        TextView tview_ip_er             = findViewById(R.id.field_IP_ER             );
+        final TextView tview_ip_er             = findViewById(R.id.field_IP_ER             );
         m_tview_ip_phone                 = findViewById(R.id.field_IP_Phone          );
         TextView tview_port_phone2er     = findViewById(R.id.field_Port_phone2er     );
         m_tview_nb_trames                = findViewById(R.id.field_Nb_trâmes         );
@@ -107,8 +109,6 @@ public class MainActivity extends AppCompatActivity {
         // Tentative de Récuperation adresse IP Wi-Fi du smartphone
         // -----------------------------------------------------------------------------------------
         get_my_ip_address();
-
-
 
 
         // Association Bouton avec le handler handler_ask_tele_info
@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntentDevice = new Intent(view.getContext(), DeviceActivity.class);
+                myIntentDevice.putExtra("ip_for_sending",tview_ip_er.getText().toString());
                 activity = 1;
                 startActivity(myIntentDevice);
             }
@@ -236,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
     // ---------------------------------------------------------------------------------------------
     // Gère les communications avec le thread réseau
     // ---------------------------------------------------------------------------------------------
-    final private Handler m_handler = new Handler()
+    final static private Handler m_handler = new Handler()
     {
         public void handleMessage(Message msg)
         {
@@ -274,7 +275,6 @@ public class MainActivity extends AppCompatActivity {
 
 
                 try {
-                     String papp;
                      JSONObject jsonObj = new JSONObject( trame_linky ); //passage de string à JSON
                      papp               = jsonObj.getString("PAPP");
                      m_tview_papp.setText(papp);
@@ -312,38 +312,19 @@ public class MainActivity extends AppCompatActivity {
             TextView tview_etat = findViewById(R.id.field_etat);
             tview_etat.setText("Demande de télé-info en cours");
 
+
             // Step 1 - Get IP erlinky
             TextView tview_ip_er          = findViewById(R.id.field_IP_ER  ); //Widget permet de recup adresse IP
             String ip_for_sending         = tview_ip_er.getText().toString(); //On recupere l'adresse IP
+
+
 
             // Step 2 - Get port number to send a request
             TextView tview_port_phone2er    = findViewById(R.id.field_Port_phone2er); //recuperation port Rasberry
             String port_for_sending         = tview_port_phone2er.getText().toString(); // String
             int port_phone2er               = Integer.parseInt(port_for_sending);   // conversion en int
 
-            // Step 3 - Create a datagram socket to ask teleinformation
-            try {
-
-                // Attention, a chaque fois, que l'on appui sur le bouton, un Thread est créé par
-                // la classe UDP. A revoir. car la mémoire du téléphone risque de saturer
-                // Le Thread ne sera jamais tué.
-                if (m_client_udp == null)
-                {
-                    m_client_udp = new ClientUDP(m_handler);
-                }
-
-                if (m_client_udp != null)
-                {
-                    m_client_udp.envoyer("Hello", ip_for_sending, port_phone2er); // à l'IP du Rpi et au port 10001
-                }
-
-                DisplayMessage("Requête télé-info envoyée @IP:" + ip_for_sending +  " port:" + port_phone2er, false);
-
-            } catch (Exception e) {
-                String message_error  = "Envoi message UDP vers Linky impossible !!";
-                DisplayMessage(message_error, true);
-                Log.e("Linky Send UDP", message_error, e);
-            }
+            ask_tele_info(ip_for_sending, port_phone2er);
         }
     };
 
@@ -388,6 +369,36 @@ public class MainActivity extends AppCompatActivity {
         //        ((i >> 16 ) & 0xFF) + "." +
         //        ((i >> 8 ) & 0xFF) + "." +
         //        ( i & 0xFF) ;
+    }
+
+    public static void ask_tele_info(String ip_for_sending, int port_phone2er)
+    {
+
+
+
+        // Step 3 - Create a datagram socket to ask teleinformation
+        try {
+
+            // Attention, a chaque fois, que l'on appui sur le bouton, un Thread est créé par
+            // la classe UDP. A revoir. car la mémoire du téléphone risque de saturer
+            // Le Thread ne sera jamais tué.
+            if (m_client_udp == null)
+            {
+                m_client_udp = new ClientUDP(m_handler);
+            }
+
+            if (m_client_udp != null)
+            {
+                m_client_udp.envoyer("Hello", ip_for_sending, port_phone2er); // à l'IP du Rpi et au port 10001
+            }
+
+            //DisplayMessage("Requête télé-info envoyée @IP:" + ip_for_sending +  " port:" + port_phone2er, false);
+
+        } catch (Exception e) {
+            String message_error  = "Envoi message UDP vers Linky impossible !!";
+            //DisplayMessage(message_error, true);
+            Log.e("Linky Send UDP", message_error, e);
+        }
     }
 
 }

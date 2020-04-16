@@ -62,11 +62,15 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             ,printer,radiator,sewing_machine,shutters,straightener,toaster
             ,tumble_dryer,tv,vacuum,washing_machine;
 
+    private String ip_for_sending;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device); //on charge le layout de l'activité =! du layout du popup
+
+        Bundle extras = getIntent().getExtras();
+        ip_for_sending = extras.getString("ip_for_sending");
 
         /*
         db.open(); //on ouvre la base de données
@@ -188,7 +192,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
                     final CustomPopUp customPopUpConfig = new CustomPopUp(device_activity, "config"); //on créer le popup de config
                     customPopUpConfig.test_bluid(); //on affiche le popup
-                    customPopUpConfig.configuration_protocol(selected_device,customPopUpConfig);
+                    customPopUpConfig.configuration_protocol(selected_device,customPopUpConfig,ip_for_sending);
                     makeText(getApplicationContext(),selected_device + " ajouté. ", Toast.LENGTH_SHORT).show();
 
                     // Insertion d'un appareil
