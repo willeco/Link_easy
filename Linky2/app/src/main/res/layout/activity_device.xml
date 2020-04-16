@@ -1,20 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".Device">
+    tools:context=".DeviceActivity">
 
     <Button
         android:id="@+id/button_add_device"
-        android:layout_height="wrap_content"
-        android:text="Ajouter un appareil"
-        android:background="@color/colorLinky"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLinky"
+        android:text="Ajouter un appareil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <!--
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="409dp"
+        android:layout_height="302dp"
+        android:layout_below="@+id/button_add_device"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="55dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="428dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/dynamic_device_layout"
+            android:columnCount="3"
+            android:padding="10dp"
+            />
+
+    </androidx.core.widget.NestedScrollView>
+    -->
+
+    <ListView
+        android:id="@+id/list_device"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/button_add_device"
+        android:layout_above="@+id/delete_device"></ListView>
+
+    <Button
+        android:id="@+id/delete_device"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
+        android:layout_marginBottom="0dp"
+        android:text="Supprimer appareil" />
+
+</RelativeLayout>

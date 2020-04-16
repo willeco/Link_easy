@@ -23,7 +23,6 @@
         <item>Ordinateur</item>
         <item>Volets</item>
         <item>Portail éléctrique</item>
-        <item>Aspirateur</item>
         <item>Clim</item>
         <item>Machine à coudre</item>
         <item>Seche cheveux</item>
@@ -39,5 +38,6 @@
         <item>Ballon eau chaude</item>
         <item>Outils exterieurs</item>
         <item>Charge voiture electrique</item>
+        <item>Autre catégorie</item>
     </array>
 </resources>
