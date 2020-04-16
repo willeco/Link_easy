@@ -140,6 +140,7 @@ public class CustomPopUp extends Dialog {
                                     diffPapp[0] = pappOn[0]-pappOff[0];
                                     protocolTextView.setText("OK on est bon \n pappOff = "+pappOff[0]+"\n papp = "+diffPapp[0]);
                                     ajouterButton.setVisibility(View.VISIBLE);
+                                    DeviceActivity.pappActualDevice = diffPapp[0];
                                 }
                             }.start();
 

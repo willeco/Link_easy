@@ -64,6 +64,8 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
     private String ip_for_sending;
 
+    static public int pappActualDevice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
