@@ -1,5 +1,6 @@
 package fr.willy.linky;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.CountDownTimer;
@@ -50,7 +51,6 @@ public class CustomPopUp extends Dialog {
         this.titleView    = findViewById(R.id.device_popup_title);
         this.subtitleView = findViewById(R.id.device_popup_subtitle);
         this.device_spinner = findViewById(R.id.device_spinner);
-        this.button_test_config = findViewById(R.id.button_test_config);
         this.parent_activity = activity;
     }
 
@@ -81,42 +81,72 @@ public class CustomPopUp extends Dialog {
     }
 
     //gérer configure
-    public void configuration_protocol(String device)
+    public void configuration_protocol(String device, final CustomPopUp popUp)
     {
         if(device.equals("Lampe"))
         {
             TextView deviceTextView = findViewById(R.id.textView);
-            TextView protocolTextView = findViewById(R.id.textView3);
+            final TextView protocolTextView = findViewById(R.id.textView3);
             final Button faitButton = findViewById(R.id.button);
             final TextView timerTextView = findViewById(R.id.textView4);
+            final Button ajouterButton = findViewById(R.id.button2);
 
+            ajouterButton.setVisibility(GONE);
             faitButton.setVisibility(View.VISIBLE);
             timerTextView.setVisibility(GONE);
 
+            faitButton.setText("C'EST FAIT !");
             deviceTextView.setText(device);
             protocolTextView.setText("Alors voilà comment ça va se passer mon ptit pote, tu va te rapprocher de ta jolie lampe et tu va l'éteindre. Une fois que " +
                     "c'est éteint tu va appuyer le bouton 'c'est fait' tu aura alors 3 secondes pour allumer puis 3 autres secondes pour l'éteindre !" +
                     "Ne t'inquiète pas tout va bien se passer mon chaton");
             faitButton.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("ResourceAsColor")
                 @Override
                 public void onClick(View v) {
 
                     faitButton.setVisibility(GONE);
                     timerTextView.setVisibility(View.VISIBLE);
-                    //timerTextView.setTextColor();
-
-                    new CountDownTimer(30000, 1000) {
+                    protocolTextView.setText("ALLUME TON APPAREIL !");
+                    new CountDownTimer(5000, 1000) {
 
                         public void onTick(long millisUntilFinished) {
-                            timerTextView.setText("seconds remaining: " + millisUntilFinished / 1000);
+                            timerTextView.setText("" + millisUntilFinished / 1000 + "secondes");
+
                         }
 
                         public void onFinish() {
-                            timerTextView.setText("done!");
+                            //on recupere donnée papp device allumé
+                            protocolTextView.setText("ETEINT TON APPAREIL !");
+                            new CountDownTimer(5000, 1000) {
+
+                                public void onTick(long millisUntilFinished) {
+                                    timerTextView.setText("" + millisUntilFinished / 1000+ "secondes");
+                                }
+
+                                public void onFinish() {
+                                    //on recupere donnée papp device eteint
+                                    faitButton.setText("AJOUTER APPAREIL");
+                                    timerTextView.setVisibility(GONE);
+                                    protocolTextView.setText("OK on est bon");
+                                    ajouterButton.setVisibility(View.VISIBLE);
+                                }
+                            }.start();
+
                         }
                     }.start();
 
 
+
+
+                }
+
+            });
+
+            ajouterButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popUp.dismiss();
                 }
             });
         }

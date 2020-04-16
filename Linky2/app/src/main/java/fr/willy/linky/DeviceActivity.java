@@ -62,6 +62,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             ,printer,radiator,sewing_machine,shutters,straightener,toaster
             ,tumble_dryer,tv,vacuum,washing_machine;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -181,19 +182,15 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
                     // Ouverture de la Base de données
                     db.open();
                     Log.i("BD:", "Préparation ajout à la base de données contenant " + db.getSize() + " appareils ");
-                    makeText(getApplicationContext(),selected_device + " ajouté. ", Toast.LENGTH_SHORT).show();
+
 
                     customPopUpAdding.dismiss();//on ferme le popup
 
                     final CustomPopUp customPopUpConfig = new CustomPopUp(device_activity, "config"); //on créer le popup de config
                     customPopUpConfig.test_bluid(); //on affiche le popup
-                    customPopUpConfig.getButton_test_config().setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            makeText(getApplicationContext(),"Bien ouej mec !", Toast.LENGTH_SHORT).show();
-                            customPopUpConfig.dismiss();
-                        }
-                    });
+                    customPopUpConfig.configuration_protocol(selected_device,customPopUpConfig);
+                    makeText(getApplicationContext(),selected_device + " ajouté. ", Toast.LENGTH_SHORT).show();
+
                     // Insertion d'un appareil
                     Devices a = new Devices(db.getSize()+1,selected_device, "111");
                     db.insert(a);
