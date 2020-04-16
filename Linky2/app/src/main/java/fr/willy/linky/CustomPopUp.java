@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +24,22 @@ public class CustomPopUp extends Dialog {
     private TextView titleView, subtitleView;
     private Spinner device_spinner;
     private Activity parent_activity;
+    private Button button_test_config;
 
     //constructor
-    public CustomPopUp(Activity activity)
+    public CustomPopUp(Activity activity, String popup)
     {
         super(activity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
-        setContentView(R.layout.popup_device_adding); //on charge notre layout associé au popup
+        //on charge notre layout associé au popup
+        if (popup.equals("adding")){
+            setContentView(R.layout.popup_device_adding);
+        }
+        else if (popup.equals("config")){
+            setContentView(R.layout.popup_device_configuration);
+        }
+        else{
+            setContentView(R.layout.popup_device_quick_config);
+        }
         //empeche l'utilisateur de fermer le popup en appuyant à
         //l'exterieur de celui-ci.
         this.setCancelable(false);
@@ -37,6 +48,7 @@ public class CustomPopUp extends Dialog {
         this.titleView    = findViewById(R.id.device_popup_title);
         this.subtitleView = findViewById(R.id.device_popup_subtitle);
         this.device_spinner = findViewById(R.id.device_spinner);
+        this.button_test_config = findViewById(R.id.button_test_config);
         this.parent_activity = activity;
     }
 
@@ -58,6 +70,8 @@ public class CustomPopUp extends Dialog {
 
     //recupere le champ "annuler" du popup
     public TextView getCancel_text(){return cancel_text;}
+
+    public Button getButton_test_config(){return button_test_config;}
 
     //affiche le popup
     public void test_bluid(){

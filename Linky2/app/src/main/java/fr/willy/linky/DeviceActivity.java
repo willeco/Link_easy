@@ -163,17 +163,17 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
      * -----------------------------------------------------
      */
     public void addDevice(){
-        final CustomPopUp customPopUp = new CustomPopUp(device_activity); //on créer le popup
+        final CustomPopUp customPopUpAdding = new CustomPopUp(device_activity, "adding"); //on créer le popup d'ajout
 
-        customPopUp.test_bluid(); //on affiche le popup
+        customPopUpAdding.test_bluid(); //on affiche le popup
 
         //on créer une interaction avec le champ "confirmer" du popup
         //lorsque l'on appuie sur le champ "confirmer", on confirme l'ajout de l'appareil selcetionné dans notre base de données.
-        customPopUp.getConfirm_text().setOnClickListener(new View.OnClickListener() {
+        customPopUpAdding.getConfirm_text().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String selected_device = customPopUp.getSpinnerData(); //on récupere l'appareil selectionné dans la liste du popup
+                String selected_device = customPopUpAdding.getSpinnerData(); //on récupere l'appareil selectionné dans la liste du popup
                 if (selected_device.equals("Choisir appareil")){
                     makeText(getApplicationContext(),"Choix invalide, veuillez choisir une autre catégorie.", Toast.LENGTH_SHORT).show();
                 }
@@ -183,8 +183,17 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
                     Log.i("BD:", "Préparation ajout à la base de données contenant " + db.getSize() + " appareils ");
                     makeText(getApplicationContext(),selected_device + " ajouté. ", Toast.LENGTH_SHORT).show();
 
-                    customPopUp.dismiss();//on ferme le popup
+                    customPopUpAdding.dismiss();//on ferme le popup
 
+                    final CustomPopUp customPopUpConfig = new CustomPopUp(device_activity, "config"); //on créer le popup de config
+                    customPopUpConfig.test_bluid(); //on affiche le popup
+                    customPopUpConfig.getButton_test_config().setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            makeText(getApplicationContext(),"Bien ouej mec !", Toast.LENGTH_SHORT).show();
+                            customPopUpConfig.dismiss();
+                        }
+                    });
                     // Insertion d'un appareil
                     Devices a = new Devices(db.getSize()+1,selected_device, "111");
                     db.insert(a);
@@ -197,12 +206,12 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         });
 
         //idem pour le champ "annuler" sauf que cette fois-ci on annule la procédure et on prévient l'utilisateur.
-        customPopUp.getCancel_text().setOnClickListener(new View.OnClickListener() {
+        customPopUpAdding.getCancel_text().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 makeText(getApplicationContext(),"Ajout annulé", Toast.LENGTH_SHORT).show();
-                customPopUp.dismiss();
+                customPopUpAdding.dismiss();
             }
         });
     }
