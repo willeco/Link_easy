@@ -10,24 +10,17 @@ public class Devices {
     private int      id;
     private String   name;
     private String   nickname;
-    private String   power;
+    private int      power;
     private float    standbypower;
     private float    meanpower;
     private float    userate;
 
-    /**
-     *  Constructeur
-     *  ------------
-     */
-    public Devices() {
-
-    }
 
     /**
      *  Constructeur
      *  ------------
      */
-    public Devices(int id, String name, String power) {
+    public Devices(int id, String name, int power) {
         super();
         this.id           = id;
         this.name         = name;
@@ -37,6 +30,11 @@ public class Devices {
         this.nickname     = "installé quelque part";
         this.userate      = 0.5f;
     }
+
+    public Devices() {
+
+    }
+
     /**
      *  Création des Getter
      *  -------------------
@@ -48,7 +46,7 @@ public class Devices {
         return name;
     }
 
-    public String getPower() {
+    public int getPower() {
         return power;
     }
     public float getStandbyPower() {
@@ -69,7 +67,7 @@ public class Devices {
         this.name = name;
     }
 
-    public void setPower(String power) {
+    public void setPower(int power) {
         this.power = power;
     }
 

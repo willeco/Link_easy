@@ -32,11 +32,30 @@ import static android.widget.Toast.makeText;
 
 public class DeviceActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    /*
-    L'idee c'est de pouvoir ajouter un appareil à la liste, pour pouvoir voir sa consommation energetique.
-    Pour rendre l'application plus belle et ergonomique, pourquoi pas faire une banque d'images des potentiels
-    appareils électriques d'une maison.
-    Il faut donc trouver un moyen de proposer dans une liste déroulante diffrents appareils.
+    /**
+     L'idee c'est de pouvoir ajouter un appareil à la liste, pour voir sa consommation energetique.
+     On choisi l'appareil parmis une liste déroulante. Si l'appareil souhaité n'est pas présent,
+     on peut choisir "autre catégorie". Suite à ce choix, l'utilisateur se voit suivre un protocole grace à
+     un popup. Ce protocole sert à chercher la consommation individuelle de l'appareil. Le protocole peut varier
+     en fonction de l'appareil mais les informations désirées sont identiques. D'où l'interet d'utiliser l'orientée objet.
+
+     L'appareil possede plusieurs attributs :
+     - un icon
+     - un nom
+     - une puissance active
+     - une puissance passive
+     - un taux d'utilisation
+     - une puissance moyenne
+     - un cout annuel (ou mensuel peu importe)
+     - un protocol
+
+     Une fois que l'appareil est créé, l'utilisateur a la possibilité de configurer différement celui-ci (exemple : taux d'utilisation) et de le supprimer.
+
+     L'utilisateur peut également choisir le type de classement pour les appareils créés dans la base de données :
+     - conso active instantannée
+     - conso passive instantannée
+     - conso effective (en fonction du taux d'utilisation)
+     - cout annuel
      */
 
     private ListView list_devices_in_list_view;
@@ -63,6 +82,9 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             ,tumble_dryer,tv,vacuum,washing_machine;
 
     private String ip_for_sending;
+    private int power;
+    private int device_mean_power;
+    private String selected_device;
 
     static public int pappActualDevice;
 
@@ -126,7 +148,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
      * NEW : Permet d'afficher la listeView contenant les appareils de la base de données
      * ----------------------------------------------------------------------------------
      */
-    private void display_listview_of_Devices(Boolean delete)
+    public void display_listview_of_Devices(Boolean delete)
     {
         /**
          * Ouverture Base de données contenant les appareils électriques
@@ -165,6 +187,12 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         db.close();
     }
 
+    public void setPower(int power_input){power = power_input;}
+    public int getPower(){return power;}
+
+    public DeviceDataBase getDb(){return db;}
+    public String getSelected_device(){return selected_device;}
+
     /**
      * Protocole d'ajout d'appareils dans la base de données
      * -----------------------------------------------------
@@ -180,7 +208,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View v) {
 
-                String selected_device = customPopUpAdding.getSpinnerData(); //on récupere l'appareil selectionné dans la liste du popup
+                selected_device = customPopUpAdding.getSpinnerData(); //on récupere l'appareil selectionné dans la liste du popup
                 if (selected_device.equals("Choisir appareil")){
                     makeText(getApplicationContext(),"Choix invalide, veuillez choisir une autre catégorie.", Toast.LENGTH_SHORT).show();
                 }
@@ -195,15 +223,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
                     final CustomPopUp customPopUpConfig = new CustomPopUp(device_activity, "config"); //on créer le popup de config
                     customPopUpConfig.test_bluid(); //on affiche le popup
                     customPopUpConfig.configuration_protocol(selected_device,customPopUpConfig,ip_for_sending);
-                    makeText(getApplicationContext(),selected_device + " ajouté. ", Toast.LENGTH_SHORT).show();
-
-                    // Insertion d'un appareil
-                    Devices a = new Devices(db.getSize()+1,selected_device, "111");
-                    db.insert(a);
-                    db.close();
-
-
-                    display_listview_of_Devices(false);
                 }
             }
         });

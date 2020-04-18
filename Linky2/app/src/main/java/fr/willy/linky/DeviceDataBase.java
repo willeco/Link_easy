@@ -203,10 +203,11 @@ public class DeviceDataBase {
         if(!multipleResult) {
             c.moveToFirst();
         }
+
         Devices device = new Devices();
         device.setId(c.getInt(0));
         device.setName(c.getString(1));
-        device.setPower(c.getString(2));
+        device.setPower(c.getInt(2));
         return device;
     }
 

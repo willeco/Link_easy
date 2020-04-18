@@ -3,6 +3,7 @@ package fr.willy.linky;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.bluetooth.BluetoothClass;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,15 +27,15 @@ public class CustomPopUp extends Dialog {
     private TextView confirm_text, cancel_text; //bouton "confirmer" et "annuler" du popup
     private TextView titleView, subtitleView;
     private Spinner device_spinner;
-    private Activity parent_activity;
+    private DeviceActivity parent_activity;
     private Button button_test_config;
 
     //constructor
-    public CustomPopUp(Activity activity, String popup)
+    public CustomPopUp(DeviceActivity deviceActivity, String popup)
     {
 
 
-        super(activity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        super(deviceActivity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
         //on charge notre layout associé au popup
         if (popup.equals("adding")){
             setContentView(R.layout.popup_device_adding);
@@ -53,7 +54,7 @@ public class CustomPopUp extends Dialog {
         this.titleView    = findViewById(R.id.device_popup_title);
         this.subtitleView = findViewById(R.id.device_popup_subtitle);
         this.device_spinner = findViewById(R.id.device_spinner);
-        this.parent_activity = activity;
+        this.parent_activity = deviceActivity;
     }
 
     //changer le titre du popup
@@ -138,9 +139,17 @@ public class CustomPopUp extends Dialog {
                                     faitButton.setText("AJOUTER APPAREIL");
                                     timerTextView.setVisibility(GONE);
                                     diffPapp[0] = pappOn[0]-pappOff[0];
+                                    parent_activity.setPower(diffPapp[0]);
                                     protocolTextView.setText("OK on est bon \n pappOff = "+pappOff[0]+"\n papp = "+diffPapp[0]);
                                     ajouterButton.setVisibility(View.VISIBLE);
-                                    DeviceActivity.pappActualDevice = diffPapp[0];
+
+                                    // Insertion d'un appareil
+                                    Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), parent_activity.getPower());
+                                    parent_activity.getDb().insert(a);
+                                    parent_activity.getDb().close();
+                                    parent_activity.display_listview_of_Devices(false);
+                                    makeText(parent_activity.getApplicationContext(),parent_activity.getSelected_device() + " ajouté. ", Toast.LENGTH_SHORT).show();
+
                                 }
                             }.start();
 
@@ -160,6 +169,14 @@ public class CustomPopUp extends Dialog {
                     popUp.dismiss();
                 }
             });
+        }
+        else{
+            popUp.dismiss();
+            Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), 0);
+            parent_activity.getDb().insert(a);
+            parent_activity.getDb().close();
+            parent_activity.display_listview_of_Devices(false);
+            makeText(parent_activity.getApplicationContext(),parent_activity.getSelected_device() + " ajouté. ", Toast.LENGTH_SHORT).show();
         }
     }
 
