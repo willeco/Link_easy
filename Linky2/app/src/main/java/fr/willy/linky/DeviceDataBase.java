@@ -19,7 +19,6 @@ public class DeviceDataBase {
 
     private static final    String ID                  = "id";
     private static final    String NAME                = "name";
-    private static final    String NICKNAME            = "nickname";
     private static final    String POWER               = "power";
     private static final    String STANDBY_POWER       = "standbypower";
     private static final    String MEAN_POWER          = "meanpower";
@@ -77,6 +76,9 @@ public class DeviceDataBase {
         values.put(ID,    device.getId());
         values.put(NAME,  device.getName());
         values.put(POWER, device.getPower());
+        values.put(STANDBY_POWER, device.getStandbyPower());
+        values.put(MEAN_POWER, device.getMeanPower());
+        values.put(USERATE, device.getUseRate());
 
         //on insère l'objet dans la BDD via le ContentValues
         return bdd.insert(DEVICE_TABLE_NAME, null, values);
@@ -94,6 +96,9 @@ public class DeviceDataBase {
         values.put( ID,    device.getId());
         values.put( NAME,  device.getName());
         values.put( POWER, device.getPower());
+        values.put(STANDBY_POWER, device.getStandbyPower());
+        values.put(MEAN_POWER, device.getMeanPower());
+        values.put(USERATE, device.getUseRate());
 
         return bdd.update(DEVICE_TABLE_NAME, values, ID + " = " +id, null);
     }
@@ -208,6 +213,11 @@ public class DeviceDataBase {
         device.setId(c.getInt(0));
         device.setName(c.getString(1));
         device.setPower(c.getInt(2));
+        device.setStandbyPower(c.getInt(3));
+        device.setUseRate(c.getFloat(4));
+        device.setMeanPower(c.getFloat(5));
+
+
         return device;
     }
 
