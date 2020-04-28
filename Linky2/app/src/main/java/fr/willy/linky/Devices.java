@@ -9,7 +9,6 @@ public class Devices {
 
     private int      id;
     private String   name;
-    private String   nickname;
     private int      power;
     private float    standbypower;
     private float    meanpower;
@@ -20,15 +19,14 @@ public class Devices {
      *  Constructeur
      *  ------------
      */
-    public Devices(int id, String name, int power) {
+    public Devices(int id, String name, int power,float standbypower, float meanpower, float userate) {
         super();
         this.id           = id;
         this.name         = name;
         this.power        = power;
-        this.standbypower = 0;
-        this.meanpower    = 0;
-        this.nickname     = "installé quelque part";
-        this.userate      = 0.5f;
+        this.standbypower = standbypower;
+        this.meanpower    = meanpower;
+        this.userate      = userate;
     }
 
     public Devices() {
@@ -82,14 +80,7 @@ public class Devices {
         this.meanpower = MeanPower;
     }
 
-    /**
-     * Ne sert pas
-     * -------------------
-     */
-    @Override
-    public String toString() {
-        return "Appareil [id=" + id + ", nom=" + name + ", puissance=" + power + "]";
-    }
+
 
 
 }

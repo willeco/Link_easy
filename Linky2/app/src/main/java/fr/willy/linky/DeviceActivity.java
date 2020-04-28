@@ -83,6 +83,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
     private String ip_for_sending;
     private int power;
+    private int standbypower; //TEST
     private int device_mean_power;
     private String selected_device;
 
@@ -189,6 +190,8 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
     public void setPower(int power_input){power = power_input;}
     public int getPower(){return power;}
+    public void setstandbypower(int standbypower_input){standbypower = standbypower_input;} //TA FOUTU QUOI LA ?
+    public int getstandbypower(){return standbypower;}
 
     public DeviceDataBase getDb(){return db;}
     public String getSelected_device(){return selected_device;}

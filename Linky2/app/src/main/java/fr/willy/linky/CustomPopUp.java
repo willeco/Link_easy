@@ -92,7 +92,6 @@ public class CustomPopUp extends Dialog {
             TextView deviceTextView = findViewById(R.id.textView);
             final TextView protocolTextView = findViewById(R.id.textView3);
             final Button faitButton = findViewById(R.id.button);
-            final TextView timerTextView = findViewById(R.id.textView4);
             final Button ajouterButton = findViewById(R.id.button2);
 
             final int[] pappOn = new int[1];
@@ -101,61 +100,88 @@ public class CustomPopUp extends Dialog {
 
             ajouterButton.setVisibility(GONE);
             faitButton.setVisibility(View.VISIBLE);
-            timerTextView.setVisibility(GONE);
 
             faitButton.setText("C'EST FAIT !");
             deviceTextView.setText(device);
             protocolTextView.setText("Alors voilà comment ça va se passer mon ptit pote, tu va te rapprocher de ta jolie lampe et tu va l'éteindre. Une fois que " +
                     "c'est éteint tu va appuyer le bouton 'c'est fait' tu aura alors 3 secondes pour allumer puis 3 autres secondes pour l'éteindre !" +
                     "Ne t'inquiète pas tout va bien se passer mon chaton");
-            faitButton.setOnClickListener(new View.OnClickListener() {
 
-                @Override
+            faitButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
-                    MainActivity.ask_tele_info(ip_for_sending,10001); //Récupéré l'addresse ip peut être
+                    MainActivity.ask_tele_info(ip_for_sending,10001);
 
-                    faitButton.setVisibility(GONE);
-                    timerTextView.setVisibility(View.VISIBLE);
+                    faitButton.setVisibility(View.VISIBLE);
                     protocolTextView.setText("ALLUME TON APPAREIL !");
-                    new CountDownTimer(5000, 1000) {
 
-                        public void onTick(long millisUntilFinished) {
-                            timerTextView.setText("" + millisUntilFinished / 1000 + "secondes");
+                    faitButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                              pappOn[0] = Integer.parseInt(MainActivity.papp);
+                              protocolTextView.setText("ETEINT TON APPAREIL ! \n pappOn = "+pappOn[0]);
 
-                        }
-
-                        public void onFinish() {
-                            pappOn[0] = Integer.parseInt(MainActivity.papp);
-                            protocolTextView.setText("ETEINT TON APPAREIL ! \n pappOn = "+pappOn[0]);
-                            new CountDownTimer(5000, 1000) {
-
-                                public void onTick(long millisUntilFinished) {
-                                    timerTextView.setText("" + millisUntilFinished / 1000+ "secondes");
-                                }
-
-                                public void onFinish() {
+                                faitButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
                                     pappOff[0] = Integer.parseInt(MainActivity.papp);
                                     faitButton.setText("AJOUTER APPAREIL");
-                                    timerTextView.setVisibility(GONE);
+                                    faitButton.setVisibility(GONE);
                                     diffPapp[0] = pappOn[0]-pappOff[0];
                                     parent_activity.setPower(diffPapp[0]);
                                     protocolTextView.setText("OK on est bon \n pappOff = "+pappOff[0]+"\n papp = "+diffPapp[0]);
                                     ajouterButton.setVisibility(View.VISIBLE);
 
+
                                     // Insertion d'un appareil
-                                    Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), parent_activity.getPower());
+                                    Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), parent_activity.getPower(),0,0,0);
                                     parent_activity.getDb().insert(a);
                                     parent_activity.getDb().close();
                                     parent_activity.display_listview_of_Devices(false);
                                     makeText(parent_activity.getApplicationContext(),parent_activity.getSelected_device() + " ajouté. ", Toast.LENGTH_SHORT).show();
-
                                 }
-                            }.start();
+                                });
 
                         }
-                    }.start();
+                        });
 
+//                    new CountDownTimer(5000, 1000) {
+//
+//                        public void onTick(long millisUntilFinished) {
+//                            timerTextView.setText("" + millisUntilFinished / 1000 + "secondes");
+//
+//                        }
+//
+//                        public void onFinish() {
+//                            pappOn[0] = Integer.parseInt(MainActivity.papp);
+//                            protocolTextView.setText("ETEINT TON APPAREIL ! \n pappOn = "+pappOn[0]);
+//                            new CountDownTimer(5000, 1000) {
+//
+//                                public void onTick(long millisUntilFinished) {
+//                                    timerTextView.setText("" + millisUntilFinished / 1000+ "secondes");
+//                                }
+//
+//                                public void onFinish() {
+//                                    pappOff[0] = Integer.parseInt(MainActivity.papp);
+//                                    faitButton.setText("AJOUTER APPAREIL");
+//                                    timerTextView.setVisibility(GONE);
+//                                    diffPapp[0] = pappOn[0]-pappOff[0];
+//                                    parent_activity.setPower(diffPapp[0]);
+//                                    protocolTextView.setText("OK on est bon \n pappOff = "+pappOff[0]+"\n papp = "+diffPapp[0]);
+//                                    ajouterButton.setVisibility(View.VISIBLE);
+//
+//                                    // Insertion d'un appareil
+//                                    Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), parent_activity.getPower());
+//                                    parent_activity.getDb().insert(a);
+//                                    parent_activity.getDb().close();
+//                                    parent_activity.display_listview_of_Devices(false);
+//                                    makeText(parent_activity.getApplicationContext(),parent_activity.getSelected_device() + " ajouté. ", Toast.LENGTH_SHORT).show();
+//
+//                                }
+//                            }.start();
+//
+//                        }
+//                    }.start();
 
 
 
@@ -172,7 +198,7 @@ public class CustomPopUp extends Dialog {
         }
         else{
             popUp.dismiss();
-            Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), 0);
+            Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), 0,0,0,0);
             parent_activity.getDb().insert(a);
             parent_activity.getDb().close();
             parent_activity.display_listview_of_Devices(false);

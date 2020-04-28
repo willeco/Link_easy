@@ -20,8 +20,8 @@ public class DeviceDataBase {
     private static final    String ID                  = "id";
     private static final    String NAME                = "name";
     private static final    String POWER               = "power";
-    private static final    String STANDBY_POWER       = "standbypower";
-    private static final    String MEAN_POWER          = "meanpower";
+    private static final    String STANDBY_POWER       = "standby_power";
+    private static final    String MEAN_POWER          = "mean_power";
     private static final    String USERATE             = "userate";
 
 
@@ -96,8 +96,8 @@ public class DeviceDataBase {
         values.put( ID,    device.getId());
         values.put( NAME,  device.getName());
         values.put( POWER, device.getPower());
-        values.put(STANDBY_POWER, device.getStandbyPower());
         values.put(MEAN_POWER, device.getMeanPower());
+        values.put(STANDBY_POWER, device.getStandbyPower());
         values.put(USERATE, device.getUseRate());
 
         return bdd.update(DEVICE_TABLE_NAME, values, ID + " = " +id, null);
