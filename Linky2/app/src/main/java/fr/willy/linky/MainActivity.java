@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler         graph_handler;
 
-    static String papp;
+    static String papp = "0"; //on initialise à Zero
 
 
 
