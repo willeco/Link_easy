@@ -1,6 +1,7 @@
 # Link_easy
 
-One Paragraph of project description goes here
+Le projet vise à faciliter la recherche des appareils énergivores de la maison en se servant de la téléinformation du compteur linky d’une manière plus pratique que celle proposée actuellement. Actuellement, pour interroger son compteur Linky, il est nécessaire de se placer devant l’afficheur et d’utiliser les touches de défilement (+) ou (-) afin de visualiser la puissance apparente.
+Nous proposons également de visualiser la consommation individuelle de chaque appareil de votre domicile.
 
 ## Getting Started
 
@@ -72,7 +73,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **William Le Corre** - *Initial work* - [willeco](https://github.com/willeco)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
