@@ -35,7 +35,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Lancer le test
 
-* Avant d'avoir accès aux fonctionnalités de notre application, il vous renseigner l'adresse IP de votre module radio
+* Avant d'avoir accès aux fonctionnalités de notre application, il vous faut renseigner l'adresse IP de votre module radio
 * Une fois cela fait, vous êtes invité à renseigner celle-ci dans le champ "Login" de la page d'acceuil de l'application
 * Appuyer sur confirmer
 ```
