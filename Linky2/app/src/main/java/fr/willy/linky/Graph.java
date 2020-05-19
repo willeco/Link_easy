@@ -65,7 +65,10 @@ public class Graph extends AppCompatActivity {
                 papp = Float.parseFloat(DataHolder.getInstance().getData());
                 listPapp.add(papp);
 
-                //Toast.makeText(getApplicationContext(), listPapp.toString(), Toast.LENGTH_LONG).show();
+                if(listPapp.size() >= 300) //Nombre de points avant défilement
+                {
+                    listPapp.remove(0);
+                }
 
                 data = drawInTime(listPapp);
                 lineChartView.setLineChartData(data);

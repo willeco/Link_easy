@@ -99,7 +99,10 @@ public class CustomPopUp extends Dialog {
             final int[] pappUnplugged = new int[1];
             final int[] pappOn = new int[1];
             final int[] pappOff = new int[1];
-            final int[] diffPapp = new int[1];
+            final int[] diffPappOnOff = new int[1];
+            final int[] diffPappUnpluggedOff = new int[1];
+
+            final int[] counter = {6};
 
             ajouterButton.setVisibility(GONE);
             faitButton.setVisibility(View.VISIBLE);
@@ -113,27 +116,66 @@ public class CustomPopUp extends Dialog {
             faitButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
+                    faitButton.setVisibility(GONE);
                     debranchable.setVisibility(GONE);
                     MainActivity.ask_tele_info(ip_for_sending,10001);
 
                     if(debranchable.isChecked() == true)
                     {
-                        faitButton.setVisibility(View.VISIBLE);
-                        protocolTextView.setText("DEBRANCHE TON APPAREIL !");
+                        new CountDownTimer(5000, 1000){
+                            public void onTick(long millisUntilFinished){
+                                protocolTextView.setText("DEBRANCHE TON APPAREIL !\n"+String.valueOf(counter[0])+" secondes");
+                                counter[0]--;
+                                protocolTextView.setText("DEBRANCHE TON APPAREIL !\n"+String.valueOf(counter[0])+" secondes");
+                            }
+                            public  void onFinish(){
+                                protocolTextView.setText("DEBRANCHE TON APPAREIL !\n0 secondes");
+                                faitButton.setVisibility(View.VISIBLE);
+                            }
+                        }.start();
+
 
                         faitButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 pappUnplugged[0] = Integer.parseInt(MainActivity.papp);
-                                protocolTextView.setText("BRANCHE ET ALLUME TON APPAREIL ! \n pappUnplugged = "+pappUnplugged[0]);
+                                protocolTextView.setText("BRANCHE ET ALLUME TON APPAREIL ! \n"+String.valueOf(counter[0])+" secondes\npappUnplugged = "+pappUnplugged[0]);
 
-                                faitButton.setVisibility(View.VISIBLE);
+                                counter[0] = 6;
+                                faitButton.setVisibility(GONE);
+
+                                new CountDownTimer(5000, 1000){
+                                    public void onTick(long millisUntilFinished){
+                                        protocolTextView.setText("BRANCHE ET ALLUME TON APPAREIL ! \n"+String.valueOf(counter[0])+" secondes\npappUnplugged = "+pappUnplugged[0]);
+                                        counter[0]--;
+                                        protocolTextView.setText("BRANCHE ET ALLUME TON APPAREIL ! \n"+String.valueOf(counter[0])+" secondes\npappUnplugged = "+pappUnplugged[0]);
+                                    }
+                                    public  void onFinish(){
+                                        protocolTextView.setText("BRANCHE ET ALLUME TON APPAREIL ! \n0 secondes\npappUnplugged = "+pappUnplugged[0]);
+                                        faitButton.setVisibility(View.VISIBLE);
+                                    }
+                                }.start();
+
 
                                 faitButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
                                         pappOn[0] = Integer.parseInt(MainActivity.papp);
-                                        protocolTextView.setText("ETEINT TON APPAREIL ! \n pappOn = "+pappOn[0]);
+
+                                        counter[0] = 6;
+                                        faitButton.setVisibility(GONE);
+
+                                        new CountDownTimer(5000, 1000){
+                                            public void onTick(long millisUntilFinished){
+                                                protocolTextView.setText("ETEINT TON APPAREIL ! \n"+String.valueOf(counter[0])+" secondes\npappOn = "+pappOn[0]);
+                                                counter[0]--;
+                                                protocolTextView.setText("ETEINT TON APPAREIL ! \n"+String.valueOf(counter[0])+" secondes\npappOn = "+pappOn[0]);
+                                            }
+                                            public  void onFinish(){
+                                                protocolTextView.setText("ETEINT TON APPAREIL ! \n0 secondes\npappOn = "+pappOn[0]);
+                                                faitButton.setVisibility(View.VISIBLE);
+                                            }
+                                        }.start();
 
                                         faitButton.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -141,14 +183,16 @@ public class CustomPopUp extends Dialog {
                                                 pappOff[0] = Integer.parseInt(MainActivity.papp);
                                                 faitButton.setText("AJOUTER APPAREIL");
                                                 faitButton.setVisibility(GONE);
-                                                diffPapp[0] = pappOn[0]-pappOff[0];
-                                                parent_activity.setPower(diffPapp[0]);
+                                                diffPappOnOff[0] = pappOn[0]-pappOff[0];
+                                                diffPappUnpluggedOff[0] = pappOff[0] - pappUnplugged[0];
+                                                parent_activity.setPower(diffPappOnOff[0]);
+                                                parent_activity.setstandbypower(diffPappUnpluggedOff[0]);
                                                 protocolTextView.setText("OK on est bon \n pappOff = "+pappOff[0]+"\n pappOn = "+pappOn[0]+"\n pappUnplugged = "+pappUnplugged[0]);
                                                 ajouterButton.setVisibility(View.VISIBLE);
 
 
                                                 // Insertion d'un appareil
-                                                Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), parent_activity.getPower(),0,0,0);
+                                                Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), parent_activity.getPower(),parent_activity.getstandbypower(),0,0);
                                                 parent_activity.getDb().insert(a);
                                                 parent_activity.getDb().close();
                                                 parent_activity.display_listview_of_Devices(false);
@@ -167,13 +211,41 @@ public class CustomPopUp extends Dialog {
                     {
                         protocolTextView.setText("ALLUME TON APPAREIL ! \n");
 
-                        faitButton.setVisibility(View.VISIBLE);
+                        counter[0] = 6;
+                        faitButton.setVisibility(GONE);
+
+                        new CountDownTimer(5000, 1000){
+                            public void onTick(long millisUntilFinished){
+                                protocolTextView.setText("ALLUME TON APPAREIL ! \n"+String.valueOf(counter[0])+" secondes");
+                                counter[0]--;
+                                protocolTextView.setText("ALLUME TON APPAREIL ! \n"+String.valueOf(counter[0])+" secondes");
+                            }
+                            public  void onFinish(){
+                                protocolTextView.setText("ALLUME TON APPAREIL ! \n0 secondes");
+                                faitButton.setVisibility(View.VISIBLE);
+                            }
+                        }.start();
+
 
                         faitButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 pappOn[0] = Integer.parseInt(MainActivity.papp);
-                                protocolTextView.setText("ETEINT TON APPAREIL ! \n pappOn = "+pappOn[0]);
+
+                                counter[0] = 6;
+                                faitButton.setVisibility(GONE);
+
+                                new CountDownTimer(5000, 1000){
+                                    public void onTick(long millisUntilFinished){
+                                        protocolTextView.setText("ETEINT TON APPAREIL ! \n"+String.valueOf(counter[0])+" secondes\npappOn = "+pappOn[0]);
+                                        counter[0]--;
+                                        protocolTextView.setText("ETEINT TON APPAREIL ! \n"+String.valueOf(counter[0])+" secondes\npappOn = "+pappOn[0]);
+                                    }
+                                    public  void onFinish(){
+                                        protocolTextView.setText("ETEINT TON APPAREIL ! \n0 secondes\npappOn = "+pappOn[0]);
+                                        faitButton.setVisibility(View.VISIBLE);
+                                    }
+                                }.start();
 
                                 faitButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -181,9 +253,9 @@ public class CustomPopUp extends Dialog {
                                         pappOff[0] = Integer.parseInt(MainActivity.papp);
                                         faitButton.setText("AJOUTER APPAREIL");
                                         faitButton.setVisibility(GONE);
-                                        diffPapp[0] = pappOn[0]-pappOff[0];
-                                        parent_activity.setPower(diffPapp[0]);
-                                        protocolTextView.setText("OK on est bon \n pappOff = "+pappOff[0]+"\n pappOn = "+pappOn[0]+"\n");
+                                        diffPappOnOff[0] = pappOn[0]-pappOff[0];
+                                        parent_activity.setPower(diffPappOnOff[0]);;
+                                        protocolTextView.setText("OK on est bon \n pappOff = "+pappOff[0]+"\n pappOn = "+pappOn[0]);
                                         ajouterButton.setVisibility(View.VISIBLE);
 
 
