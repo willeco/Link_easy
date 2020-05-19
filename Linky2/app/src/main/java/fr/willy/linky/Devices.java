@@ -49,6 +49,7 @@ public class Devices {
     public int getPower() {
         return power;
     }
+    public float getMeanPower(){return meanpower;}
     public float getStandbyPower() {
         return standbypower;
     }
@@ -76,6 +77,9 @@ public class Devices {
     }
     public void setUseRate(float UseRate) {
         this.userate = UseRate;
+    }
+    public void setMeanPower(float MeanPower) {
+        this.meanpower = MeanPower;
     }
 
     /**
