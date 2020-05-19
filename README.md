@@ -68,24 +68,23 @@ Add additional notes about how to deploy this on a live system
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/ThomasCochou/Link_easy/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Veuillez lire [CONTRIBUTING.md] (https://github.com/ThomasCochou/Link_easy/blob/master/CONTRIBUTING.md) pour plus de détails sur notre organisation.
 
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
-## Authors
+## Auteur
 
-* **William Le Corre** - *Initial work* - [willeco](https://github.com/willeco)
+* **William Le Corre** - [Compte GitHub](https://github.com/willeco)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+Voir également la liste des [contributeurs](https://github.com/ThomasCochou/Link_easy/graphs/contributors) qui ont participé au projet.
 
-## License
+## Contexte
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Ce projet a été réalisé dans le cadre de nos études au sein de l'[ENIB](https://www.enib.fr/fr/) (Ecole Nationale d'Ingénieurs de Brest).
 
-## Acknowledgments
+## Remerciements
 
-* Hat tip to anyone whose code was used
-* Inspiration
+* Lorette Louvel [son book](https://iffdec.com/) pour le design de l'application
 * etc
