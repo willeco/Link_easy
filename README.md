@@ -59,9 +59,12 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [AndroidStudio](https://cutt.ly/TyTR5ou) - Notre outil de dévellopement principal pour la plateforme Android.
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [AndroidStudio](https://cutt.ly/TyTR5ou) - Notre outil de dévellopement principal pour la plateforme Android
+* [GitHub](https://github.com/) - Notre plateforme de collaboration
+* [Visual Studio Code](https://code.visualstudio.com/) - Notre editeur de texte pour le simulateur
+* [Java](https://www.java.com/fr/) - Principal langage de programmation du projet
+* [Python](https://www.python.org/) - Langage de programmation secondaire du projet
+* [InkScape](https://inkscape.org/fr/) - Utilisé pour le design de l'application
 
 ## Contributing
 
