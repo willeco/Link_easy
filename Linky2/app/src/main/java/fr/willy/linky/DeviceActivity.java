@@ -8,6 +8,7 @@ import androidx.appcompat.widget.ActionBarContextView;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -183,6 +184,29 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
         Log.i("BD:", "Remplissage listView  ");
         list_devices_in_list_view.setAdapter(myAdapter);
+
+        list_devices_in_list_view.setClickable(true);
+
+        list_devices_in_list_view.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+
+                if (cursor != null) {
+
+                    Intent intent = new Intent(view.getContext(), Quick_custom.class);
+
+                    String rowId = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+
+                    intent.putExtra("rowid", rowId);
+
+                    startActivity(intent);
+
+                }
+            }
+        });
 
         db.close();
     }

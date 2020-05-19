@@ -149,6 +149,15 @@ public class DeviceDataBase {
     }
 
 
+    public Devices selectWithRowID(String[] args)
+    {
+        Cursor cursor = bdd.rawQuery("SELECT * from " + DEVICE_TABLE_NAME + " WHERE _id = ? ", args);
+        Devices device = cursorToDevice(cursor, false);
+        cursor.close();
+        return device;
+    }
+
+
     /**
      * Permet de Retourner un cursor sur tous les élements
      * ---------------------------------------------------------------------------------------------
