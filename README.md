@@ -68,7 +68,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Contributing
 
-Veuillez lire [CONTRIBUTING.md] (https://github.com/ThomasCochou/Link_easy/blob/master/CONTRIBUTING.md) pour plus de détails sur notre organisation.
+Veuillez lire [CONTRIBUTING.md](https://github.com/ThomasCochou/Link_easy/blob/master/CONTRIBUTING.md) pour plus de détails sur notre organisation.
 
 ## Versioning
 
