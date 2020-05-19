@@ -1,4 +1,4 @@
-# Link_easy
+# Link'easy
 
 Le projet vise à faciliter la recherche des appareils énergivores de la maison en se servant de la téléinformation du compteur linky d’une manière plus pratique que celle proposée actuellement. Actuellement, pour interroger son compteur Linky, il est nécessaire de se placer devant l’afficheur et d’utiliser les touches de défilement (+) ou (-) afin de visualiser la puissance apparente.
 Nous proposons également de visualiser la consommation individuelle de chaque appareil de votre domicile.
@@ -39,7 +39,8 @@ End with an example of getting some data out of the system or using it for a lit
 * Une fois cela fait, vous êtes invité à renseigner celle-ci dans le champ "Login" de la page d'acceuil de l'application
 * Appuyer sur confirmer
 ```
-La demande de télé-information a été envoyé, votre portable est désormais en attente de réception de la consommation de votre domicile.
+La demande de télé-information a été envoyé.
+Votre portable est désormais en attente de réception de la consommation de votre domicile.
 ```
 * Plusieurs informations vous sont présentées (exemple : PAPP), vous pouvez appuyer sur ces informations pour voir leurs évolutions en direct à travers un graphique
 * Vous pouvez également visualiser votre consommation journalière en appuyant sur le bouton correspondant
