@@ -57,7 +57,7 @@ Give an example
 
 Add additional notes about how to deploy this on a live system
 
-## Built With
+## Créé Avec
 
 * [AndroidStudio](https://cutt.ly/TyTR5ou) - Notre outil de dévellopement principal pour la plateforme Android
 * [GitHub](https://github.com/) - Notre plateforme de collaboration
@@ -66,13 +66,9 @@ Add additional notes about how to deploy this on a live system
 * [Python](https://www.python.org/) - Langage de programmation secondaire du projet
 * [InkScape](https://inkscape.org/fr/) - Utilisé pour le design de l'application
 
-## Contributing
+## Collaboration
 
-Veuillez lire [CONTRIBUTING.md](https://github.com/ThomasCochou/Link_easy/blob/master/CONTRIBUTING.md) pour plus de détails sur notre organisation.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+Veuillez lire [CONTRIBUTING.md](https://github.com/ThomasCochou/Link_easy/blob/master/CONTRIBUTING.md) pour plus de détails sur notre organisation. 
 
 ## Auteur
 
@@ -86,5 +82,5 @@ Ce projet a été réalisé dans le cadre de nos études au sein de l'[ENIB](htt
 
 ## Remerciements
 
-* Lorette Louvel [son book](https://iffdec.com/) pour le design de l'application
+* Lorette Louvel pour le design de l'application [son book](https://iffdec.com/)
 * etc
