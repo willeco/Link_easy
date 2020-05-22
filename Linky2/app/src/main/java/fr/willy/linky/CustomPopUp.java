@@ -41,12 +41,10 @@ public class CustomPopUp extends Dialog {
         if (popup.equals("adding")){
             setContentView(R.layout.popup_device_adding);
         }
-        else if (popup.equals("config")){
+        else {
             setContentView(R.layout.popup_device_configuration);
         }
-        else{
-            setContentView(R.layout.popup_device_quick_config);
-        }
+
         //empeche l'utilisateur de fermer le popup en appuyant à
         //l'exterieur de celui-ci.
         this.setCancelable(false);

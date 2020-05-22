@@ -1,15 +1,15 @@
-# Link_easy
+# Link'easy
 
 Le projet vise à faciliter la recherche des appareils énergivores de la maison en se servant de la téléinformation du compteur linky d’une manière plus pratique que celle proposée actuellement. Actuellement, pour interroger son compteur Linky, il est nécessaire de se placer devant l’afficheur et d’utiliser les touches de défilement (+) ou (-) afin de visualiser la puissance apparente.
 Nous proposons également de visualiser la consommation individuelle de chaque appareil de votre domicile.
 
-## Getting Started
+## Avant propos
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+L'application est uniquement disponible sur Android. 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Pour pouvoir utiliser notre application, vous devez être en possesion d'un compteur Linky, d'un module radio ainsi que d'une connexion Wifi.
 
 ```
 Give examples
@@ -33,29 +33,31 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## Lancer le test
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+* Avant d'avoir accès aux fonctionnalités de notre application, il vous faut renseigner l'adresse IP de votre module radio
+* Une fois cela fait, vous êtes invité à renseigner celle-ci dans le champ "Login" de la page d'acceuil de l'application
+* Appuyer sur confirmer
 ```
-Give an example
+La demande de télé-information a été envoyé.
+Votre portable est désormais en attente de réception de la consommation de votre domicile.
 ```
+* Plusieurs informations vous sont présentées (exemple : PAPP), vous pouvez appuyer sur ces informations pour voir leurs évolutions en direct à travers un graphique
+* Vous pouvez également visualiser votre consommation journalière en appuyant sur le bouton correspondant
+* Enfin, vous avez la possibilté de rechercher la consommation individuelle de chaque appareils dans votre maison en appuyant sur le bouton correspondant
 
-### And coding style tests
+### Consommation individuelle de chaque appareils
 
-Explain what these tests test and why
+* Appuyer sur le bouton d'ajout d'appareil
+* Choisissez l'appareil souhaité parmis la liste que l'on vous propose (s'il n'est pas présent dans la liste choisisez "autre appreil)
+* Suivez le protocole
+* Votre appareil est créé
+* Si vous désirez modifier les informations de votre appareil, appuyer dessus
+* Modifiez les informations que vous souhaitez, ou supprimez votre appareil
 
-```
-Give an example
-```
+## Informations complémentaires
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+Pour revenir à une activité précédente, il vous suffit d'utiliser la touche retour en arrière de votre portable.
 
 ## Créé Avec
 
