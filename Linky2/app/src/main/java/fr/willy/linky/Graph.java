@@ -63,6 +63,8 @@ public class Graph extends AppCompatActivity {
             listPapp = new ArrayList();
         }
 
+        listPapp.add(151.0f); //Pour avoir 2 points et le premier sera toujours à 150.01 au début
+
         refresh = new Runnable() {
             public void run() {
 
@@ -71,9 +73,29 @@ public class Graph extends AppCompatActivity {
                 papp = Integer.parseInt(MainActivity.papp);;
                 listPapp.add(papp);
 
-                if(listPapp.size() >= 300) //Nombre de points avant défilement
+                if(listPapp.size() >= 180) //Nombre de points avant défilement
                 {
-                    listPapp.remove(0);
+                    Boolean listFullOfSame = true;
+
+                    for(int i=1 ; i<listPapp.size() ; i++)
+                    {
+                        if(!listPapp.get(i).equals(listPapp.get(1)))
+                        {
+                            listFullOfSame = false;
+                        }
+                    }
+
+                    System.out.println(listFullOfSame);
+
+                    if(listFullOfSame == false)
+                    {
+                        listPapp.remove(0);
+                    }
+                    else
+                    {
+                        listPapp.remove(1);
+                    }
+
                 }
 
                 data = drawInTime(listPapp);

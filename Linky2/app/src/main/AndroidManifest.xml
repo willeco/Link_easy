@@ -23,7 +23,7 @@
         <activity
             android:name=".Graph"
             android:label="@string/title_activity_graph"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
