@@ -119,13 +119,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), Graph.class);
+                myIntent.putExtra("ip_for_sending",tview_ip_er.getText().toString());
                 activity = 1;
-                if(Integer.parseInt((m_tview_nb_trames.getText()).toString()) != 0) {
-                    startActivity(myIntent);
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "Pas de données, pas de graphs !", Toast.LENGTH_LONG).show();
-                }
+                startActivity(myIntent);
+
                 //L'app crash si on n'a pas demandé de TI
 
 

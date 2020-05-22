@@ -41,6 +41,7 @@ public class Graph extends AppCompatActivity {
     float papp;
     private List listPapp;
     private LineChartData data;
+    private String ip_for_sending;
 
 
 
@@ -53,6 +54,10 @@ public class Graph extends AppCompatActivity {
         lineChartView = findViewById(R.id.chart);
         setSupportActionBar(toolbar);
 
+        Bundle extras = getIntent().getExtras();
+        ip_for_sending = extras.getString("ip_for_sending");
+        MainActivity.ask_tele_info(ip_for_sending,10001);
+
         if(listPapp == null)
         {
             listPapp = new ArrayList();
@@ -61,8 +66,9 @@ public class Graph extends AppCompatActivity {
         refresh = new Runnable() {
             public void run() {
 
+
                 // Do something
-                papp = Float.parseFloat(DataHolder.getInstance().getData());
+                papp = Integer.parseInt(MainActivity.papp);;
                 listPapp.add(papp);
 
                 if(listPapp.size() >= 300) //Nombre de points avant défilement
