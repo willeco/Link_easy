@@ -19,6 +19,7 @@ public class DeviceDataBase {
 
     private static final    String ID                  = "id";
     private static final    String NAME                = "name";
+    private static final    String NICKNAME            = "nickname";
     private static final    String POWER               = "power";
     private static final    String STANDBY_POWER       = "standbypower";
     private static final    String MEAN_POWER          = "meanpower";
@@ -75,10 +76,7 @@ public class DeviceDataBase {
         // (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
         values.put(ID,    device.getId());
         values.put(NAME,  device.getName());
-        values.put(POWER, device.getPower());
-        values.put(STANDBY_POWER, device.getStandbyPower());
-        values.put(MEAN_POWER, device.getMeanPower());
-        values.put(USERATE, device.getUseRate());
+        values.put(POWER, device.getInstantPower());
 
         //on insère l'objet dans la BDD via le ContentValues
         return bdd.insert(DEVICE_TABLE_NAME, null, values);
@@ -95,10 +93,7 @@ public class DeviceDataBase {
         ContentValues values = new ContentValues();
         values.put( ID,    device.getId());
         values.put( NAME,  device.getName());
-        values.put( POWER, device.getPower());
-        values.put(STANDBY_POWER, device.getStandbyPower());
-        values.put(MEAN_POWER, device.getMeanPower());
-        values.put(USERATE, device.getUseRate());
+        values.put( POWER, device.getInstantPower());
 
         return bdd.update(DEVICE_TABLE_NAME, values, ID + " = " +id, null);
     }
@@ -156,10 +151,16 @@ public class DeviceDataBase {
 
     public Devices selectWithRowID(String[] args)
     {
-        Cursor cursor = bdd.rawQuery("SELECT * from " + DEVICE_TABLE_NAME + " WHERE _id = ? ", args);
-        Devices device = cursorToDevice(cursor, false);
-        cursor.close();
-        return device;
+        if (args != null){
+            Cursor cursor = bdd.rawQuery("SELECT * from " + DEVICE_TABLE_NAME + " WHERE id = ? ", args);
+            Devices device = cursorToDevice(cursor, false);
+            cursor.close();
+            return device;
+        }
+        else{
+            Devices erreur = null;
+            return erreur;
+        }
     }
 
 
@@ -222,11 +223,6 @@ public class DeviceDataBase {
         device.setId(c.getInt(0));
         device.setName(c.getString(1));
         device.setPower(c.getInt(2));
-        device.setStandbyPower(c.getInt(3));
-        device.setUseRate(c.getFloat(4));
-        device.setMeanPower(c.getFloat(5));
-
-
         return device;
     }
 

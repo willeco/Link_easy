@@ -32,7 +32,7 @@
         android:layout_marginStart="5dp"
         android:layout_toRightOf="@+id/layout_thumbnail"
         android:text="Chargeur de voiture"
-        android:textColor="@color/colorSlideBar"
+        android:textColor="@color/primary_text"
         android:textSize="14dip"
         android:textStyle="bold"
         android:typeface="sans" />
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/device_name"
         android:layout_marginStart="5dp"
-        android:textColor="@color/grey"
+        android:textColor="@color/secondary_text"
         android:textSize="10dip"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/layout_thumbnail"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/device_nickname"
         android:layout_marginStart="5dp"
-        android:textColor="@color/colorSlideBar"
+        android:textColor="@color/primary_text"
         android:textSize="10dip"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/layout_thumbnail"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/device_power"
         android:layout_marginStart="5dp"
-        android:textColor="@color/grey"
+        android:textColor="@color/secondary_text"
         android:textSize="10dip"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/layout_thumbnail"
@@ -88,7 +88,7 @@
         android:text="Conso. moyenne"
         android:layout_marginRight="5dip"
         android:textSize="10dip"
-        android:textColor="@color/colorLinkyBar" />
+        android:textColor="@color/primary_text" />
 
     <!-- Consommation moyenne  -->
     <TextView
@@ -101,7 +101,7 @@
         android:text="10 Watts"
         android:layout_marginRight="5dip"
         android:textSize="16dip"
-        android:textColor="@color/colorSlideBar"
+        android:textColor="@color/primary_text"
         android:textStyle="bold"/>
 
     <!-- taux utilisation  -->
@@ -115,6 +115,6 @@
         android:text="Taux d'utilisation : 10 %"
         android:layout_marginRight="5dip"
         android:textSize="10dip"
-        android:textColor="@color/colorLinkyBar"/>
+        android:textColor="@color/primary_text"/>
 
 </RelativeLayout>

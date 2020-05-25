@@ -1,16 +1,15 @@
 package fr.willy.linky;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ActionBarContainer;
-import androidx.appcompat.widget.ActionBarContextView;
 
 import android.app.ActionBar;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +17,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CursorAdapter;
-import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -145,6 +141,13 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
 
     }
+
+    public void onStart() {
+        super.onStart();
+
+        display_listview_of_Devices(false);
+    }
+
     /**
      * NEW : Permet d'afficher la listeView contenant les appareils de la base de données
      * ----------------------------------------------------------------------------------
@@ -187,24 +190,36 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
         list_devices_in_list_view.setClickable(true);
 
-        list_devices_in_list_view.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        list_devices_in_list_view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
 
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                // Vibrate for 500 milliseconds
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    v.vibrate(VibrationEffect.createOneShot(40, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+                    //deprecated in API 26
+                    v.vibrate(40);
+                }
 
                 Cursor cursor = (Cursor) parent.getItemAtPosition(position);
 
                 if (cursor != null) {
 
-                    Intent intent = new Intent(view.getContext(), Quick_custom.class);
+                    Intent intent = new Intent(view.getContext(), QuickConfig.class);
 
-                    String rowId = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+                    int rowId = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+
+                    //makeText(getApplicationContext(),"indice de l'appareil avant config : "+rowId, Toast.LENGTH_SHORT).show();
 
                     intent.putExtra("rowid", rowId);
 
                     startActivity(intent);
 
                 }
+                return false;
             }
         });
 
@@ -267,7 +282,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
      *  MAJ : Retourne un index sur la "ressource drawable" en fonction du nom de device
      *  --------------------------------------------------------------------------------
      */
-    private int return_index_icon(String deviceName)
+    public int return_index_icon(String deviceName)
     {
         int index_icon;
 
@@ -354,6 +369,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
      * creation + affichage
      * ---------------------------------------------------------------------------------------------
      */
+    /*
     public void generateDevice(String device) {
 
         int index_icon;
@@ -369,6 +385,8 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
         dynamic_device_layout.addView(test);
     }
+
+     */
 
     /**
      * NEW : Permet à partir d'un cursor de remplir la ligne d'une liste View
@@ -408,6 +426,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             String device_power  = cursor.getString(cursor.getColumnIndexOrThrow("power"));
 
             // Get index on the drawable icon
+
             icon_index          = return_index_icon(device_name);
 
             // Populate fields with extracted properties

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/dark_background"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
@@ -15,8 +15,8 @@
         android:layout_height="48dp"
         android:layout_marginVertical="100dp"
         android:layout_marginBottom="48dp"
-        android:textColor="@color/white"
-        android:background="@color/colorLinkyBar"
+        android:textColor="@color/colorSlideBar"
+        android:background="@color/darkless_background"
         android:text="Afficher Graph"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />
@@ -25,9 +25,9 @@
         android:id="@+id/button_device_consumption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorLinkyBar"
+        android:background="@color/darkless_background"
         android:text="Consommation appareils"
-        android:textColor="@color/white"
+        android:textColor="@color/colorSlideBar"
         app:layout_constraintBottom_toBottomOf="@+id/button_change_activity"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -37,46 +37,53 @@
         android:layout_height="45dp"
         android:layout_marginVertical="30dp"
         android:layout_marginTop="28dp"
-        android:background="@color/colorLinkyBar"
+        android:background="@color/darkless_background"
         android:text="Demande de télé-information"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/text_HC"
-        tools:layout_editor_absoluteX="0dp" />
+        android:textColor="@color/colorSlideBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_HC" />
 
     <TextView
         android:id="@+id/title_config"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorLinky"
+        android:background="@color/darkless_background"
         android:text="Configuration réseau"
         android:textAlignment="center"
+        android:textColor="@color/primary_text"
         android:textSize="15sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="20dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/title_etat_co"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
-        android:background="@color/colorLinky"
+        android:background="@color/darkless_background"
         android:text="Etat de la connection"
         android:textAlignment="center"
+        android:textColor="@color/primary_text"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@+id/text_Port_phone2er"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_Port_phone2er" />
 
     <TextView
         android:id="@+id/title_tele_info_data"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
-        android:background="@color/colorLinky"
+        android:background="@color/darkless_background"
         android:text="Télé-information"
         android:textAlignment="center"
+        android:textColor="@color/primary_text"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@+id/field_etat"
-        tools:layout_editor_absoluteX="27dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/field_etat" />
 
     <TextView
         android:id="@+id/text_IP_ER"
@@ -84,6 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:layout_marginLeft="15dp"
+        android:textColor="@color/secondary_text"
         android:text="Adresse IP du module radio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_config" />
@@ -94,6 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="Adresse IP du smartphone"
+        android:textColor="@color/secondary_text"
         app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
         app:layout_constraintTop_toBottomOf="@+id/text_IP_ER" />
 
@@ -104,6 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="Port : smartphone vers ER"
+        android:textColor="@color/secondary_text"
         app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
         app:layout_constraintTop_toBottomOf="@+id/text_IP_Phone" />
 
@@ -113,6 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="Nombre de trames reçues"
+        android:textColor="@color/secondary_text"
         app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
         app:layout_constraintTop_toBottomOf="@+id/title_etat_co" />
 
@@ -122,6 +133,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="Etat"
+        android:textColor="@color/secondary_text"
         app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
         app:layout_constraintTop_toBottomOf="@+id/text_Nb_trames" />
 
@@ -131,6 +143,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="Index heures creuses (H.C)"
+        android:textColor="@color/secondary_text"
         app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
         app:layout_constraintTop_toBottomOf="@+id/text_HP" />
 
@@ -140,6 +153,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="Index heures pleines (H.P)"
+        android:textColor="@color/secondary_text"
         app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
         app:layout_constraintTop_toBottomOf="@+id/text_PAPP" />
 
@@ -149,6 +163,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="Puissance apparente (V.A)"
+        android:textColor="@color/secondary_text"
         app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
         app:layout_constraintTop_toBottomOf="@+id/text_ad_linky" />
 
@@ -158,6 +173,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="Adresse compteur linky"
+        android:textColor="@color/secondary_text"
         app:layout_constraintStart_toStartOf="@+id/text_IP_ER"
         app:layout_constraintTop_toBottomOf="@+id/title_tele_info_data" />
 
@@ -165,6 +181,7 @@
         android:id="@+id/field_HC"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/secondary_text"
         android:layout_marginVertical="0dp"
         android:layout_toRightOf="@id/text_HC"
         android:textSize="14sp"
@@ -176,6 +193,7 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/text_HC"
+        android:textColor="@color/secondary_text"
         android:layout_marginVertical="0dp"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_HP"
@@ -187,6 +205,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_HC"
         android:layout_marginVertical="0dp"
+        android:textColor="@color/secondary_text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_PAPP"
         app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
@@ -197,6 +216,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_HC"
         android:layout_marginVertical="0dp"
+        android:textColor="@color/secondary_text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_ad_linky"
         app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
@@ -207,6 +227,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_HC"
         android:layout_marginVertical="0dp"
+        android:textColor="@color/secondary_text"
         android:layout_marginLeft="15dp"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_IP_ER"
@@ -218,6 +239,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_HC"
         android:layout_marginVertical="0dp"
+        android:textColor="@color/secondary_text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_IP_Phone"
         app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
@@ -229,6 +251,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_HC"
         android:layout_marginVertical="0dp"
+        android:textColor="@color/secondary_text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_Port_phone2er"
         app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
@@ -239,6 +262,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_HC"
         android:layout_marginVertical="0dp"
+        android:textColor="@color/secondary_text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_Nb_trames"
         app:layout_constraintStart_toStartOf="@+id/field_IP_ER" />
@@ -248,6 +272,7 @@
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/text_HC"
+        android:textColor="@color/secondary_text"
         android:layout_marginVertical="0dp"
         android:layout_marginLeft="10dp"
         android:textSize="10sp"

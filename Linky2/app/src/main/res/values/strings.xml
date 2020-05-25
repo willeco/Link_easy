@@ -5,39 +5,39 @@
 
     <array name="device_string">
         <item>Choisir appareil</item>
-        <item>Lampe</item>
-        <item>Four</item>
-        <item>Télévision</item>
+        <item>Alarme</item>
         <item>Aspirateur</item>
+        <item>Ballon eau chaude</item>
+        <item>Charge téléphone</item>
+        <item>Charge voiture electrique</item>
+        <item>Clim</item>
+        <item>Congele</item>
+        <item>Detecteur de mouvements</item>
+        <item>Four</item>
         <item>Frigo</item>
-        <item>Machine à laver</item>
-        <item>Portes de garage</item>
-        <item>Lave vaiselle</item>
-        <item>Seche linge</item>
-        <item>Micro-ondes</item>
         <item>Grille pain</item>
         <item>Hotte</item>
-        <item>Congele</item>
-        <item>Radiateur</item>
         <item>Imprimante</item>
-        <item>Ordinateur</item>
-        <item>Volets</item>
-        <item>Portail éléctrique</item>
-        <item>Clim</item>
-        <item>Machine à coudre</item>
-        <item>Seche cheveux</item>
-        <item>Ustensile de cuisine</item>
-        <item>Robot cuisine</item>
+        <item>Lampe</item>
+        <item>Lave vaiselle</item>
         <item>Lisseur cheveux</item>
-        <item>Vmc</item>
-        <item>Charge téléphone</item>
-        <item>Tondeuse électrique</item>
-        <item>Pompe à chaleur</item>
-        <item>Detecteur de mouvements</item>
-        <item>Alarme</item>
-        <item>Ballon eau chaude</item>
+        <item>Machine à coudre</item>
+        <item>Machine à laver</item>
+        <item>Micro-ondes</item>
+        <item>Ordinateur</item>
         <item>Outils exterieurs</item>
-        <item>Charge voiture electrique</item>
+        <item>Pompe à chaleur</item>
+        <item>Portail éléctrique</item>
+        <item>Portes de garage</item>
+        <item>Radiateur</item>
+        <item>Robot cuisine</item>
+        <item>Seche cheveux</item>
+        <item>Seche linge</item>
+        <item>Télévision</item>
+        <item>Tondeuse électrique</item>
+        <item>Ustensile de cuisine</item>
+        <item>Vmc</item>
+        <item>Volets</item>
         <item>Autre catégorie</item>
     </array>
 </resources>

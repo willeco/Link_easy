@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="@color/dark_background">
 
 
     <TextView
         android:id="@+id/device_popup_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorLinkyBar"
+        android:background="@color/colorSlideBar"
         android:text="Ajout d'un appareil"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/primary_text"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,8 +29,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:text="Veuillez choisir un appareil à ajouter"
-        android:textColor="@color/colorLinky"
-
+        android:textColor="@color/secondary_text"
         android:textSize="18dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:backgroundTint="@color/colorLinkyBar"
+        android:backgroundTint="@color/colorSlideBar"
+        android:textColor="@color/secondary_text"
         android:entries="@array/device_string"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirmer"
-        android:textColor="@color/colorLinkyBar"
+        android:textColor="@color/colorSlideBar"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/device_popup_subtitle"
         app:layout_constraintTop_toTopOf="@+id/cancel_text" />
@@ -65,7 +65,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:text="Annuler"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/secondary_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/device_popup_subtitle"
         app:layout_constraintTop_toBottomOf="@+id/device_spinner" />

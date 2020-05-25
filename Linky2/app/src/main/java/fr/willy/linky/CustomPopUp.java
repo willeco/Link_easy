@@ -142,7 +142,8 @@ public class CustomPopUp extends Dialog {
                                     ajouterButton.setVisibility(View.VISIBLE);
 
                                     // Insertion d'un appareil
-                                    Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), parent_activity.getPower());
+                                    int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
+                                    Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), parent_activity.getPower(),icon_index);
                                     parent_activity.getDb().insert(a);
                                     parent_activity.getDb().close();
                                     parent_activity.display_listview_of_Devices(false);
@@ -170,7 +171,8 @@ public class CustomPopUp extends Dialog {
         }
         else{
             popUp.dismiss();
-            Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), 0);
+            int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
+            Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), 0,icon_index);
             parent_activity.getDb().insert(a);
             parent_activity.getDb().close();
             parent_activity.display_listview_of_Devices(false);
