@@ -82,6 +82,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
     private int power;
     private int device_mean_power;
     private String selected_device;
+    private boolean device_to_delete = false;
 
     static public int pappActualDevice;
 
@@ -123,7 +124,10 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         delete_device.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display_listview_of_Devices(true);
+                //display_listview_of_Devices(true);
+                Intent myIntentDevice = new Intent(v.getContext(), LoginActivity.class);
+                startActivity(myIntentDevice);
+                finish();
             }
         });
 
@@ -158,9 +162,23 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
          * Ouverture Base de données contenant les appareils électriques
          */
         db.open();
+
+        /*
         if (delete.equals(true)){
+            db.deleteDevices();
             db.remove(db.getSize());
         }
+
+         */
+
+        int delete_index = db.deleteDevices();
+        makeText(getApplicationContext(),"indice de suppresion : "+delete_index, Toast.LENGTH_SHORT).show();
+
+        if (delete_index != 0){
+            makeText(getApplicationContext(),"Appareil en cours de suppression", Toast.LENGTH_SHORT).show();
+            db.remove(delete_index);
+        }
+
         db.displayDevices();
 
         /**
@@ -231,6 +249,10 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
     public DeviceDataBase getDb(){return db;}
     public String getSelected_device(){return selected_device;}
+
+    public void delete_device(){
+        device_to_delete = true;
+    }
 
     /**
      * Protocole d'ajout d'appareils dans la base de données
@@ -419,11 +441,15 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             // Find fields to populate in inflated template
             TextView tvDeviceName  = (TextView)  view.findViewById(R.id.device_name);
             TextView tvDevicePower = (TextView)  view.findViewById(R.id.device_power);
+            TextView tvDeviceStandbyPower = (TextView)  view.findViewById(R.id.device_standby_power);
+            TextView tvDeviceMeanPower = (TextView)  view.findViewById(R.id.device_mean_power);
             ImageView imDevice     = (ImageView) view.findViewById(R.id.device_thumbnail);
 
             // Extract properties from cursor
             String device_name   = cursor.getString(cursor.getColumnIndexOrThrow("name"));
             String device_power  = cursor.getString(cursor.getColumnIndexOrThrow("power"));
+            //String device_stand_by_power  = cursor.getString(cursor.getColumnIndexOrThrow("standbypower"));
+            //String device_mean_power  = cursor.getString(cursor.getColumnIndexOrThrow("meanpower"));
 
             // Get index on the drawable icon
 
@@ -432,6 +458,9 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             // Populate fields with extracted properties
             tvDeviceName.setText(device_name);
             tvDevicePower.setText("Conso en route : " + device_power + " Watts");
+            //tvDeviceStandbyPower.setText("Conso en veille : " + device_stand_by_power + " Watts");
+            //tvDeviceMeanPower.setText("Conso en route : " + device_mean_power + " Watts");
+
             imDevice.setImageResource(icon_index);
         }
     }

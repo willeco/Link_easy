@@ -2,6 +2,7 @@ package fr.willy.linky;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,14 +49,14 @@ public class QuickConfig extends AppCompatActivity {
 
                 if (device != null){
 
-                    EditText instant_power      = findViewById(R.id.instant_power);
-                    EditText stand_by_power     = findViewById(R.id.stand_by_power);
-                    EditText mean_power         = findViewById(R.id.mean_power);
-                    ImageView device_icon       = findViewById(R.id.device_icon);
-                    final EditText device_name  = findViewById(R.id.device_name);
-                    Button delete_device_button = findViewById(R.id.delete_device_button);
-                    Button cancel_button        = findViewById(R.id.cancel_button);
-                    Button confirm_button       = findViewById(R.id.confirm_button);
+                    final EditText instant_power  = findViewById(R.id.instant_power);
+                    final EditText stand_by_power = findViewById(R.id.stand_by_power);
+                    final EditText mean_power     = findViewById(R.id.mean_power);
+                    ImageView device_icon         = findViewById(R.id.device_icon);
+                    final EditText device_name    = findViewById(R.id.device_name);
+                    Button delete_device_button   = findViewById(R.id.delete_device_button);
+                    Button cancel_button          = findViewById(R.id.cancel_button);
+                    Button confirm_button         = findViewById(R.id.confirm_button);
 
 
                     instant_power.setText(Integer.toString(device.getInstantPower()));
@@ -93,8 +94,9 @@ public class QuickConfig extends AppCompatActivity {
                             else{
                                 device.setName(device_name.getText().toString());
                             }
-                            //device.setName(device_name.getText().toString());
-                            device.setPower(device.getInstantPower());
+                            device.setInstantPower(Integer.parseInt(instant_power.getText().toString()));
+                            device.setStandbyPower(Float.parseFloat(stand_by_power.getText().toString()));
+                            device.setMeanPower(Float.parseFloat(mean_power.getText().toString()));
                             db.open();
                             db.update(rowId, device);
                             db.close();
@@ -105,17 +107,17 @@ public class QuickConfig extends AppCompatActivity {
 
                     db.close();
 
-                    /*
+
                     delete_device_button.setOnClickListener(new View.OnClickListener() {
+                        @SuppressLint("LongLogTag")
                         @Override
                         public void onClick(View v) {
-                            activity_device.display_listview_of_Devices(true);
+                            device.setDelete();
+                            Log.i("####################", "#######################");
+                            Log.i("DELETE MESSAGE BEFORE de", device.getName() +" est "+device.getDelete());
                             finish();
                         }
                     });
-
-
-                     */
 
 
                 }

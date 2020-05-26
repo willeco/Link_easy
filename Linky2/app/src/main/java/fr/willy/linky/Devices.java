@@ -1,6 +1,7 @@
 package fr.willy.linky;
 
 
+import android.text.Editable;
 import android.widget.ImageView;
 
 /**
@@ -16,6 +17,7 @@ public class Devices {
     private float    stand_by_power;
     private float    mean_power;
     private float    use_rate;
+    private String  delete = "false";
 
 
     /**
@@ -24,13 +26,14 @@ public class Devices {
      */
     public Devices(int id, String name, int power, int icon) {
         super();
-        this.id           = id;
-        this.name         = name;
-        this.instant_power        = power;
-        this.icon         = icon;
+        this.id             = id;
+        this.name           = name;
+        this.instant_power  = power;
+        this.icon           = icon;
         this.stand_by_power = 0;
-        this.mean_power    = 0;
-        this.use_rate      = 0.5f;
+        this.mean_power     = 0;
+        this.use_rate       = 0.5f;
+        this.delete         = "false";
     }
 
     public Devices() {
@@ -59,6 +62,7 @@ public class Devices {
     public float getUseRate() {
         return use_rate;
     }
+    public String getDelete(){return delete;}
 
 
     /**
@@ -73,9 +77,20 @@ public class Devices {
         this.name = name;
     }
 
-    public void setPower(int power) {
+    public void setInstantPower(int power) {
         this.instant_power = power;
     }
+    public void setStandbyPower(float StandbyPower) {
+        this.stand_by_power = StandbyPower;
+    }
+    public void setMeanPower(float MeanPower) {
+        this.mean_power = MeanPower;
+    }
+    public void setUseRate(float UseRate) {
+        this.use_rate = UseRate;
+    }
+
+    public void setDelete(){ delete="true"; }
 
     public void setIcon(DeviceActivity deviceActivity, ImageView image, int index){
         //int index = deviceActivity.return_index_icon(this.getName());
@@ -83,15 +98,7 @@ public class Devices {
         this.icon = index;
     }
 
-    public void setStandbyPower(float StandbyPower) {
-        this.stand_by_power = StandbyPower;
-    }
-    public void setUseRate(float UseRate) {
-        this.use_rate = UseRate;
-    }
-    public void setMeanPower(float MeanPower) {
-        this.mean_power = MeanPower;
-    }
+
 
     /**
      * Ne sert pas

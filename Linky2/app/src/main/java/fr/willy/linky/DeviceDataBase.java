@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.LinkedList;
 
@@ -209,6 +210,40 @@ public class DeviceDataBase {
         }
     }
 
+
+    /**
+     * Permet de supprimer les appareils qui doivent l'être
+     * ---------------------------------------------------------
+     */
+    public int deleteDevices()
+    {
+        int delete_index=0;
+        LinkedList<Devices> devices = selectAll();
+        Devices d;
+
+        for (int i = 0; i < devices.size(); i++) {
+            if (devices.get(i) != null){
+
+                try{
+                    //Log.i("device ------------->", devices.get(i).toString());
+                    d = devices.get(i);
+                    Log.i("DELETE MESSAGE AFTER de", d.getName() +" est "+d.getDelete());
+                    //Log.i("device", devices.get(i).getDelete());
+                    if (devices.get(i).getDelete().equals("true")){
+                        delete_index = i;
+                    }
+                    else{
+                        delete_index = 0;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return delete_index;
+    }
+
+
     /**
      * Permet de convertir un cursor en un appareil
      * --------------------------------------------
@@ -222,7 +257,7 @@ public class DeviceDataBase {
         Devices device = new Devices();
         device.setId(c.getInt(0));
         device.setName(c.getString(1));
-        device.setPower(c.getInt(2));
+        device.setInstantPower(c.getInt(2));
         return device;
     }
 

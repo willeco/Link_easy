@@ -28,7 +28,7 @@ public class DeviceOpenHelper extends SQLiteOpenHelper {
      */
     private static final String DEVICE_TABLE_CREATE =
             "CREATE TABLE " + DEVICE_TABLE_NAME + " (" + ID  + " INTEGER PRIMARY KEY, " + NAME + " TEXT NOT NULL, "
-                    + POWER + " TEXT NOT NULL);";
+                    + POWER + "TEXT NOT NULL, " + STANDBY_POWER + "TEXT NOT NULL, " + STANDBY_POWER + "TEXT NOT NULL, " + MEAN_POWER + "TEXT NOT NULL);";
 
     /**
      * Constructeur
