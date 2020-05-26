@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntentDevice = new Intent(v.getContext(), MainActivity.class);
+                Intent myIntentDevice = new Intent(v.getContext(), HubActivity.class);
                 myIntentDevice.putExtra("ip_for_sending",login_text.getText().toString());
                 startActivity(myIntentDevice);
                 finish();

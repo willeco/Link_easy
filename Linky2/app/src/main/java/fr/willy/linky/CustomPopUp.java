@@ -1,12 +1,8 @@
 package fr.willy.linky;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
-import android.bluetooth.BluetoothClass;
 import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -111,7 +107,7 @@ public class CustomPopUp extends Dialog {
                 @Override
                 public void onClick(View v) {
 
-                    MainActivity.ask_tele_info(ip_for_sending,10001); //Récupéré l'addresse ip peut être
+                    HubActivity.ask_tele_info(ip_for_sending,10001); //Récupéré l'addresse ip peut être
 
                     faitButton.setVisibility(GONE);
                     timerTextView.setVisibility(View.VISIBLE);
@@ -124,7 +120,7 @@ public class CustomPopUp extends Dialog {
                         }
 
                         public void onFinish() {
-                            pappOn[0] = Integer.parseInt(MainActivity.papp);
+                            pappOn[0] = Integer.parseInt(HubActivity.papp);
                             protocolTextView.setText("ETEINT TON APPAREIL ! \n pappOn = "+pappOn[0]);
                             new CountDownTimer(5000, 1000) {
 
@@ -133,7 +129,7 @@ public class CustomPopUp extends Dialog {
                                 }
 
                                 public void onFinish() {
-                                    pappOff[0] = Integer.parseInt(MainActivity.papp);
+                                    pappOff[0] = Integer.parseInt(HubActivity.papp);
                                     faitButton.setText("AJOUTER APPAREIL");
                                     timerTextView.setVisibility(GONE);
                                     diffPapp[0] = pappOn[0]-pappOff[0];

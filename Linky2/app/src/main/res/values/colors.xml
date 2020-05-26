@@ -3,16 +3,16 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorLinkyBar">#1FD660</color>
-    <color name="colorSlideBar">#27AC56</color>
+    <color name="colorLinkyBar">#27AC56</color>
+    <color name="colorSlideBar">#148C48</color>
     <color name="colorWidget">#3D3D40</color>
     <color name="primary_text">#B7B7BF  </color>
     <color name="secondary_text">#7A7A7F  </color>
-    <color name="dark_background">#181818  </color>
-    <color name="darkless_background">#2C2C2C  </color>
+    <color name="dark_background">#000000  </color>
+    <color name="darkless_background">#111111  </color>
 
     <color name="dark_linky">#148C48  </color>
-
+    <color name="oldcolorSlideBar">#148C48</color>
     <color name="black_dark">#000000  </color>
     <color name="black">#111111  </color>
     <color name="black_light">#222222  </color>

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_background">
+    android:background="@color/darkless_background">
 
 
     <TextView
         android:id="@+id/device_popup_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorSlideBar"
+        android:background="@color/dark_linky"
         android:text="Ajout d'un appareil"
         android:textAlignment="center"
         android:textColor="@color/primary_text"
@@ -38,12 +38,17 @@
 
     <Spinner
         android:id="@+id/device_spinner"
+        style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:backgroundTint="@color/colorSlideBar"
-        android:textColor="@color/secondary_text"
+        android:backgroundTint="@color/dark_linky"
+        android:outlineSpotShadowColor="@color/dark_linky"
+        android:outlineAmbientShadowColor="@color/dark_linky"
         android:entries="@array/device_string"
+        android:popupBackground="@color/dark_linky"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/device_popup_subtitle" />
@@ -53,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirmer"
-        android:textColor="@color/colorSlideBar"
+        android:textColor="@color/dark_linky"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/device_popup_subtitle"
         app:layout_constraintTop_toTopOf="@+id/cancel_text" />

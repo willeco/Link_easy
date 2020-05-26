@@ -44,7 +44,7 @@ import java.io.Serializable;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class HubActivity extends AppCompatActivity {
 
     // Variables privées de notre class Activité
     static private TextView    m_tview_etat;
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar             = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab    = findViewById(R.id.fab);
+        //FloatingActionButton fab    = findViewById(R.id.fab);
 
         // Get widgets
         // -----------------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         Button button_change_activity    = findViewById(R.id.button_change_activity);
         Button button_device_consumption = findViewById(R.id.button_device_consumption);
 
-        final TextView tview_ip_er       = findViewById(R.id.field_IP_ER             );
+        final TextView tview_ip_er             = findViewById(R.id.field_IP_ER             );
         m_tview_ip_phone                 = findViewById(R.id.field_IP_Phone          );
         TextView tview_port_phone2er     = findViewById(R.id.field_Port_phone2er     );
         m_tview_nb_trames                = findViewById(R.id.field_Nb_trâmes         );
