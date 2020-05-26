@@ -105,7 +105,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         */
         device_activity       = this; //on stock la classe dans un attribut pour y avoir acces plus tard
         button_add_device     = findViewById(R.id.button_add_device);
-        delete_device         = findViewById(R.id.delete_device);
 
         // OBSOLOTE Ne sert plus
         // dynamic_device_layout = (GridLayout) findViewById(R.id.dynamic_device_layout);
@@ -118,16 +117,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View v) {
                 addDevice(); //protocole d'ajout d'appareils, lancé
-            }
-        });
-
-        delete_device.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //display_listview_of_Devices(true);
-                Intent myIntentDevice = new Intent(v.getContext(), LoginActivity.class);
-                startActivity(myIntentDevice);
-                finish();
             }
         });
 

@@ -41,7 +41,7 @@ import java.util.Calendar;
 
 import java.io.Serializable;
 
-
+import static android.widget.Toast.makeText;
 
 
 public class HubActivity extends AppCompatActivity {
@@ -68,6 +68,12 @@ public class HubActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState); //Creation du super
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("ip_for_sending")) {
+            final String IP = intent.getStringExtra("ip_for_sending");
+            makeText(getApplicationContext(),IP, Toast.LENGTH_SHORT).show();
+        }
 
 
         // ToolBar
