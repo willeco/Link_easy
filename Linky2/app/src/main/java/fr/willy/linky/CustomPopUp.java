@@ -24,6 +24,8 @@ public class CustomPopUp extends Dialog {
     private TextView titleView, subtitleView;
     private Spinner device_spinner;
     private DeviceActivity parent_activity;
+    private LoginActivity loginActivity;
+    private Button understand;
     private Button button_test_config;
 
     //constructor
@@ -35,6 +37,8 @@ public class CustomPopUp extends Dialog {
         //on charge notre layout associé au popup
         if (popup.equals("adding")){
             setContentView(R.layout.popup_device_adding);
+        }else if(popup.equals("start_app")){
+            setContentView(R.layout.popup_start_application);
         }
         else {
             setContentView(R.layout.popup_device_configuration);
@@ -50,6 +54,24 @@ public class CustomPopUp extends Dialog {
         this.device_spinner = findViewById(R.id.device_spinner);
         this.parent_activity = deviceActivity;
     }
+
+    //constructor 2
+    public CustomPopUp(LoginActivity loginActivity, String popup)
+    {
+
+
+        super(loginActivity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        setContentView(R.layout.popup_start_application);
+
+        //empeche l'utilisateur de fermer le popup en appuyant à
+        //l'exterieur de celui-ci.
+        this.setCancelable(false);
+        this.understand = findViewById(R.id.understand);
+        this.loginActivity = loginActivity;
+    }
+
+    public Button getUnderstand(){ return this.understand;}
+
 
     //changer le titre du popup
     public void setTitle(String title){this.title = title;}

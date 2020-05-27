@@ -16,16 +16,28 @@ public class LoginActivity extends AppCompatActivity {
     EditText login_text;
     Button login;
     Button activity;
+    Button understand;
+    LoginActivity loginActivity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        login_text = findViewById(R.id.login_text);
-        login = findViewById(R.id.login);
-        activity = findViewById(R.id.activity);
+        final CustomPopUp customPopUStartApplication = new CustomPopUp(loginActivity, "start_app"); //on créer le popup d'ajout
 
+        customPopUStartApplication.test_bluid(); //on affiche le popup
+
+        login_text = findViewById(R.id.login_text);
+        login      = findViewById(R.id.login);
+        activity   = findViewById(R.id.activity);
+
+        customPopUStartApplication.getUnderstand().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customPopUStartApplication.dismiss();//on ferme le popup
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
                 String ip = login_text.getText().toString();
                 if (ip.equals("")){
                     makeText(getApplicationContext(),"Veuillez saisir une adresse ip.", Toast.LENGTH_LONG).show();
-
                 }
                 else{
                     Intent myIntentDevice = new Intent(v.getContext(), HubActivity.class);
