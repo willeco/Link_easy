@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/dark_background"
     tools:context=".DeviceActivity">
 
     <Button
         android:id="@+id/button_add_device"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorLinky"
+        android:background="@color/darkless_background"
+        android:textColor="@color/primary_text"
         android:text="Ajouter un appareil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -51,14 +52,5 @@
         android:layout_below="@id/button_add_device"
         android:layout_above="@+id/delete_device"></ListView>
 
-    <Button
-        android:id="@+id/delete_device"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
-        android:textColor="@color/white"
-        android:layout_marginBottom="0dp"
-        android:text="Supprimer appareil" />
 
 </RelativeLayout>

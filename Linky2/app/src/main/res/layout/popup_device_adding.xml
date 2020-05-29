@@ -4,19 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="@color/darkless_background">
 
 
     <TextView
         android:id="@+id/device_popup_title"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorLinkyBar"
         android:text="Ajout d'un appareil"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/primary_text"
         android:textSize="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
         android:textStyle="bold"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,11 +28,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="20dp"
         android:text="Veuillez choisir un appareil à ajouter"
-        android:textColor="@color/colorLinky"
-
+        android:textColor="@color/secondary_text"
         android:textSize="18dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,33 +40,40 @@
 
     <Spinner
         android:id="@+id/device_spinner"
+        style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="@color/colorLinkyBar"
+        android:layout_marginTop="25dp"
+        android:background="@color/boutton_light"
+        android:outlineSpotShadowColor="@color/dark_linky"
+        android:outlineAmbientShadowColor="@color/dark_linky"
         android:entries="@array/device_string"
+        android:popupBackground="@color/dark_linky"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/device_popup_subtitle" />
 
-    <TextView
+    <Button
         android:id="@+id/confirm_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirmer"
-        android:textColor="@color/colorLinkyBar"
-        android:textStyle="bold"
+        android:background="@color/boutton_light"
+        android:textColor="@color/dark_linky"
         app:layout_constraintEnd_toEndOf="@+id/device_popup_subtitle"
         app:layout_constraintTop_toTopOf="@+id/cancel_text" />
 
-    <TextView
+    <Button
         android:id="@+id/cancel_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/boutton_light"
         android:text="Annuler"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/primary_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/device_popup_subtitle"
         app:layout_constraintTop_toBottomOf="@+id/device_spinner" />

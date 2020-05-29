@@ -1,16 +1,15 @@
 package fr.willy.linky;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ActionBarContainer;
-import androidx.appcompat.widget.ActionBarContextView;
 
 import android.app.ActionBar;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +17,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CursorAdapter;
-import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,6 +83,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
     private int standbypower; //TEST
     private int device_mean_power;
     private String selected_device;
+    private boolean device_to_delete = false;
 
     static public int pappActualDevice;
 
@@ -109,7 +106,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         */
         device_activity       = this; //on stock la classe dans un attribut pour y avoir acces plus tard
         button_add_device     = findViewById(R.id.button_add_device);
-        delete_device         = findViewById(R.id.delete_device);
 
         // OBSOLOTE Ne sert plus
         // dynamic_device_layout = (GridLayout) findViewById(R.id.dynamic_device_layout);
@@ -122,13 +118,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View v) {
                 addDevice(); //protocole d'ajout d'appareils, lancé
-            }
-        });
-
-        delete_device.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                display_listview_of_Devices(true);
             }
         });
 
@@ -146,6 +135,13 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
 
     }
+
+    public void onStart() {
+        super.onStart();
+
+        display_listview_of_Devices(false);
+    }
+
     /**
      * NEW : Permet d'afficher la listeView contenant les appareils de la base de données
      * ----------------------------------------------------------------------------------
@@ -156,9 +152,23 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
          * Ouverture Base de données contenant les appareils électriques
          */
         db.open();
+
+        /*
         if (delete.equals(true)){
+            db.deleteDevices();
             db.remove(db.getSize());
         }
+
+         */
+
+        int delete_index = db.deleteDevices();
+        makeText(getApplicationContext(),"indice de suppresion : "+delete_index, Toast.LENGTH_SHORT).show();
+
+        if (delete_index != 0){
+            makeText(getApplicationContext(),"Appareil en cours de suppression", Toast.LENGTH_SHORT).show();
+            db.remove(delete_index);
+        }
+
         db.displayDevices();
 
         /**
@@ -188,24 +198,36 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
         list_devices_in_list_view.setClickable(true);
 
-        list_devices_in_list_view.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        list_devices_in_list_view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
 
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                // Vibrate for 500 milliseconds
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    v.vibrate(VibrationEffect.createOneShot(40, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+                    //deprecated in API 26
+                    v.vibrate(40);
+                }
 
                 Cursor cursor = (Cursor) parent.getItemAtPosition(position);
 
                 if (cursor != null) {
 
-                    Intent intent = new Intent(view.getContext(), Quick_custom.class);
+                    Intent intent = new Intent(view.getContext(), QuickConfigActivity.class);
 
-                    String rowId = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+                    int rowId = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+
+                    //makeText(getApplicationContext(),"indice de l'appareil avant config : "+rowId, Toast.LENGTH_SHORT).show();
 
                     intent.putExtra("rowid", rowId);
 
                     startActivity(intent);
 
                 }
+                return false;
             }
         });
 
@@ -219,6 +241,10 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
     public DeviceDataBase getDb(){return db;}
     public String getSelected_device(){return selected_device;}
+
+    public void delete_device(){
+        device_to_delete = true;
+    }
 
     /**
      * Protocole d'ajout d'appareils dans la base de données
@@ -270,7 +296,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
      *  MAJ : Retourne un index sur la "ressource drawable" en fonction du nom de device
      *  --------------------------------------------------------------------------------
      */
-    private int return_index_icon(String deviceName)
+    public int return_index_icon(String deviceName)
     {
         int index_icon;
 
@@ -357,6 +383,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
      * creation + affichage
      * ---------------------------------------------------------------------------------------------
      */
+    /*
     public void generateDevice(String device) {
 
         int index_icon;
@@ -372,6 +399,8 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
         dynamic_device_layout.addView(test);
     }
+
+     */
 
     /**
      * NEW : Permet à partir d'un cursor de remplir la ligne d'une liste View
@@ -404,18 +433,26 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             // Find fields to populate in inflated template
             TextView tvDeviceName  = (TextView)  view.findViewById(R.id.device_name);
             TextView tvDevicePower = (TextView)  view.findViewById(R.id.device_power);
+            TextView tvDeviceStandbyPower = (TextView)  view.findViewById(R.id.device_standby_power);
+            TextView tvDeviceMeanPower = (TextView)  view.findViewById(R.id.device_mean_power);
             ImageView imDevice     = (ImageView) view.findViewById(R.id.device_thumbnail);
 
             // Extract properties from cursor
             String device_name   = cursor.getString(cursor.getColumnIndexOrThrow("name"));
             String device_power  = cursor.getString(cursor.getColumnIndexOrThrow("power"));
+            //String device_stand_by_power  = cursor.getString(cursor.getColumnIndexOrThrow("standbypower"));
+            //String device_mean_power  = cursor.getString(cursor.getColumnIndexOrThrow("meanpower"));
 
             // Get index on the drawable icon
+
             icon_index          = return_index_icon(device_name);
 
             // Populate fields with extracted properties
             tvDeviceName.setText(device_name);
             tvDevicePower.setText("Conso en route : " + device_power + " Watts");
+            //tvDeviceStandbyPower.setText("Conso en veille : " + device_stand_by_power + " Watts");
+            //tvDeviceMeanPower.setText("Conso en route : " + device_mean_power + " Watts");
+
             imDevice.setImageResource(icon_index);
         }
     }

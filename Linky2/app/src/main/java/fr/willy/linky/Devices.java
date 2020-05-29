@@ -43,6 +43,7 @@ public class Devices {
     public String getName() {
         return name;
     }
+    public int getIcon(){return this.icon;}
 
     public int getPower() {
         return power;
@@ -54,6 +55,8 @@ public class Devices {
     public float getUseRate() {
         return userate;
     }
+    public String getDelete(){return delete;}
+
 
     /**
      * Création des Setter
@@ -62,6 +65,7 @@ public class Devices {
     public void setId(int id) {
         this.id = id;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -80,6 +84,13 @@ public class Devices {
         this.meanpower = MeanPower;
     }
 
+    public void setDelete(){ delete="true"; }
+
+    public void setIcon(DeviceActivity deviceActivity, ImageView image, int index){
+        //int index = deviceActivity.return_index_icon(this.getName());
+        image.setImageResource(index);
+        this.icon = index;
+    }
 
 
 

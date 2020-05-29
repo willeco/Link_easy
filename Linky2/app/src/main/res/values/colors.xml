@@ -3,11 +3,25 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorLinky">#B0DE2A</color>
-    <color name="colorLinkyBar">#5C9416</color>
-    <color name="colorSlideBar">#224D0B</color>
-    <color name="colorWidget">#AFBD9C</color>
-    <color name="colorBackground">#EDFFDE  </color>
-    <color name="white">#FFFFFF  </color>
-    <color name="grey">#75806F  </color>
+    <color name="colorLinkyBar">#27AC56</color>
+    <color name="colorSlideBar">#148C48</color>
+    <color name="colorWidget">#3D3D40</color>
+    <color name="boutton_dark">#111111</color>
+    <color name="boutton_light">#222222</color>
+    <color name="primary_text">#B7B7BF  </color>
+    <color name="secondary_text">#7A7A7F  </color>
+    <color name="dark_background">#000000  </color>
+    <color name="darkless_background">#111111  </color>
+
+    <color name="dark_linky">#148C48  </color>
+    <color name="oldcolorSlideBar">#148C48</color>
+    <color name="black_dark">#000000  </color>
+    <color name="black">#111111  </color>
+    <color name="black_light">#222222  </color>
+    <color name="grey_dark">#333333  </color>
+    <color name="grey">#444444  </color>
+    <color name="grey_light">#666666  </color>
+    <color name="white_dark">#999999  </color>
+    <color name="white">#CCCCCC  </color>
+    <color name="white_light">#FFFFFF  </color>
 </resources>

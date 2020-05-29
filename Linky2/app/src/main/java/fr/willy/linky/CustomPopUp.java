@@ -29,7 +29,11 @@ public class CustomPopUp extends Dialog {
     private TextView titleView, subtitleView;
     private Spinner device_spinner;
     private DeviceActivity parent_activity;
+    private LoginActivity loginActivity;
+    private QuickConfigActivity quickConfigActivity;
+    private Button understand;
     private Button button_test_config;
+    private Button confirm_delete, cancel_delete;
 
     //constructor
     public CustomPopUp(DeviceActivity deviceActivity, String popup)
@@ -40,6 +44,8 @@ public class CustomPopUp extends Dialog {
         //on charge notre layout associé au popup
         if (popup.equals("adding")){
             setContentView(R.layout.popup_device_adding);
+        }else if(popup.equals("start_app")){
+            setContentView(R.layout.popup_start_application);
         }
         else {
             setContentView(R.layout.popup_device_configuration);
@@ -55,6 +61,40 @@ public class CustomPopUp extends Dialog {
         this.device_spinner = findViewById(R.id.device_spinner);
         this.parent_activity = deviceActivity;
     }
+
+    //constructor 2
+    public CustomPopUp(LoginActivity loginActivity)
+    {
+        super(loginActivity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        setContentView(R.layout.popup_start_application);
+
+        //empeche l'utilisateur de fermer le popup en appuyant à
+        //l'exterieur de celui-ci.
+        this.setCancelable(false);
+        this.understand = findViewById(R.id.understand);
+        this.loginActivity = loginActivity;
+    }
+
+    //constructor 3
+    public CustomPopUp(QuickConfigActivity quickConfigActivity)
+    {
+        super(quickConfigActivity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        setContentView(R.layout.popup_delete);
+
+        //empeche l'utilisateur de fermer le popup en appuyant à
+        //l'exterieur de celui-ci.
+        this.setCancelable(false);
+        this.confirm_delete = findViewById(R.id.confirm_delete);
+        this.cancel_delete = findViewById(R.id.cancel_delete);
+        this.quickConfigActivity = quickConfigActivity;
+    }
+
+
+
+    public Button getConfirm_delete(){ return this.confirm_delete;}
+    public Button getCancel_delete(){ return this.cancel_delete;}
+    public Button getUnderstand(){ return this.understand;}
+
 
     //changer le titre du popup
     public void setTitle(String title){this.title = title;}
@@ -279,11 +319,10 @@ public class CustomPopUp extends Dialog {
                 }
             });
         }
-        else
-        {
-
+        else{
             popUp.dismiss();
-            Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), 0,0,0,0);
+            int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
+            Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), 0,icon_index);
             parent_activity.getDb().insert(a);
             parent_activity.getDb().close();
             parent_activity.display_listview_of_Devices(false);

@@ -20,8 +20,8 @@ public class DeviceDataBase {
     private static final    String ID                  = "id";
     private static final    String NAME                = "name";
     private static final    String POWER               = "power";
-    private static final    String STANDBY_POWER       = "standby_power";
-    private static final    String MEAN_POWER          = "mean_power";
+    private static final    String STANDBY_POWER       = "standbypower";
+    private static final    String MEAN_POWER          = "meanpower";
     private static final    String USERATE             = "userate";
 
 
@@ -96,8 +96,8 @@ public class DeviceDataBase {
         values.put( ID,    device.getId());
         values.put( NAME,  device.getName());
         values.put( POWER, device.getPower());
-        values.put(MEAN_POWER, device.getMeanPower());
         values.put(STANDBY_POWER, device.getStandbyPower());
+        values.put(MEAN_POWER, device.getMeanPower());
         values.put(USERATE, device.getUseRate());
 
         return bdd.update(DEVICE_TABLE_NAME, values, ID + " = " +id, null);
@@ -156,10 +156,16 @@ public class DeviceDataBase {
 
     public Devices selectWithRowID(String[] args)
     {
-        Cursor cursor = bdd.rawQuery("SELECT * from " + DEVICE_TABLE_NAME + " WHERE _id = ? ", args);
-        Devices device = cursorToDevice(cursor, false);
-        cursor.close();
-        return device;
+        if (args != null){
+            Cursor cursor = bdd.rawQuery("SELECT * from " + DEVICE_TABLE_NAME + " WHERE id = ? ", args);
+            Devices device = cursorToDevice(cursor, false);
+            cursor.close();
+            return device;
+        }
+        else{
+            Devices erreur = null;
+            return erreur;
+        }
     }
 
 
@@ -207,6 +213,40 @@ public class DeviceDataBase {
             System.out.println(devices.get(i));
         }
     }
+
+
+    /**
+     * Permet de supprimer les appareils qui doivent l'être
+     * ---------------------------------------------------------
+     */
+    public int deleteDevices()
+    {
+        int delete_index=0;
+        LinkedList<Devices> devices = selectAll();
+        Devices d;
+
+        for (int i = 0; i < devices.size(); i++) {
+            if (devices.get(i) != null){
+
+                try{
+                    //Log.i("device ------------->", devices.get(i).toString());
+                    d = devices.get(i);
+                    Log.i("DELETE MESSAGE AFTER de", d.getName() +" est "+d.getDelete());
+                    //Log.i("device", devices.get(i).getDelete());
+                    if (devices.get(i).getDelete().equals("true")){
+                        delete_index = i;
+                    }
+                    else{
+                        delete_index = 0;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return delete_index;
+    }
+
 
     /**
      * Permet de convertir un cursor en un appareil
