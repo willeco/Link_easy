@@ -215,7 +215,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
                 if (cursor != null) {
 
-                    Intent intent = new Intent(view.getContext(), QuickConfig.class);
+                    Intent intent = new Intent(view.getContext(), QuickConfigActivity.class);
 
                     int rowId = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
 

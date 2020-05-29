@@ -25,8 +25,10 @@ public class CustomPopUp extends Dialog {
     private Spinner device_spinner;
     private DeviceActivity parent_activity;
     private LoginActivity loginActivity;
+    private QuickConfigActivity quickConfigActivity;
     private Button understand;
     private Button button_test_config;
+    private Button confirm_delete, cancel_delete;
 
     //constructor
     public CustomPopUp(DeviceActivity deviceActivity, String popup)
@@ -56,10 +58,8 @@ public class CustomPopUp extends Dialog {
     }
 
     //constructor 2
-    public CustomPopUp(LoginActivity loginActivity, String popup)
+    public CustomPopUp(LoginActivity loginActivity)
     {
-
-
         super(loginActivity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
         setContentView(R.layout.popup_start_application);
 
@@ -70,6 +70,24 @@ public class CustomPopUp extends Dialog {
         this.loginActivity = loginActivity;
     }
 
+    //constructor 3
+    public CustomPopUp(QuickConfigActivity quickConfigActivity)
+    {
+        super(quickConfigActivity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        setContentView(R.layout.popup_delete);
+
+        //empeche l'utilisateur de fermer le popup en appuyant à
+        //l'exterieur de celui-ci.
+        this.setCancelable(false);
+        this.confirm_delete = findViewById(R.id.confirm_delete);
+        this.cancel_delete = findViewById(R.id.cancel_delete);
+        this.quickConfigActivity = quickConfigActivity;
+    }
+
+
+
+    public Button getConfirm_delete(){ return this.confirm_delete;}
+    public Button getCancel_delete(){ return this.cancel_delete;}
     public Button getUnderstand(){ return this.understand;}
 
 

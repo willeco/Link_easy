@@ -15,10 +15,11 @@ import android.widget.Toast;
 
 import static android.widget.Toast.makeText;
 
-public class QuickConfig extends AppCompatActivity {
+public class QuickConfigActivity extends AppCompatActivity {
 
     private DeviceDataBase db = null;
     private DeviceActivity activity_device = new DeviceActivity();
+    private QuickConfigActivity quickConfigActivity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,10 +113,32 @@ public class QuickConfig extends AppCompatActivity {
                         @SuppressLint("LongLogTag")
                         @Override
                         public void onClick(View v) {
-                            device.setDelete();
-                            Log.i("####################", "#######################");
-                            Log.i("DELETE MESSAGE BEFORE de", device.getName() +" est "+device.getDelete());
-                            finish();
+
+                            final CustomPopUp customPopUpDelete = new CustomPopUp(quickConfigActivity); //on créer le popup d'ajout
+
+                            customPopUpDelete.test_bluid(); //on affiche le popup
+
+                            customPopUpDelete.getCancel_delete().setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    customPopUpDelete.dismiss();
+                                    makeText(getApplicationContext(),"Suppression annulée.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                            customPopUpDelete.getConfirm_delete().setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    customPopUpDelete.dismiss();
+                                    makeText(getApplicationContext(),"Demande de suppression enregistrée.", Toast.LENGTH_SHORT).show();
+                                    /*
+                                    device.setDelete();
+                                    Log.i("####################", "#######################");
+                                    Log.i("DELETE MESSAGE BEFORE de", device.getName() +" est "+device.getDelete());
+                                    finish();
+                                     */
+                                }
+                            });
                         }
                     });
 

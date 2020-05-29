@@ -29,7 +29,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".QuickConfig"
+            android:name=".QuickConfigActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".DeviceActivity"

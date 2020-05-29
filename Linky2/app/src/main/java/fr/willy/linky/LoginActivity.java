@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final CustomPopUp customPopUStartApplication = new CustomPopUp(loginActivity, "start_app"); //on créer le popup d'ajout
+        final CustomPopUp customPopUStartApplication = new CustomPopUp(loginActivity); //on créer le popup d'ajout
 
         customPopUStartApplication.test_bluid(); //on affiche le popup
 

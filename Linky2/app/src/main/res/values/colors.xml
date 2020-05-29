@@ -6,6 +6,8 @@
     <color name="colorLinkyBar">#27AC56</color>
     <color name="colorSlideBar">#148C48</color>
     <color name="colorWidget">#3D3D40</color>
+    <color name="boutton_dark">#111111</color>
+    <color name="boutton_light">#222222</color>
     <color name="primary_text">#B7B7BF  </color>
     <color name="secondary_text">#7A7A7F  </color>
     <color name="dark_background">#000000  </color>
