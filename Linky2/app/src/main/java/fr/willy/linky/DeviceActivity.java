@@ -169,7 +169,9 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             db.remove(delete_index);
         }
 
-        db.displayDevices();
+        System.out.println("DEBUT BDD");
+        makeText(getApplicationContext(), Integer.toString(db.getSize()), Toast.LENGTH_SHORT).show();
+        System.out.println("FIN BDD");
 
         /**
          * Retrieving the Cursor

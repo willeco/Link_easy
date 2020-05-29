@@ -88,7 +88,7 @@ public class TClientUDP implements Runnable {
                 try
                 {
                     // Réception paquet en provenance du Linky (Fonction bloquante : Attention)
-                    Log.i("UDP:", "En attente de réception d'un paquet");
+                    //Log.i("UDP:", "En attente de réception d'un paquet");
 
                     // set the timeout in millisecounds.
                     // https://stackoverflow.com/questions/10055913/set-timeout-for-socket-receive
@@ -115,7 +115,7 @@ public class TClientUDP implements Runnable {
                     //          à l'ordi en USB. (Débuggage USB activé sur le smartphone)
                     //
                     //      2°) Les log sont accessibles dans la fenêtre logcat (Choisir le filtre Info)
-                    Log.i("UDP packet reçu:", lText);
+                    //Log.i("UDP packet reçu:", lText);
                 }
                 catch (IOException e)
                 {

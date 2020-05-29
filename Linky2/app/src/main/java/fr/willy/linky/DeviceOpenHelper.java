@@ -10,15 +10,16 @@ import android.database.sqlite.SQLiteOpenHelper;
  * -------------------------------------------------------------------------------------------------
  */
 public class DeviceOpenHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 5;
 
     private static final String DEVICE_TABLE_NAME   = "device";
 
     private static final    String ID                  = "id";
+    private static final    String ICON               = "icon";
     private static final    String NAME                = "name";
     private static final    String POWER               = "power";
-    private static final    String STANDBY_POWER       = "standby_power";
-    private static final    String MEAN_POWER          = "mean_power";
+    private static final    String STANDBY_POWER       = "standbypower";
+    private static final    String MEAN_POWER          = "meanpower";
     private static final    String USERATE             = "userate";
 
     /**
@@ -26,7 +27,7 @@ public class DeviceOpenHelper extends SQLiteOpenHelper {
      * -------------------------------------------
      */
     private static final String DEVICE_TABLE_CREATE =
-            "CREATE TABLE " + DEVICE_TABLE_NAME + " (" + ID  + " INTEGER PRIMARY KEY, " + NAME + " TEXT NOT NULL, "
+            "CREATE TABLE " + DEVICE_TABLE_NAME + " (" + ID  + " INTEGER PRIMARY KEY, " + ICON + " TEXT NOT NULL, " + NAME + " TEXT NOT NULL, "
                     + POWER + " TEXT NOT NULL, " + MEAN_POWER + " TEXT NOT NULL, " + STANDBY_POWER+ " TEXT NOT NULL, " + USERATE +" TEXT NOT NULL);";
 
     /**

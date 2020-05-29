@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.LinkedList;
+
+import static android.widget.Toast.makeText;
 
 /**
  * Création d'une nouvelle classe. Elle va nous permettre de gérer
@@ -19,6 +22,7 @@ public class DeviceDataBase {
     private static final    String DEVICE_TABLE_NAME   = "device";
 
     private static final    String ID                  = "id";
+    private static final    String ICON               = "icon";
     private static final    String NAME                = "name";
     private static final    String POWER               = "power";
     private static final    String STANDBY_POWER       = "standbypower";
@@ -75,6 +79,7 @@ public class DeviceDataBase {
         //on lui ajoute une valeur associée à une clé
         // (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
         values.put(ID,    device.getId());
+        values.put(ICON, device.getIcon());
         values.put(NAME,  device.getName());
         values.put(POWER, device.getPower());
         values.put(STANDBY_POWER, device.getStandbyPower());
@@ -95,6 +100,7 @@ public class DeviceDataBase {
         //il faut simplement préciser quel livre on doit mettre à jour grâce à l'ID
         ContentValues values = new ContentValues();
         values.put( ID,    device.getId());
+        values.put( ICON, device.getIcon());
         values.put( NAME,  device.getName());
         values.put( POWER, device.getPower());
         values.put(STANDBY_POWER, device.getStandbyPower());
@@ -260,7 +266,7 @@ public class DeviceDataBase {
         }
 
         Devices device = new Devices();
-        device.setId(c.getInt(0));
+        device.setId(c.getInt(0));  //Ajouter ICON ?
         device.setName(c.getString(1));
         device.setPower(c.getInt(2));
         device.setStandbyPower(c.getInt(3));

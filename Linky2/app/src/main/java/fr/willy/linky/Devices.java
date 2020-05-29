@@ -23,10 +23,10 @@ public class Devices {
      *  Constructeur
      *  ------------
      */
-    public Devices(int id, int index, String name, int power,float standbypower, float meanpower, float userate) {
+    public Devices(int id, int icon, String name, int power,float standbypower, float meanpower, float userate) {
         super();
         this.id           = id;
-        this.icon         = index;
+        this.icon         = icon;
         this.name         = name;
         this.power        = power;
         this.standbypower = standbypower;
@@ -45,10 +45,12 @@ public class Devices {
     public int getId() {
         return id;
     }
+    public int getIcon() {
+        return  icon;
+    }
     public String getName() {
         return name;
     }
-    public int getIcon(){return this.icon;}
 
     public int getPower() {
         return power;
