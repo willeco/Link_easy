@@ -60,7 +60,7 @@ public class QuickConfigActivity extends AppCompatActivity {
                     Button confirm_button         = findViewById(R.id.confirm_button);
 
 
-                    instant_power.setText(Integer.toString(device.getInstantPower()));
+                    instant_power.setText(Integer.toString(device.getPower()));
                     stand_by_power.setText(Float.toString(device.getStandbyPower()));
                     mean_power.setText(Float.toString(device.getMeanPower()));
 
@@ -95,7 +95,7 @@ public class QuickConfigActivity extends AppCompatActivity {
                             else{
                                 device.setName(device_name.getText().toString());
                             }
-                            device.setInstantPower(Integer.parseInt(instant_power.getText().toString()));
+                            device.setPower(Integer.parseInt(instant_power.getText().toString()));
                             device.setStandbyPower(Float.parseFloat(stand_by_power.getText().toString()));
                             device.setMeanPower(Float.parseFloat(mean_power.getText().toString()));
                             db.open();

@@ -156,7 +156,7 @@ public class CustomPopUp extends Dialog {
 
                     faitButton.setVisibility(GONE);
                     debranchable.setVisibility(GONE);
-                    MainActivity.ask_tele_info(ip_for_sending,10001);
+                    HubActivity.ask_tele_info(ip_for_sending,10001);
 
                     if(debranchable.isChecked() == true)
                     {
@@ -176,7 +176,7 @@ public class CustomPopUp extends Dialog {
                         faitButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                pappUnplugged[0] = Integer.parseInt(MainActivity.papp);
+                                pappUnplugged[0] = Integer.parseInt(HubActivity.papp);
                                 protocolTextView.setText("BRANCHE ET ALLUME TON APPAREIL ! \n"+String.valueOf(counter[0])+" secondes\npappUnplugged = "+pappUnplugged[0]);
 
                                 counter[0] = 6;
@@ -198,7 +198,7 @@ public class CustomPopUp extends Dialog {
                                 faitButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        pappOn[0] = Integer.parseInt(MainActivity.papp);
+                                        pappOn[0] = Integer.parseInt(HubActivity.papp);
 
                                         counter[0] = 6;
                                         faitButton.setVisibility(GONE);
@@ -218,7 +218,7 @@ public class CustomPopUp extends Dialog {
                                         faitButton.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                pappOff[0] = Integer.parseInt(MainActivity.papp);
+                                                pappOff[0] = Integer.parseInt(HubActivity.papp);
                                                 faitButton.setText("AJOUTER APPAREIL");
                                                 faitButton.setVisibility(GONE);
                                                 diffPappOnOff[0] = pappOn[0]-pappOff[0];
@@ -230,7 +230,8 @@ public class CustomPopUp extends Dialog {
 
 
                                                 // Insertion d'un appareil
-                                                Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), parent_activity.getPower(),parent_activity.getstandbypower(),0,0);
+                                                int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
+                                                Devices a = new Devices(parent_activity.getDb().getSize()+1,icon_index,parent_activity.getSelected_device(), parent_activity.getPower(),parent_activity.getstandbypower(),0,0);
                                                 parent_activity.getDb().insert(a);
                                                 parent_activity.getDb().close();
                                                 parent_activity.display_listview_of_Devices(false);
@@ -268,7 +269,7 @@ public class CustomPopUp extends Dialog {
                         faitButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                pappOn[0] = Integer.parseInt(MainActivity.papp);
+                                pappOn[0] = Integer.parseInt(HubActivity.papp);
 
                                 counter[0] = 6;
                                 faitButton.setVisibility(GONE);
@@ -288,7 +289,7 @@ public class CustomPopUp extends Dialog {
                                 faitButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        pappOff[0] = Integer.parseInt(MainActivity.papp);
+                                        pappOff[0] = Integer.parseInt(HubActivity.papp);
                                         faitButton.setText("AJOUTER APPAREIL");
                                         faitButton.setVisibility(GONE);
                                         diffPappOnOff[0] = pappOn[0]-pappOff[0];
@@ -298,7 +299,8 @@ public class CustomPopUp extends Dialog {
 
 
                                         // Insertion d'un appareil
-                                        Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), parent_activity.getPower(),0,0,0);
+                                        int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
+                                        Devices a = new Devices(parent_activity.getDb().getSize()+1,icon_index,parent_activity.getSelected_device(), parent_activity.getPower(),0,0,0);
                                         parent_activity.getDb().insert(a);
                                         parent_activity.getDb().close();
                                         parent_activity.display_listview_of_Devices(false);
@@ -322,7 +324,7 @@ public class CustomPopUp extends Dialog {
         else{
             popUp.dismiss();
             int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
-            Devices a = new Devices(parent_activity.getDb().getSize()+1,parent_activity.getSelected_device(), 0,icon_index);
+            Devices a = new Devices(parent_activity.getDb().getSize()+1,icon_index,parent_activity.getSelected_device(), parent_activity.getPower(),0,0,0);
             parent_activity.getDb().insert(a);
             parent_activity.getDb().close();
             parent_activity.display_listview_of_Devices(false);

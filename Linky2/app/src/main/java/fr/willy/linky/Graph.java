@@ -56,7 +56,7 @@ public class Graph extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         ip_for_sending = extras.getString("ip_for_sending");
-        MainActivity.ask_tele_info(ip_for_sending,10001);
+        HubActivity.ask_tele_info(ip_for_sending,10001);
 
         if(listPapp == null)
         {
@@ -70,7 +70,7 @@ public class Graph extends AppCompatActivity {
 
 
                 // Do something
-                papp = Integer.parseInt(MainActivity.papp);;
+                papp = Integer.parseInt(HubActivity.papp);;
                 listPapp.add(papp);
 
                 if(listPapp.size() >= 180) //Nombre de points avant défilement

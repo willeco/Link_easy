@@ -1,6 +1,8 @@
 package fr.willy.linky;
 
 
+import android.widget.ImageView;
+
 /**
  * Création d'un appareil électrique
  * ---------------------------------
@@ -13,15 +15,18 @@ public class Devices {
     private float    standbypower;
     private float    meanpower;
     private float    userate;
+    private int icon;
+    private String delete;
 
 
     /**
      *  Constructeur
      *  ------------
      */
-    public Devices(int id, String name, int power,float standbypower, float meanpower, float userate) {
+    public Devices(int id, int index, String name, int power,float standbypower, float meanpower, float userate) {
         super();
         this.id           = id;
+        this.icon         = index;
         this.name         = name;
         this.power        = power;
         this.standbypower = standbypower;
