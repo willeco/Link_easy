@@ -71,8 +71,6 @@ public class QuickConfigActivity extends AppCompatActivity {
 
                     device_name.setHint(device.getName());
                     int index = activity_device.return_index_icon(device.getName());
-                    //device.setIcon(device.getIcon());
-                    device.setIcon(index);
                     device.displayIcon(activity_device, device_icon);
 
                     /**
@@ -141,7 +139,7 @@ public class QuickConfigActivity extends AppCompatActivity {
                                     customPopUpDelete.dismiss();
                                     makeText(getApplicationContext(),"Demande de suppression enregistrée.", Toast.LENGTH_SHORT).show();
                                     db.open();
-                                    device.setDelete();
+                                    device.setDelete(1);
                                     db.update(device.getId(),device);
                                     db.displayDevices();
                                     db.close();

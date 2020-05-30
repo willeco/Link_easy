@@ -128,20 +128,8 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         Bundle extras = getIntent().getExtras();
         ip_for_sending = extras.getString("ip_for_sending");
 
-        /*
-        db.open(); //on ouvre la base de données
-
-        //on supprime son contenu /!\ présent uniquement pendant le developpement de l'appli
-        //cette ligne sera ensuite supprimé car on veut garder en mémoire la liste des appareils et leurs infos.
-        db.removeAll();
-        db.displayDevices();
-        db.close();
-        */
         device_activity       = this; //on stock la classe dans un attribut pour y avoir acces plus tard
         button_add_device     = findViewById(R.id.button_add_device);
-
-        // OBSOLOTE Ne sert plus
-        // dynamic_device_layout = (GridLayout) findViewById(R.id.dynamic_device_layout);
 
         device_params = new ActionBar.LayoutParams(150,150);
 
@@ -163,16 +151,12 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         /**
          * NEW : Affichage de la listView contenant tous les appareils
          */
-        display_listview_of_Devices(false);
-
-
-
+        display_listview_of_Devices();
     }
 
     public void onStart() {
         super.onStart();
-
-        display_listview_of_Devices(false);
+        display_listview_of_Devices();
     }
 
     public void setPower(int power_input){power = power_input;}
@@ -191,29 +175,26 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
      * NEW : Permet d'afficher la listeView contenant les appareils de la base de données
      * ----------------------------------------------------------------------------------
      */
-    public void display_listview_of_Devices(Boolean delete)
+    public void display_listview_of_Devices()
     {
         /**
          * Ouverture Base de données contenant les appareils électriques
          */
         db.open();
-        /*
-        if (delete.equals(true)){
-            db.deleteDevices();
-            db.remove(db.getSize());
-        }
-         */
-
-
 
         int delete_index = db.deleteDevices();
         makeText(getApplicationContext(),"indice de suppresion : "+delete_index, Toast.LENGTH_SHORT).show();
 
         if (delete_index != 0){
-            makeText(getApplicationContext(),"Appareil en cours de suppression", Toast.LENGTH_SHORT).show();
+            makeText(getApplicationContext(),"Appareil en cours de suppression, indice de suppression : "+ (delete_index), Toast.LENGTH_SHORT).show();
             db.remove(delete_index);
+            //db.reorderDevice(delete_index);
+            //db.updateAll();
+            delete_index=0;
         }
-
+        else{
+            makeText(getApplicationContext(),"ERREUR delete index = "+delete_index, Toast.LENGTH_SHORT).show();
+        }
 
         db.displayDevices();
 

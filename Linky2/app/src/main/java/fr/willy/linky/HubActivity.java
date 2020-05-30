@@ -283,7 +283,7 @@ public class HubActivity extends AppCompatActivity {
             {
 
                 etatText.setText("Demande d'informations...");
-                HubActivity.secondLine.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
+                HubActivity.secondLine.setColorFilter(R.color.dark_linky, PorterDuff.Mode.LIGHTEN);
 
                 // Bundle bundle = msg.getData();
                 // String string = bundle.getString(ClientUDP.CODE_RECEPTION);
@@ -330,7 +330,7 @@ public class HubActivity extends AppCompatActivity {
                 if(!pappButton.getText().toString().equals("PAPP") && !iinstButton.getText().toString().equals("IINST") && timeOut<=170)
                 {
                     etatText.setText("Réception...");
-                    secondePoint.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
+                    secondePoint.setColorFilter(R.color.dark_linky, PorterDuff.Mode.LIGHTEN);
                 }
             }
 
@@ -340,7 +340,7 @@ public class HubActivity extends AppCompatActivity {
             if(timeOut >= 170)
             {
                 etatText.setText("Fin de réception.");
-                thirdLine.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
+                thirdLine.setColorFilter(R.color.dark_linky, PorterDuff.Mode.LIGHTEN);
             }
         }
     };

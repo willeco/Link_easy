@@ -284,7 +284,7 @@ public class CustomPopUp extends Dialog {
                                                     Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), parent_activity.getstandbypower(), (pappOn[0]*Float.parseFloat(tauxUtilisationDouble[0])+pappOff[0]*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24 , Float.parseFloat(tauxUtilisationDouble[0]),0);
                                                     parent_activity.getDb().insert(a);
                                                     parent_activity.getDb().close();
-                                                    parent_activity.display_listview_of_Devices(false);
+                                                    parent_activity.display_listview_of_Devices();
                                                     makeText(parent_activity.getApplicationContext(), parent_activity.getSelected_device() + " ajouté. ", Toast.LENGTH_SHORT).show();
 
                                                 }
@@ -354,7 +354,7 @@ public class CustomPopUp extends Dialog {
                                             Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, (pappOn[0]*Float.parseFloat(tauxUtilisationDouble[0])+pappOff[0]*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24, Float.parseFloat(tauxUtilisationDouble[0]),0);
                                             parent_activity.getDb().insert(a);
                                             parent_activity.getDb().close();
-                                            parent_activity.display_listview_of_Devices(false);
+                                            parent_activity.display_listview_of_Devices();
                                             makeText(parent_activity.getApplicationContext(), parent_activity.getSelected_device() + " ajouté. ", Toast.LENGTH_SHORT).show();
 
                                         }
@@ -378,7 +378,7 @@ public class CustomPopUp extends Dialog {
                 Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, 0, 0,0);
                 parent_activity.getDb().insert(a);
                 parent_activity.getDb().close();
-                parent_activity.display_listview_of_Devices(false);
+                parent_activity.display_listview_of_Devices();
                 makeText(parent_activity.getApplicationContext(), parent_activity.getSelected_device() + " ajouté. ", Toast.LENGTH_SHORT).show();
             }
         }
@@ -388,7 +388,7 @@ public class CustomPopUp extends Dialog {
             Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, 0, 0,0);
             parent_activity.getDb().insert(a);
             parent_activity.getDb().close();
-            parent_activity.display_listview_of_Devices(false);
+            parent_activity.display_listview_of_Devices();
             makeText(parent_activity.getApplicationContext(), parent_activity.getSelected_device() + " ajouté. ", Toast.LENGTH_SHORT).show();
         }
     }
