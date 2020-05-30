@@ -247,9 +247,6 @@ public class CustomPopUp extends Dialog {
 
                                                     // Insertion d'un appareil
                                                     int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
-                                                    Log.i("NAME :", String.valueOf(parent_activity.getSelected_device()));
-                                                    Log.i("ID :", String.valueOf(parent_activity.getDb().getSize() + 1));
-                                                    Log.i("POWER :", String.valueOf(parent_activity.getPower()));
                                                     Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), parent_activity.getstandbypower(), 0, 0);
                                                     parent_activity.getDb().insert(a);
                                                     parent_activity.getDb().close();
@@ -319,9 +316,6 @@ public class CustomPopUp extends Dialog {
 
 
                                             // Insertion d'un appareil
-                                            Log.i("NAME :", String.valueOf(parent_activity.getSelected_device()));
-                                            Log.i("ID :", String.valueOf(parent_activity.getDb().getSize() + 1));
-                                            Log.i("POWER :", String.valueOf(parent_activity.getPower()));
                                             int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
                                             Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, 0, 0);
                                             parent_activity.getDb().insert(a);
@@ -355,15 +349,10 @@ public class CustomPopUp extends Dialog {
             }
         }
         else{
-            Log.i("NAME :", String.valueOf(parent_activity.getSelected_device()));
-            Log.i("ID :", String.valueOf(parent_activity.getDb().getSize() + 1));
-            Log.i("POWER :", String.valueOf(parent_activity.getPower()));
             popUp.dismiss();
             int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
             Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, 0, 0);
-            Log.i("DEVICE -------> :", String.valueOf(a));
             parent_activity.getDb().insert(a);
-            Log.i("NOUVEL APPAREIL --> NAME   :", a.getName());
             parent_activity.getDb().close();
             parent_activity.display_listview_of_Devices(false);
             makeText(parent_activity.getApplicationContext(), parent_activity.getSelected_device() + " ajouté. ", Toast.LENGTH_SHORT).show();

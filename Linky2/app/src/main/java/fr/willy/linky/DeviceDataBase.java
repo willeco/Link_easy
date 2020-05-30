@@ -167,24 +167,7 @@ public class DeviceDataBase {
     {
         if (args != null){
             Cursor cursor = bdd.rawQuery("SELECT * from " + DEVICE_TABLE_NAME + " WHERE id = ? ", args);
-            Log.i("CURSOR AFTER:", cursor.toString());
             Devices device = cursorToDevice(cursor, false);
-
-            Log.i("DEVICE:", device.toString());
-            Log.i("DEVICE NOM:", device.getName());
-            Log.i("DEVICE ID:", String.valueOf(device.getId()));
-
-
-            //String test_string = Integer.toString(device.getId());
-            //String[] test_array = new String[1];
-            //test_array[0] = test_string;
-
-            //Devices device2 = selectWithID(test_array);
-            //Log.i("DEVICE2:", device2.toString());
-            //Log.i("DEVICE2 NOM:", device2.getName());
-            //Log.i("DEVICE2 ID:", String.valueOf(device2.getId()));
-
-
             cursor.close();
             return device;
         }

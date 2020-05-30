@@ -38,9 +38,7 @@ public class QuickConfigActivity extends AppCompatActivity {
             //lecture de la base de données
             db = new DeviceDataBase(this);
             db.open();
-            Log.i("QUICK:", "Affichage base de données");
             db.displayDevices();
-            Log.i("QUICK:", "Affichage base de données terminée");
 
             if (rowId != 0) {
 
@@ -48,7 +46,6 @@ public class QuickConfigActivity extends AppCompatActivity {
 
                 String[] rowId_array = new String[1];
                 rowId_array[0] = rowId_string;
-                makeText(getApplicationContext(),"rowid : "+rowId_string, Toast.LENGTH_LONG).show();
 
                 //final Devices device = db.selectWithRowID(rowId_array);
                 final Devices device = db.selectWithRowID(new String [] {rowId_string} );
@@ -158,7 +155,7 @@ public class QuickConfigActivity extends AppCompatActivity {
             }
             else {
                 //debugage
-                makeText(getApplicationContext(),"T'inquiète Wiwi, il n'a même pas essayé de changer l'icon, c'est pas toi !", Toast.LENGTH_SHORT).show();
+                makeText(getApplicationContext(),"il n'a même pas essayé de changer l'icon", Toast.LENGTH_SHORT).show();
                 db.close();
             }
 

@@ -159,22 +159,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
          */
         Log.i("BD:", "Création instance base de données  ");
         db = new DeviceDataBase(this);
-        int debug = 1;
-        if (debug==1){
-            db.open();
-            db.removeAll();
-            Devices a = new Devices(1, 1, "Aspirateur", 12, 0, 0, 0);
-            Log.i("DEVICE en dur -------> :", String.valueOf(a));
-            db.insert(a);
-            LinkedList<Devices> devices = db.selectAll();
-            Log.i("DB", " Taille BE " + devices.size()) ;
-            for (int i = 0; i < devices.size(); i++) {
-                System.out.println(devices.get(i));
-            }
-            db.displayDevices();
-            db.close();
-            display_listview_of_Devices(false);
-        }
 
         /**
          * NEW : Affichage de la listView contenant tous les appareils
@@ -220,10 +204,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
          */
 
         db.displayDevices();
-
-        System.out.println("DEBUT BDD");
-        makeText(getApplicationContext(), Integer.toString(db.getSize()), Toast.LENGTH_SHORT).show();
-        System.out.println("FIN BDD");
 
         /**
          * Retrieving the Cursor
@@ -277,7 +257,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
                     int rowId = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
 
                     //makeText(getApplicationContext(),"indice de l'appareil avant config : "+rowId, Toast.LENGTH_SHORT).show();
-                    Log.i("CURSOR BEFORE:", cursor.toString());
                     intent.putExtra("rowid", rowId);
 
 
@@ -430,36 +409,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         return(index_icon);
     }
 
-
-
-
-    /**
-     * OBSOLETE - OBSOLETE
-     * Remplacé par display_listview_of_Devices
-     *
-     * Affiche en plus un appareil (uniquement l'image de l'appareil pour l'instant)
-     * creation + affichage
-     * ---------------------------------------------------------------------------------------------
-     */
-    /*
-    public void generateDevice(String device) {
-
-        int index_icon;
-
-        ImageView test = new ImageView(device_activity);
-
-        test.setLayoutParams(device_params);
-        test.setAdjustViewBounds(true);
-
-        //test.setPadding(200,200,200,200);
-        index_icon = return_index_icon(device);
-        test.setBackgroundResource(index_icon);
-
-        dynamic_device_layout.addView(test);
-    }
-
-     */
-
     /**
      * NEW : Permet à partir d'un cursor de remplir la ligne d'une liste View
      * ---------------------------------------------------------------------------------------------
@@ -498,8 +447,8 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             // Extract properties from cursor
             String device_name   = cursor.getString(cursor.getColumnIndexOrThrow("name"));
             String device_power  = cursor.getString(cursor.getColumnIndexOrThrow("power"));
-            //String device_stand_by_power  = cursor.getString(cursor.getColumnIndexOrThrow("standbypower"));
-            //String device_mean_power  = cursor.getString(cursor.getColumnIndexOrThrow("meanpower"));
+            String device_stand_by_power  = cursor.getString(cursor.getColumnIndexOrThrow("standbypower"));
+            String device_mean_power  = cursor.getString(cursor.getColumnIndexOrThrow("meanpower"));
 
             // Get index on the drawable icon
 
@@ -508,14 +457,12 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             // Populate fields with extracted properties
             tvDeviceName.setText(device_name);
             tvDevicePower.setText("Conso en route : " + device_power + " Watts");
-            //tvDeviceStandbyPower.setText("Conso en veille : " + device_stand_by_power + " Watts");
-            //tvDeviceMeanPower.setText("Conso en route : " + device_mean_power + " Watts");
+            tvDeviceStandbyPower.setText("Conso en veille : " + device_stand_by_power + " Watts");
+            tvDeviceMeanPower.setText( device_mean_power + " Watts");
 
             imDevice.setImageResource(icon_index);
         }
     }
-
-
 
 
 
