@@ -202,10 +202,10 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             db.deleteDevices();
             db.remove(db.getSize());
         }
-
          */
 
-        /*
+
+
         int delete_index = db.deleteDevices();
         makeText(getApplicationContext(),"indice de suppresion : "+delete_index, Toast.LENGTH_SHORT).show();
 
@@ -213,7 +213,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             makeText(getApplicationContext(),"Appareil en cours de suppression", Toast.LENGTH_SHORT).show();
             db.remove(delete_index);
         }
-         */
+
 
         db.displayDevices();
 
@@ -452,8 +452,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             int icon = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow("icon")));
 
             // Get index on the drawable icon
-
-            icon_index          = return_index_icon(device_name);
 
             // Populate fields with extracted properties
             tvDeviceName.setText(device_name);

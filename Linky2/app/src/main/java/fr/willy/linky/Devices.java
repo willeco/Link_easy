@@ -17,7 +17,7 @@ public class Devices {
     private float    meanpower;
     private float    userate;
     private int icon;
-    private String delete;
+    private Boolean delete = false;
 
 
     /**
@@ -63,7 +63,7 @@ public class Devices {
     public float getUseRate() {
         return userate;
     }
-    public String getDelete(){return delete;}
+    public Boolean getDelete(){return delete;}
 
 
     /**
@@ -85,10 +85,11 @@ public class Devices {
     public void setUseRate(float UseRate) {
         this.userate = UseRate;
     }
-    public void setMeanPower(float MeanPower) {
-        this.meanpower = MeanPower;
+    public void setMeanPower() {
+        Float meanPower = (getPower()*getUseRate()+getStandbyPower()*(24-getUseRate()))/24;
+        this.meanpower = meanPower;
     }
-    public void setDelete(){ delete="true"; }
+    public void setDelete(){ delete=true; }
     public void setIcon(int index){
         this.icon = index;
     }

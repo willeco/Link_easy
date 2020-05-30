@@ -69,6 +69,7 @@ public class QuickConfigActivity extends AppCompatActivity {
 
                     device_name.setHint(device.getName());
                     int index = activity_device.return_index_icon(device.getName());
+                    //device.setIcon(device.getIcon());
                     device.setIcon(index);
                     device.displayIcon(activity_device, device_icon);
 
@@ -101,7 +102,8 @@ public class QuickConfigActivity extends AppCompatActivity {
                             }
                             device.setPower(Integer.parseInt(instant_power.getText().toString()));
                             device.setStandbyPower(Float.parseFloat(stand_by_power.getText().toString()));
-                            device.setMeanPower(Float.parseFloat(mean_power.getText().toString()));
+                            device.setMeanPower();
+                            //makeText(getApplicationContext(),"Puissance moyenne = " +device.getMeanPower(), Toast.LENGTH_LONG).show();
                             db.open();
                             db.update(rowId, device);
                             db.close();
@@ -135,12 +137,10 @@ public class QuickConfigActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     customPopUpDelete.dismiss();
                                     makeText(getApplicationContext(),"Demande de suppression enregistrée.", Toast.LENGTH_SHORT).show();
-                                    /*
                                     device.setDelete();
                                     Log.i("####################", "#######################");
                                     Log.i("DELETE MESSAGE BEFORE de", device.getName() +" est "+device.getDelete());
                                     finish();
-                                     */
                                 }
                             });
                         }
