@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * -------------------------------------------------------------------------------------------------
  */
 public class DeviceOpenHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
 
     private static final String DEVICE_TABLE_NAME   = "device";
 
@@ -21,7 +21,7 @@ public class DeviceOpenHelper extends SQLiteOpenHelper {
     private static final    String STANDBY_POWER       = "standbypower";
     private static final    String MEAN_POWER          = "meanpower";
     private static final    String USERATE             = "userate";
-    private static final    String DELETE              = "deleterequest";
+    private static final    String DELETEREQUEST              = "deleterequest";
 
     /**
      * Préparation Instruction pour créer la table
@@ -29,7 +29,7 @@ public class DeviceOpenHelper extends SQLiteOpenHelper {
      */
     private static final String DEVICE_TABLE_CREATE =
             "CREATE TABLE " + DEVICE_TABLE_NAME + " (" + ID  + " INTEGER PRIMARY KEY, " + ICON + " TEXT NOT NULL, " + NAME + " TEXT NOT NULL, "
-                    + POWER + " TEXT NOT NULL, " + MEAN_POWER + " TEXT NOT NULL, " + STANDBY_POWER+ " TEXT NOT NULL, " + USERATE+ " TEXT NOT NULL, " + DELETE+ " TEXT NOT NULL);";
+                    + POWER + " TEXT NOT NULL, " + MEAN_POWER + " TEXT NOT NULL, " + STANDBY_POWER+ " TEXT NOT NULL, " + USERATE+ " TEXT NOT NULL, " + DELETEREQUEST+ " TEXT NOT NULL);";
 
     /**
      * Constructeur

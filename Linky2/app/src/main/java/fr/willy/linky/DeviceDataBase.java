@@ -17,7 +17,7 @@ import static android.widget.Toast.makeText;
  */
 public class DeviceDataBase {
 
-    private static final int DATABASE_VERSION       = 7;
+    private static final int DATABASE_VERSION       = 8;
     private static final    String DBNAME              = "device.db";
     private static final    String DEVICE_TABLE_NAME   = "device";
 
@@ -28,7 +28,7 @@ public class DeviceDataBase {
     private static final    String STANDBY_POWER       = "standbypower";
     private static final    String MEAN_POWER          = "meanpower";
     private static final    String USERATE             = "userate";
-    private static final    String DELETE              = "deleterequest";
+    private static final    String DELETEREQUEST       = "deleterequest";
 
 
     private                 SQLiteDatabase      bdd;
@@ -85,7 +85,7 @@ public class DeviceDataBase {
         values.put(STANDBY_POWER, device.getStandbyPower());
         values.put(MEAN_POWER, device.getMeanPower());
         values.put(USERATE, device.getUseRate());
-        values.put(DELETE, device.getDelete());
+        values.put(DELETEREQUEST, device.getDelete());
 
         //on insère l'objet dans la BDD via le ContentValues
         id = bdd.insert(DEVICE_TABLE_NAME, null, values);
@@ -110,7 +110,7 @@ public class DeviceDataBase {
         values.put(STANDBY_POWER, device.getStandbyPower());
         values.put(MEAN_POWER, device.getMeanPower());
         values.put(USERATE, device.getUseRate());
-        values.put(DELETE, device.getDelete());
+        values.put(DELETEREQUEST, device.getDelete());
 
         return bdd.update(DEVICE_TABLE_NAME, values, ID + " = " +id, null);
     }

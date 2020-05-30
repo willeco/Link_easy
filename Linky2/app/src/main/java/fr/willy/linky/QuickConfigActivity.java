@@ -140,8 +140,12 @@ public class QuickConfigActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     customPopUpDelete.dismiss();
                                     makeText(getApplicationContext(),"Demande de suppression enregistrée.", Toast.LENGTH_SHORT).show();
+                                    db.open();
                                     device.setDelete();
-                                    Log.i("####################", "#######################");
+                                    db.update(device.getId(),device);
+                                    db.close();
+                                    makeText(getApplicationContext(),"Doit etre supprimé ?"+device.getDelete(), Toast.LENGTH_SHORT).show();
+                                    Log.i("################################################################################", "#######################################################################################################");
                                     Log.i("DELETE MESSAGE BEFORE de", device.getName() +" est "+device.getDelete());
                                     finish();
                                 }

@@ -460,11 +460,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             tvDevicePower.setText("Consommation allumé : " + device_power + " Watts");
             tvDeviceStandbyPower.setText("Consommation éteint : " + device_stand_by_power + " Watts");
             tvDeviceMeanPower.setText( device_mean_power + " Watts");
-            makeText(getApplicationContext(),"Taux utilisation " + device_use_rate, Toast.LENGTH_SHORT).show();
-
             tvDeviceUseRate.setText( "Utilisation : "+device_use_rate.toString() + "h/j");
-
-
             imDevice.setImageResource(icon);
         }
     }

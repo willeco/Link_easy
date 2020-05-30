@@ -89,7 +89,7 @@ public class Devices {
         Float meanPower = (getPower()*getUseRate()+getStandbyPower()*(24-getUseRate()))/24;
         this.meanpower = Math.round(meanPower);
     }
-    public void setDelete(){ delete=true; }
+    public void setDelete(){ this.delete=true; }
     public void setIcon(int index){
         this.icon = index;
     }
@@ -99,7 +99,7 @@ public class Devices {
 
     @Override
     public String toString() {
-        return "Appareil [id=" + id + ", nom=" + name + ", puissance=" + power + "]";
+        return "Appareil [id=" + id + ", nom=" + name + ", puissance=" + power + ", supression =" + delete + "]";
     }
 
 
