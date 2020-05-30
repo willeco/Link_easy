@@ -87,7 +87,7 @@ public class Devices {
     }
     public void setMeanPower() {
         Float meanPower = (getPower()*getUseRate()+getStandbyPower()*(24-getUseRate()))/24;
-        this.meanpower = meanPower;
+        this.meanpower = Math.round(meanPower);
     }
     public void setDelete(){ delete=true; }
     public void setIcon(int index){

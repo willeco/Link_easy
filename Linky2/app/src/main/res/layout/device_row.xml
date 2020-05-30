@@ -33,31 +33,20 @@
         android:layout_toRightOf="@+id/layout_thumbnail"
         android:text="Chargeur de voiture"
         android:textColor="@color/primary_text"
-        android:textSize="14dip"
+        android:textSize="15dip"
         android:textStyle="bold"
         android:typeface="sans" />
 
-    <!-- nickname -->
-    <TextView
-        android:id="@+id/device_nickname"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/device_name"
-        android:layout_marginStart="5dp"
-        android:textColor="@color/secondary_text"
-        android:textSize="10dip"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/layout_thumbnail"
-        android:text="Installé dans le garage" />
+
 
     <!-- power -->
     <TextView
         android:id="@+id/device_power"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/device_nickname"
+        android:layout_below="@id/device_name"
         android:layout_marginStart="5dp"
-        android:textColor="@color/primary_text"
+        android:textColor="@color/secondary_text"
         android:textSize="10dip"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/layout_thumbnail"
@@ -83,12 +72,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/device_name"
+        android:layout_alignBottom="@id/device_name"
         android:gravity="right"
-        android:text="Conso. moyenne"
+        android:text="Consommation moyenne"
         android:layout_marginRight="5dip"
         android:textSize="10dip"
-        android:textColor="@color/primary_text" />
+        android:textColor="@color/secondary_text" />
 
     <!-- Consommation moyenne  -->
     <TextView
@@ -101,7 +90,7 @@
         android:text="10 Watts"
         android:layout_marginRight="5dip"
         android:textSize="16dip"
-        android:textColor="@color/primary_text"
+        android:textColor="@color/secondary_text"
         android:textStyle="bold"/>
 
     <!-- taux utilisation  -->
@@ -115,6 +104,6 @@
         android:text="Taux d'utilisation : 10 %"
         android:layout_marginRight="5dip"
         android:textSize="10dip"
-        android:textColor="@color/primary_text"/>
+        android:textColor="@color/secondary_text"/>
 
 </RelativeLayout>

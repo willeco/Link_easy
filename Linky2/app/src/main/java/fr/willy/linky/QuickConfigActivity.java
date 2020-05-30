@@ -56,6 +56,7 @@ public class QuickConfigActivity extends AppCompatActivity {
                     final EditText instant_power  = findViewById(R.id.instant_power);
                     final EditText stand_by_power = findViewById(R.id.stand_by_power);
                     final EditText mean_power     = findViewById(R.id.mean_power);
+                    final EditText use_rate       = findViewById(R.id.device_use_rate);
                     ImageView device_icon         = findViewById(R.id.device_icon);
                     final EditText device_name    = findViewById(R.id.device_name);
                     Button delete_device_button   = findViewById(R.id.delete_device_button);
@@ -63,6 +64,7 @@ public class QuickConfigActivity extends AppCompatActivity {
                     Button confirm_button         = findViewById(R.id.confirm_button);
 
 
+                    use_rate.setText(Float.toString(device.getUseRate()));
                     instant_power.setText(Integer.toString(device.getPower()));
                     stand_by_power.setText(Float.toString(device.getStandbyPower()));
                     mean_power.setText(Float.toString(device.getMeanPower()));
@@ -100,6 +102,7 @@ public class QuickConfigActivity extends AppCompatActivity {
                             else{
                                 device.setName(device_name.getText().toString());
                             }
+                            device.setUseRate(Float.parseFloat(use_rate.getText().toString()));
                             device.setPower(Integer.parseInt(instant_power.getText().toString()));
                             device.setStandbyPower(Float.parseFloat(stand_by_power.getText().toString()));
                             device.setMeanPower();
