@@ -247,7 +247,7 @@ public class DeviceDataBase {
                     d = devices.get(i);
                     Log.i("DELETE MESSAGE AFTER de", d.getName() +" est "+d.getDelete());
                     //Log.i("device", devices.get(i).getDelete());
-                    if (devices.get(i).getDelete()==true){
+                    if (devices.get(i).getDelete()==1){
                         delete_index = i;
                     }
                     else{
@@ -281,6 +281,7 @@ public class DeviceDataBase {
         device.setStandbyPower(         c.getFloat(c.getColumnIndexOrThrow(STANDBY_POWER)));
         device.setUseRate(              c.getFloat(c.getColumnIndexOrThrow(USERATE)));
         device.setMeanPower();
+        device.setDelete();
 
 
 

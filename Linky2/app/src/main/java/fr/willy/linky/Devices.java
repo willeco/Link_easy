@@ -17,14 +17,14 @@ public class Devices {
     private float    meanpower;
     private float    userate;
     private int icon;
-    private Boolean delete = false;
+    private int delete;
 
 
     /**
      *  Constructeur
      *  ------------
      */
-    public Devices(int id, int icon, String name, int power,float standbypower, float meanpower, float userate) {
+    public Devices(int id, int icon, String name, int power,float standbypower, float meanpower, float userate, int delete) {
         super();
         this.id           = id;
         this.icon         = icon;
@@ -33,6 +33,7 @@ public class Devices {
         this.standbypower = standbypower;
         this.meanpower    = meanpower;
         this.userate      = userate;
+        this.delete       = delete;
     }
 
     public Devices() {
@@ -63,7 +64,7 @@ public class Devices {
     public float getUseRate() {
         return userate;
     }
-    public Boolean getDelete(){return delete;}
+    public int getDelete(){return delete;}
 
 
     /**
@@ -89,7 +90,8 @@ public class Devices {
         Float meanPower = (getPower()*getUseRate()+getStandbyPower()*(24-getUseRate()))/24;
         this.meanpower = Math.round(meanPower);
     }
-    public void setDelete(){ this.delete=true; }
+
+    public void setDelete(){ this.delete=1; }
     public void setIcon(int index){
         this.icon = index;
     }

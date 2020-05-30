@@ -281,7 +281,7 @@ public class CustomPopUp extends Dialog {
 
                                                     // Insertion d'un appareil
                                                     int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
-                                                    Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), parent_activity.getstandbypower(), (pappOn[0]*Float.parseFloat(tauxUtilisationDouble[0])+pappOff[0]*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24 , Float.parseFloat(tauxUtilisationDouble[0]));
+                                                    Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), parent_activity.getstandbypower(), (pappOn[0]*Float.parseFloat(tauxUtilisationDouble[0])+pappOff[0]*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24 , Float.parseFloat(tauxUtilisationDouble[0]),0);
                                                     parent_activity.getDb().insert(a);
                                                     parent_activity.getDb().close();
                                                     parent_activity.display_listview_of_Devices(false);
@@ -351,7 +351,7 @@ public class CustomPopUp extends Dialog {
 
                                             // Insertion d'un appareil
                                             int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
-                                            Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, (pappOn[0]*Float.parseFloat(tauxUtilisationDouble[0])+pappOff[0]*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24, Float.parseFloat(tauxUtilisationDouble[0]));
+                                            Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, (pappOn[0]*Float.parseFloat(tauxUtilisationDouble[0])+pappOff[0]*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24, Float.parseFloat(tauxUtilisationDouble[0]),0);
                                             parent_activity.getDb().insert(a);
                                             parent_activity.getDb().close();
                                             parent_activity.display_listview_of_Devices(false);
@@ -375,7 +375,7 @@ public class CustomPopUp extends Dialog {
             } else {
                 popUp.dismiss();
                 int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
-                Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, 0, 0);
+                Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, 0, 0,0);
                 parent_activity.getDb().insert(a);
                 parent_activity.getDb().close();
                 parent_activity.display_listview_of_Devices(false);
@@ -385,7 +385,7 @@ public class CustomPopUp extends Dialog {
         else{
             popUp.dismiss();
             int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
-            Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, 0, 0);
+            Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, 0, 0,0);
             parent_activity.getDb().insert(a);
             parent_activity.getDb().close();
             parent_activity.display_listview_of_Devices(false);
