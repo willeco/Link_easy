@@ -183,17 +183,12 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         db.open();
 
         int delete_index = db.deleteDevices();
-        makeText(getApplicationContext(),"indice de suppresion : "+delete_index, Toast.LENGTH_SHORT).show();
 
         if (delete_index != 0){
-            makeText(getApplicationContext(),"Appareil en cours de suppression, indice de suppression : "+ (delete_index), Toast.LENGTH_SHORT).show();
             db.remove(delete_index);
             //db.reorderDevice(delete_index);
             //db.updateAll();
             delete_index=0;
-        }
-        else{
-            makeText(getApplicationContext(),"ERREUR delete index = "+delete_index, Toast.LENGTH_SHORT).show();
         }
 
         db.displayDevices();
