@@ -175,6 +175,18 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         display_listview_of_Devices(false);
     }
 
+    public void setPower(int power_input){power = power_input;}
+    public int getPower(){return power;}
+    public void setstandbypower(int standbypower_input){standbypower = standbypower_input;} //TA FOUTU QUOI LA ?
+    public int getstandbypower(){return standbypower;}
+
+    public DeviceDataBase getDb(){return db;}
+    public String getSelected_device(){return selected_device;}
+
+    public void delete_device(){
+        device_to_delete = true;
+    }
+
     /**
      * NEW : Permet d'afficher la listeView contenant les appareils de la base de données
      * ----------------------------------------------------------------------------------
@@ -269,18 +281,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         });
 
 
-    }
-
-    public void setPower(int power_input){power = power_input;}
-    public int getPower(){return power;}
-    public void setstandbypower(int standbypower_input){standbypower = standbypower_input;} //TA FOUTU QUOI LA ?
-    public int getstandbypower(){return standbypower;}
-
-    public DeviceDataBase getDb(){return db;}
-    public String getSelected_device(){return selected_device;}
-
-    public void delete_device(){
-        device_to_delete = true;
     }
 
     /**
@@ -449,6 +449,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             String device_power  = cursor.getString(cursor.getColumnIndexOrThrow("power"));
             String device_stand_by_power  = cursor.getString(cursor.getColumnIndexOrThrow("standbypower"));
             String device_mean_power  = cursor.getString(cursor.getColumnIndexOrThrow("meanpower"));
+            int icon = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow("icon")));
 
             // Get index on the drawable icon
 
@@ -460,7 +461,8 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             tvDeviceStandbyPower.setText("Conso en veille : " + device_stand_by_power + " Watts");
             tvDeviceMeanPower.setText( device_mean_power + " Watts");
 
-            imDevice.setImageResource(icon_index);
+
+            imDevice.setImageResource(icon);
         }
     }
 

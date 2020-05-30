@@ -69,7 +69,8 @@ public class QuickConfigActivity extends AppCompatActivity {
 
                     device_name.setHint(device.getName());
                     int index = activity_device.return_index_icon(device.getName());
-                    device.setIcon(activity_device, device_icon, index);
+                    device.setIcon(index);
+                    device.displayIcon(activity_device, device_icon);
 
                     /**
                         Interraction de l'activité

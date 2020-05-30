@@ -73,15 +73,12 @@ public class Devices {
     public void setId(int id) {
         this.id = id;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setPower(int power) {
         this.power = power;
     }
-
     public void setStandbyPower(float StandbyPower) {
         this.standbypower = StandbyPower;
     }
@@ -91,13 +88,12 @@ public class Devices {
     public void setMeanPower(float MeanPower) {
         this.meanpower = MeanPower;
     }
-
     public void setDelete(){ delete="true"; }
-
-    public void setIcon(DeviceActivity deviceActivity, ImageView image, int index){
-        //int index = deviceActivity.return_index_icon(this.getName());
-        image.setImageResource(index);
+    public void setIcon(int index){
         this.icon = index;
+    }
+    public void displayIcon(DeviceActivity deviceActivity, ImageView image){
+        image.setImageResource(this.icon);
     }
 
     @Override
