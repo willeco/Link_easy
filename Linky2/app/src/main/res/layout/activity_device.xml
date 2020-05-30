@@ -49,8 +49,7 @@
         android:id="@+id/list_device"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/button_add_device"
-        android:layout_above="@+id/delete_device"></ListView>
+        android:layout_below="@id/button_add_device"></ListView>
 
 
 </RelativeLayout>

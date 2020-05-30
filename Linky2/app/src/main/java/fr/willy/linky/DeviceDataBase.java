@@ -17,7 +17,7 @@ import static android.widget.Toast.makeText;
  */
 public class DeviceDataBase {
 
-    private static final int DATABASE_VERSION       = 1;
+    private static final int DATABASE_VERSION       = 5;
     private static final    String DBNAME              = "device.db";
     private static final    String DEVICE_TABLE_NAME   = "device";
 
@@ -56,8 +56,6 @@ public class DeviceDataBase {
         bdd.close();
     }
 
-
-
     /**
      * on récupère la base de données
      * ------------------------------
@@ -73,6 +71,7 @@ public class DeviceDataBase {
      */
     public long insert(Devices device)
     {
+        long id;
         // Création d'un ContentValues (fonctionne comme une HashMap)
         ContentValues values = new ContentValues();
 
@@ -87,7 +86,10 @@ public class DeviceDataBase {
         values.put(USERATE, device.getUseRate());
 
         //on insère l'objet dans la BDD via le ContentValues
-        return bdd.insert(DEVICE_TABLE_NAME, null, values);
+        id = bdd.insert(DEVICE_TABLE_NAME, null, values);
+        Log.i("DEVICE:", "insert" + id );
+
+        return id;
     }
 
     /**
@@ -165,7 +167,24 @@ public class DeviceDataBase {
     {
         if (args != null){
             Cursor cursor = bdd.rawQuery("SELECT * from " + DEVICE_TABLE_NAME + " WHERE id = ? ", args);
+            Log.i("CURSOR AFTER:", cursor.toString());
             Devices device = cursorToDevice(cursor, false);
+
+            Log.i("DEVICE:", device.toString());
+            Log.i("DEVICE NOM:", device.getName());
+            Log.i("DEVICE ID:", String.valueOf(device.getId()));
+
+
+            //String test_string = Integer.toString(device.getId());
+            //String[] test_array = new String[1];
+            //test_array[0] = test_string;
+
+            //Devices device2 = selectWithID(test_array);
+            //Log.i("DEVICE2:", device2.toString());
+            //Log.i("DEVICE2 NOM:", device2.getName());
+            //Log.i("DEVICE2 ID:", String.valueOf(device2.getId()));
+
+
             cursor.close();
             return device;
         }
@@ -188,6 +207,7 @@ public class DeviceDataBase {
     public Cursor return_cursor_bd()
     {
         Cursor cursor = bdd.rawQuery("SELECT rowid _id, * from " + DEVICE_TABLE_NAME, null);
+
         return(cursor) ;
     }
 
@@ -216,6 +236,7 @@ public class DeviceDataBase {
     public void displayDevices()
     {
         LinkedList<Devices> devices = selectAll();
+        Log.i("DB", " Taille BE " + devices.size()) ;
         for (int i = 0; i < devices.size(); i++) {
             System.out.println(devices.get(i));
         }
@@ -266,12 +287,14 @@ public class DeviceDataBase {
         }
 
         Devices device = new Devices();
-        device.setId(c.getInt(0));  //Ajouter ICON ?
-        device.setName(c.getString(1));
-        device.setPower(c.getInt(2));
-        device.setStandbyPower(c.getInt(3));
-        device.setUseRate(c.getFloat(4));
-        device.setMeanPower(c.getFloat(5));
+
+        device.setId(                   c.getInt(c.getColumnIndexOrThrow(ID)));
+        //device.setIcon(                 c.getInt(c.getColumnIndexOrThrow(ICON)));
+        device.setName(                 c.getString(c.getColumnIndexOrThrow(NAME)));
+        device.setPower(                c.getInt(c.getColumnIndexOrThrow(POWER)));
+        device.setStandbyPower(         c.getFloat(c.getColumnIndexOrThrow(STANDBY_POWER)));
+        device.setUseRate(              c.getFloat(c.getColumnIndexOrThrow(USERATE)));
+        device.setMeanPower(            c.getFloat(c.getColumnIndexOrThrow(MEAN_POWER)));
 
 
         return device;

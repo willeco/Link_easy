@@ -38,15 +38,21 @@ public class QuickConfigActivity extends AppCompatActivity {
             //lecture de la base de données
             db = new DeviceDataBase(this);
             db.open();
+            Log.i("QUICK:", "Affichage base de données");
             db.displayDevices();
+            Log.i("QUICK:", "Affichage base de données terminée");
 
             if (rowId != 0) {
 
                 String rowId_string = Integer.toString(rowId);
+
                 String[] rowId_array = new String[1];
                 rowId_array[0] = rowId_string;
+                makeText(getApplicationContext(),"rowid : "+rowId_string, Toast.LENGTH_LONG).show();
 
-                final Devices device = db.selectWithRowID(rowId_array);
+                //final Devices device = db.selectWithRowID(rowId_array);
+                final Devices device = db.selectWithRowID(new String [] {rowId_string} );
+                //makeText(getApplicationContext(),device.getName(), Toast.LENGTH_SHORT).show();
 
                 if (device != null){
 

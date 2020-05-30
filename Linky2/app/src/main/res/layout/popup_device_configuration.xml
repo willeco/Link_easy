@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/darkless_background">
 
     <TextView
         android:id="@+id/textView"
@@ -25,8 +25,8 @@
         android:layout_height="42dp"
         android:layout_marginTop="16dp"
         android:text="Configuration"
-        android:textColor="@color/colorSlideBar"
-        android:textSize="24sp"
+        android:textColor="@color/primary_text"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -39,7 +39,7 @@
         android:layout_height="249dp"
         android:layout_marginTop="8dp"
         android:text="protocol en cours de configuration"
-        android:textColor="@color/grey"
+        android:textColor="@color/secondary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -50,6 +50,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="OK"
+        android:background="@color/boutton_light"
+        android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
@@ -59,6 +61,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ajouter appareil"
+        android:background="@color/boutton_light"
+        android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
@@ -68,6 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Débranchable"
+        android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />

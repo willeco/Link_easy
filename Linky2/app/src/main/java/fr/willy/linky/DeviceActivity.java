@@ -2,6 +2,7 @@ package fr.willy.linky;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import static android.widget.Toast.makeText;
 
@@ -59,7 +61,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
     private ArrayList<String> device_list ; //liste des appareils disponibles (créée dans res/values/string)
     private Button button_add_device; //bouton permettant d'ajouter un appareil (génération du popup)
-    private DeviceActivity device_activity; //on stock notre activité dans un attribut pour pouvoir avoir accès à son contenu partout
+    private DeviceActivity device_activity = this; //on stock notre activité dans un attribut pour pouvoir avoir accès à son contenu partout
 
     /**
      ** Préparation instance de la base de données (contenant les appareils de la maison)
@@ -83,14 +85,45 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
     private int standbypower; //TEST
     private int device_mean_power;
     private String selected_device;
+    private boolean dont_show_again = false;
     private boolean device_to_delete = false;
 
     static public int pappActualDevice;
 
+    @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device); //on charge le layout de l'activité =! du layout du popup
+
+        if (dont_show_again != true){
+            final CustomPopUp customPopUpTutoAdd = new CustomPopUp(device_activity, "tuto add"); //on créer le popup d'ajout
+
+            customPopUpTutoAdd.test_bluid(); //on affiche le popup
+
+            customPopUpTutoAdd.getNext().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    customPopUpTutoAdd.dismiss();
+                    final CustomPopUp customPopUpTutoConfig = new CustomPopUp(device_activity, "tuto config"); //on créer le popup d'ajout
+
+                    customPopUpTutoConfig.test_bluid(); //on affiche le popup
+
+                    customPopUpTutoConfig.getTuto_understand().setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            customPopUpTutoConfig.getDont_show_again().setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dont_show_again = true;
+                                }
+                            });
+                            customPopUpTutoConfig.dismiss();
+                        }
+                    });
+                }
+            });
+        }
 
         Bundle extras = getIntent().getExtras();
         ip_for_sending = extras.getString("ip_for_sending");
@@ -126,6 +159,22 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
          */
         Log.i("BD:", "Création instance base de données  ");
         db = new DeviceDataBase(this);
+        int debug = 1;
+        if (debug==1){
+            db.open();
+            db.removeAll();
+            Devices a = new Devices(1, 1, "Aspirateur", 12, 0, 0, 0);
+            Log.i("DEVICE en dur -------> :", String.valueOf(a));
+            db.insert(a);
+            LinkedList<Devices> devices = db.selectAll();
+            Log.i("DB", " Taille BE " + devices.size()) ;
+            for (int i = 0; i < devices.size(); i++) {
+                System.out.println(devices.get(i));
+            }
+            db.displayDevices();
+            db.close();
+            display_listview_of_Devices(false);
+        }
 
         /**
          * NEW : Affichage de la listView contenant tous les appareils
@@ -152,7 +201,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
          * Ouverture Base de données contenant les appareils électriques
          */
         db.open();
-
         /*
         if (delete.equals(true)){
             db.deleteDevices();
@@ -161,6 +209,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
          */
 
+        /*
         int delete_index = db.deleteDevices();
         makeText(getApplicationContext(),"indice de suppresion : "+delete_index, Toast.LENGTH_SHORT).show();
 
@@ -168,6 +217,9 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             makeText(getApplicationContext(),"Appareil en cours de suppression", Toast.LENGTH_SHORT).show();
             db.remove(delete_index);
         }
+         */
+
+        db.displayDevices();
 
         System.out.println("DEBUT BDD");
         makeText(getApplicationContext(), Integer.toString(db.getSize()), Toast.LENGTH_SHORT).show();
@@ -200,6 +252,8 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
         list_devices_in_list_view.setClickable(true);
 
+        db.close();
+
         list_devices_in_list_view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
 
@@ -223,8 +277,10 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
                     int rowId = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
 
                     //makeText(getApplicationContext(),"indice de l'appareil avant config : "+rowId, Toast.LENGTH_SHORT).show();
-
+                    Log.i("CURSOR BEFORE:", cursor.toString());
                     intent.putExtra("rowid", rowId);
+
+
 
                     startActivity(intent);
 
@@ -233,7 +289,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
-        db.close();
+
     }
 
     public void setPower(int power_input){power = power_input;}

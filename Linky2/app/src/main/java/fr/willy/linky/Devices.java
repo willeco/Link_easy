@@ -1,6 +1,7 @@
 package fr.willy.linky;
 
 
+import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -49,7 +50,7 @@ public class Devices {
         return  icon;
     }
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getPower() {
@@ -99,6 +100,10 @@ public class Devices {
         this.icon = index;
     }
 
+    @Override
+    public String toString() {
+        return "Appareil [id=" + id + ", nom=" + name + ", puissance=" + power + "]";
+    }
 
 
 }
