@@ -1,6 +1,9 @@
 package fr.willy.linky;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.media.Image;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -10,11 +13,13 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.util.Log;
 import android.widget.Toast;
@@ -47,19 +52,35 @@ import static android.widget.Toast.makeText;
 public class HubActivity extends AppCompatActivity {
 
     // Variables privées de notre class Activité
-    static private TextView    m_tview_etat;
-    private TextView    m_tview_ip_phone;
-    static private TextView    m_tview_nb_trames;
-    static private TextView    m_tview_papp;
-    static private TextView    m_tview_ad_linky;
-    static private TextView    m_tview_hp;
+    static ImageView firstLine;
+    static ImageView secondLine;
+    static ImageView thirdLine;
+    static ImageView firstPoint;
+    static ImageView secondePoint;
+    static TextView etatText;
+
+    static Button pappButton;
+    static Button hpButton;
+    static Button iinstButton;
+    static Button hcButton;
+
+
+    static double timerStart = 0;
+    static double timerEnd = 0;
+    static double timeOut = 0;
+
     static private ClientUDP   m_client_udp                    = null;
-    static private int         m_nb_trames_recues              = 0;
+
     public int activity = 0;
 
     private Handler         graph_handler;
 
     static String papp = "0"; //on initialise à Zero
+    static String iinst = "0";
+    static String hp = "0";
+    static String hc = "0";
+
+    static String IP;
 
 
 
@@ -71,8 +92,7 @@ public class HubActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent.hasExtra("ip_for_sending")) {
-            final String IP = intent.getStringExtra("ip_for_sending");
-            makeText(getApplicationContext(),IP, Toast.LENGTH_SHORT).show();
+            IP = intent.getStringExtra("ip_for_sending");
         }
 
 
@@ -86,31 +106,21 @@ public class HubActivity extends AppCompatActivity {
         // Get widgets
         // -----------------------------------------------------------------------------------------
         Button button_ask_tele_info      = findViewById(R.id.button_demande_tele_info);
-        Button button_change_activity    = findViewById(R.id.button_change_activity);
         Button button_device_consumption = findViewById(R.id.button_device_consumption);
 
-        final TextView tview_ip_er             = findViewById(R.id.field_IP_ER             );
-        m_tview_ip_phone                 = findViewById(R.id.field_IP_Phone          );
-        TextView tview_port_phone2er     = findViewById(R.id.field_Port_phone2er     );
-        m_tview_nb_trames                = findViewById(R.id.field_Nb_trâmes         );
-        m_tview_ad_linky                 = findViewById(R.id.field_Ad_linky          );
-        m_tview_papp                     = findViewById(R.id.field_PAPP              );
-        m_tview_hp                       = findViewById(R.id.field_HP                );
-        TextView tview_hc                = findViewById(R.id.field_HC                );
-        m_tview_etat                     = findViewById(R.id.field_etat);
+        pappButton = findViewById(R.id.button3);
+        iinstButton = findViewById(R.id.button4);
+        hpButton = findViewById(R.id.button5);
+        hcButton = findViewById(R.id.button6);
+
+        firstLine = findViewById(R.id.imageView5);
+        secondLine = findViewById(R.id.imageView2);
+        thirdLine = findViewById(R.id.imageView3);
+        firstPoint = findViewById(R.id.imageView6);
+        secondePoint = findViewById(R.id.imageView4);
+        etatText = findViewById(R.id.textView17);
 
 
-        // Affectation par défaut
-        // -----------------------------------------------------------------------------------------
-        tview_ip_er.setText(        "83.205.137.12");
-        tview_port_phone2er.setText(  String.valueOf(10001));
-        m_tview_nb_trames.setText(    String.valueOf(0));
-        m_tview_ad_linky.setText(     " ");
-        m_tview_papp.setText(        " ");
-        m_tview_hp.setText(          " ");
-        tview_hc.setText(           "  ");
-
-        m_nb_trames_recues          = 0;
 
         // Tentative de Récuperation adresse IP Wi-Fi du smartphone
         // -----------------------------------------------------------------------------------------
@@ -121,11 +131,21 @@ public class HubActivity extends AppCompatActivity {
         // -----------------------------------------------------------------------------------------
         button_ask_tele_info.setOnClickListener(handler_ask_tele_info);
 
-        button_change_activity.setOnClickListener(new View.OnClickListener() {
+        button_ask_tele_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                etatText.setText("Demande d'informations...");
+                timeOut = 0;
+                secondePoint.setColorFilter(null);
+                thirdLine.setColorFilter(null);
+            }
+        });
+
+        pappButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), Graph.class);
-                myIntent.putExtra("ip_for_sending",tview_ip_er.getText().toString());
+                myIntent.putExtra("ip_for_sending",IP);
                 activity = 1;
                 startActivity(myIntent);
 
@@ -140,11 +160,17 @@ public class HubActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntentDevice = new Intent(view.getContext(), DeviceActivity.class);
-                myIntentDevice.putExtra("ip_for_sending",tview_ip_er.getText().toString());
+                myIntentDevice.putExtra("ip_for_sending",IP);
                 activity = 1;
                 startActivity(myIntentDevice);
             }
         });
+
+
+        //DEMANDE DE TELE INFO
+        ask_tele_info(IP,10001);
+
+
 
     }
 
@@ -167,12 +193,11 @@ public class HubActivity extends AppCompatActivity {
             ipAddress           = wm.getDhcpInfo().ipAddress;
             ipAddress_str       = intIpToStringIp(ipAddress);
 
-            m_tview_ip_phone.setText(  ipAddress_str);
-            m_tview_etat.setText("Addresse IP du smartphone récupérée " );
+
         } catch (Exception e) {
             // Affichage message d'erreur
-            m_tview_etat.setText("Erreur récupération addresse IP " );
-            m_tview_ip_phone.setText("?");
+
+
             Log.e("Linky Send UDP", "Problème récupération adresse IP", e);
         }
 
@@ -184,6 +209,7 @@ public class HubActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         activity = 0;
+
         //Toast.makeText(getApplicationContext(), "Linky = OnStart()", Toast.LENGTH_LONG).show();
     }
 
@@ -240,34 +266,31 @@ public class HubActivity extends AppCompatActivity {
     // ---------------------------------------------------------------------------------------------
     // Gère les communications avec le thread réseau
     // ---------------------------------------------------------------------------------------------
+    @SuppressLint("HandlerLeak")
     final static private Handler m_handler = new Handler()
     {
         public void handleMessage(Message msg)
         {
+            timeOut = timeOut + timerEnd - timerStart;
+            timerStart = 0;
+            timerEnd = 0;
+
+
+            timerStart = System.currentTimeMillis()%1000;
             super.handleMessage(msg);
 
             if (msg.what == ClientUDP.CODE_RECEPTION)
             {
 
-                // ---------------------------------------------------------------------------------------------
-                // Test envoi a Graph
-
-
-
-
-                // ---------------------------------------------------------------------------------------------
-
-
-
-                m_nb_trames_recues += 1;
-                m_tview_nb_trames.setText(    String.valueOf(m_nb_trames_recues));
+                etatText.setText("Demande d'informations...");
+                HubActivity.secondLine.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
 
                 // Bundle bundle = msg.getData();
                 // String string = bundle.getString(ClientUDP.CODE_RECEPTION);
                 // m_tview_etat.setText( string );
                 String trame_linky = (String) msg.obj;
-                m_tview_etat.setText( "                                       "  );
-                m_tview_etat.setText( "Reçu: " + trame_linky );
+
+
 
                 // Transformation de trame en un objet JSON pour faciliter le parsing
                 // https://www.tutorialspoint.com/android/android_json_parser.htm
@@ -280,26 +303,44 @@ public class HubActivity extends AppCompatActivity {
                 try {
                      JSONObject jsonObj = new JSONObject( trame_linky ); //passage de string à JSON
                      papp               = jsonObj.getString("PAPP");
-                     m_tview_papp.setText(papp);
+                     pappButton.setText("Puissance apparente\n\n"+papp+"\nVolt/Ampères");
                      DataHolder.getInstance().deleteData();
                      DataHolder.getInstance().setData(papp);
                 } catch (Exception e) {
                 }
                 try {
-                    String adco;
                     JSONObject jsonObj = new JSONObject( trame_linky );
-                    adco               = jsonObj.getString("ADCO");
-                    m_tview_ad_linky.setText(adco);
+                    iinst               = jsonObj.getString("IINST");
+                    iinstButton.setText("Intensité instantanée\n\n"+iinst+"\nAmpères");
                 } catch (Exception e) {
                 }
                 try {
-                    String base;
                     JSONObject jsonObj = new JSONObject( trame_linky );
-                    base               = jsonObj.getString("BASE");
-                    m_tview_hp.setText(base);
+                    hp               = jsonObj.getString("HCHP");
+                    hpButton.setText(hp);
+                } catch (Exception e) {
+                }
+                try {
+                    JSONObject jsonObj = new JSONObject( trame_linky );
+                    hc               = jsonObj.getString("HCHC");
+                    hcButton.setText(hc);
                 } catch (Exception e) {
                 }
 
+                if(!pappButton.getText().toString().equals("PAPP") && !iinstButton.getText().toString().equals("IINST") && timeOut<=170)
+                {
+                    etatText.setText("Réception...");
+                    secondePoint.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
+                }
+            }
+
+            timerEnd = System.currentTimeMillis()%1000;
+
+
+            if(timeOut >= 170)
+            {
+                etatText.setText("Fin de réception.");
+                thirdLine.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
             }
         }
     };
@@ -310,24 +351,7 @@ public class HubActivity extends AppCompatActivity {
     View.OnClickListener handler_ask_tele_info = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-            // Step 0 - Mise à jour du champ état
-            TextView tview_etat = findViewById(R.id.field_etat);
-            tview_etat.setText("Demande de télé-info en cours");
-
-
-            // Step 1 - Get IP erlinky
-            TextView tview_ip_er          = findViewById(R.id.field_IP_ER  ); //Widget permet de recup adresse IP
-            String ip_for_sending         = tview_ip_er.getText().toString(); //On recupere l'adresse IP
-
-
-
-            // Step 2 - Get port number to send a request
-            TextView tview_port_phone2er    = findViewById(R.id.field_Port_phone2er); //recuperation port Rasberry
-            String port_for_sending         = tview_port_phone2er.getText().toString(); // String
-            int port_phone2er               = Integer.parseInt(port_for_sending);   // conversion en int
-
-            ask_tele_info(ip_for_sending, port_phone2er);
+            ask_tele_info(IP, 10001);
         }
     };
 
@@ -336,7 +360,6 @@ public class HubActivity extends AppCompatActivity {
     // ---------------------------------------------------------------------------------------------
     public void DisplayMessage(String message, boolean error_message) {
 
-        TextView tview_etat = findViewById(R.id.field_etat);
 
         Calendar calndr     = Calendar.getInstance();
 
@@ -352,7 +375,7 @@ public class HubActivity extends AppCompatActivity {
         toast.show();
 
         // Affichage du meme message d'erreur dans la zone Etat
-        tview_etat.setText(message );
+
 
     }
 
@@ -378,7 +401,6 @@ public class HubActivity extends AppCompatActivity {
     {
 
 
-
         // Step 3 - Create a datagram socket to ask teleinformation
         try {
 
@@ -392,7 +414,7 @@ public class HubActivity extends AppCompatActivity {
 
             if (m_client_udp != null)
             {
-                m_client_udp.envoyer("Hello", ip_for_sending, port_phone2er); // à l'IP du Rpi et au port 10001
+                m_client_udp.envoyer("Hello", IP, 10001); // à l'IP du Rpi et au port 10001
             }
 
             //DisplayMessage("Requête télé-info envoyée @IP:" + ip_for_sending +  " port:" + port_phone2er, false);

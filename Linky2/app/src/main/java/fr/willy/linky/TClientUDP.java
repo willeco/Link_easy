@@ -3,8 +3,12 @@ package fr.willy.linky;
 import java.io.IOException;
 import java.net.*;
 
+import android.graphics.PorterDuff;
 import android.util.Log;
 import android.content.Context;
+
+
+import static fr.willy.linky.HubActivity.etatText;
 
 // -------------------------------------------------------------------------------------------------
 // Création d'une classe ayant pour objectif d'exécuter le code du Thread
@@ -30,6 +34,7 @@ public class TClientUDP implements Runnable {
         this.socket             = socket;
         fini                    = false;
 
+        HubActivity.etatText.setText("Connexion...");
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -46,6 +51,27 @@ public class TClientUDP implements Runnable {
 
         while (!fini)
         {
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            HubActivity.firstLine.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            HubActivity.firstPoint.setColorFilter(R.color.white, PorterDuff.Mode.LIGHTEN);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
 
             // -------------------------------------------------------------------------------------
             // Envoi des paquets stockés dans la liste d'envoi

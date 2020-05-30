@@ -32,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         login      = findViewById(R.id.login);
         activity   = findViewById(R.id.activity);
 
+        login_text.setText("83.205.137.12");
+
         customPopUStartApplication.getUnderstand().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

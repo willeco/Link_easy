@@ -1,5 +1,6 @@
 package fr.willy.linky;
 
+import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -190,6 +191,7 @@ public class ClientUDP {
         if (m_threadClientUDP == null)
         {
             startThread();
+
             Log.i("UDP", "4 - Création et démarrage du Thread UDP");
         }
 

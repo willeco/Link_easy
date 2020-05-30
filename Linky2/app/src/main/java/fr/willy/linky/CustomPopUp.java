@@ -269,7 +269,7 @@ public class CustomPopUp extends Dialog {
                                                 @Override
                                                 public void onClick(View v) {
                                                     pappOff[0] = Integer.parseInt(HubActivity.papp);
-                                                    faitButton.setText("AJOUTER APPAREIL");
+                                                    faitButton.setText("OK");
                                                     faitButton.setVisibility(GONE);
                                                     diffPappOnOff[0] = pappOn[0] - pappOff[0];
                                                     diffPappUnpluggedOff[0] = pappOff[0] - pappUnplugged[0];
