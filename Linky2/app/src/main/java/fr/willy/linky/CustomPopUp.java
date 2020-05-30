@@ -5,11 +5,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.bluetooth.BluetoothClass;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -147,6 +150,8 @@ public class CustomPopUp extends Dialog {
                 final Button faitButton = findViewById(R.id.button);
                 final Button ajouterButton = findViewById(R.id.button2);
                 final CheckBox debranchable = findViewById(R.id.checkBox);
+                final TextView tauxUtilisation = findViewById(R.id.textView18);
+                final EditText tauxUtilisationEdit = findViewById(R.id.editTextTextPersonName);
 
                 final int[] pappUnplugged = new int[1];
                 final int[] pappOn = new int[1];
@@ -156,18 +161,47 @@ public class CustomPopUp extends Dialog {
 
                 final int[] counter = {6};
 
+                final String[] tauxUtilisationDouble = new String[1];
+
                 ajouterButton.setVisibility(GONE);
-                faitButton.setVisibility(View.VISIBLE);
+                faitButton.setVisibility(View.GONE);
                 debranchable.setVisibility(View.VISIBLE);
 
                 faitButton.setText("OK");
                 deviceTextView.setText(device);
                 protocolTextView.setText("Gna gna gna explication + éteint ton appareil");
 
+                tauxUtilisationEdit.addTextChangedListener(new TextWatcher() {
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        faitButton.setVisibility(View.GONE);
+                    }
+
+                    public void afterTextChanged(Editable s) {
+                        if(tauxUtilisationEdit.getText().toString().matches(""))
+                        {
+
+                        }
+                        else
+                        {
+                            tauxUtilisationDouble[0] = tauxUtilisationEdit.getText().toString();
+                            faitButton.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                });
 
                 faitButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
+                        tauxUtilisation.setVisibility(GONE);
+                        tauxUtilisationEdit.setVisibility(GONE);
                         faitButton.setVisibility(GONE);
                         debranchable.setVisibility(GONE);
                         HubActivity.ask_tele_info(ip_for_sending, 10001);
@@ -247,7 +281,7 @@ public class CustomPopUp extends Dialog {
 
                                                     // Insertion d'un appareil
                                                     int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
-                                                    Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), parent_activity.getstandbypower(), 0, 0);
+                                                    Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), parent_activity.getstandbypower(), (pappOn[0]*Float.parseFloat(tauxUtilisationDouble[0])+pappOff[0]*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24 , Float.parseFloat(tauxUtilisationDouble[0]));
                                                     parent_activity.getDb().insert(a);
                                                     parent_activity.getDb().close();
                                                     parent_activity.display_listview_of_Devices(false);
@@ -317,7 +351,7 @@ public class CustomPopUp extends Dialog {
 
                                             // Insertion d'un appareil
                                             int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
-                                            Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, 0, 0);
+                                            Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, (pappOn[0]*Float.parseFloat(tauxUtilisationDouble[0])+pappOff[0]*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24, Float.parseFloat(tauxUtilisationDouble[0]));
                                             parent_activity.getDb().insert(a);
                                             parent_activity.getDb().close();
                                             parent_activity.display_listview_of_Devices(false);
