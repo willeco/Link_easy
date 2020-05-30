@@ -44,7 +44,7 @@
 
     <EditText
         android:id="@+id/device_name"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:hint="Lampe"
@@ -69,10 +69,9 @@
 
     <EditText
         android:id="@+id/device_use_rate"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="entrez le taux d'utilisation de votre appareil"
         android:textColor="@color/secondary_text"
         android:textColorHint="@color/secondary_text"
         app:layout_constraintStart_toStartOf="@+id/device_icon"

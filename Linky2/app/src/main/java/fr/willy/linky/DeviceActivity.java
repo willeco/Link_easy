@@ -175,6 +175,18 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         display_listview_of_Devices(false);
     }
 
+    public void setPower(int power_input){power = power_input;}
+    public int getPower(){return power;}
+    public void setstandbypower(int standbypower_input){standbypower = standbypower_input;} //TA FOUTU QUOI LA ?
+    public int getstandbypower(){return standbypower;}
+
+    public DeviceDataBase getDb(){return db;}
+    public String getSelected_device(){return selected_device;}
+
+    public void delete_device(){
+        device_to_delete = true;
+    }
+
     /**
      * NEW : Permet d'afficher la listeView contenant les appareils de la base de données
      * ----------------------------------------------------------------------------------
@@ -190,10 +202,10 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             db.deleteDevices();
             db.remove(db.getSize());
         }
-
          */
 
-        /*
+
+
         int delete_index = db.deleteDevices();
         makeText(getApplicationContext(),"indice de suppresion : "+delete_index, Toast.LENGTH_SHORT).show();
 
@@ -201,7 +213,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             makeText(getApplicationContext(),"Appareil en cours de suppression", Toast.LENGTH_SHORT).show();
             db.remove(delete_index);
         }
-         */
+
 
         db.displayDevices();
 
@@ -269,18 +281,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         });
 
 
-    }
-
-    public void setPower(int power_input){power = power_input;}
-    public int getPower(){return power;}
-    public void setstandbypower(int standbypower_input){standbypower = standbypower_input;} //TA FOUTU QUOI LA ?
-    public int getstandbypower(){return standbypower;}
-
-    public DeviceDataBase getDb(){return db;}
-    public String getSelected_device(){return selected_device;}
-
-    public void delete_device(){
-        device_to_delete = true;
     }
 
     /**
@@ -442,6 +442,7 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             TextView tvDevicePower = (TextView)  view.findViewById(R.id.device_power);
             TextView tvDeviceStandbyPower = (TextView)  view.findViewById(R.id.device_standby_power);
             TextView tvDeviceMeanPower = (TextView)  view.findViewById(R.id.device_mean_power);
+            TextView tvDeviceUseRate = (TextView) view.findViewById(R.id.device_userate);
             ImageView imDevice     = (ImageView) view.findViewById(R.id.device_thumbnail);
 
             // Extract properties from cursor
@@ -449,18 +450,18 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             String device_power  = cursor.getString(cursor.getColumnIndexOrThrow("power"));
             String device_stand_by_power  = cursor.getString(cursor.getColumnIndexOrThrow("standbypower"));
             String device_mean_power  = cursor.getString(cursor.getColumnIndexOrThrow("meanpower"));
+            String device_use_rate = cursor.getString(cursor.getColumnIndexOrThrow("userate"));
+            int icon = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow("icon")));
 
             // Get index on the drawable icon
 
-            icon_index          = return_index_icon(device_name);
-
             // Populate fields with extracted properties
             tvDeviceName.setText(device_name);
-            tvDevicePower.setText("Conso en route : " + device_power + " Watts");
-            tvDeviceStandbyPower.setText("Conso en veille : " + device_stand_by_power + " Watts");
+            tvDevicePower.setText("Consommation allumé : " + device_power + " Watts");
+            tvDeviceStandbyPower.setText("Consommation éteint : " + device_stand_by_power + " Watts");
             tvDeviceMeanPower.setText( device_mean_power + " Watts");
-
-            imDevice.setImageResource(icon_index);
+            tvDeviceUseRate.setText( "Utilisation : "+device_use_rate.toString() + "h/j");
+            imDevice.setImageResource(icon);
         }
     }
 

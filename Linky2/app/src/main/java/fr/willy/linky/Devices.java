@@ -17,7 +17,7 @@ public class Devices {
     private float    meanpower;
     private float    userate;
     private int icon;
-    private String delete;
+    private Boolean delete = false;
 
 
     /**
@@ -63,7 +63,7 @@ public class Devices {
     public float getUseRate() {
         return userate;
     }
-    public String getDelete(){return delete;}
+    public Boolean getDelete(){return delete;}
 
 
     /**
@@ -73,36 +73,33 @@ public class Devices {
     public void setId(int id) {
         this.id = id;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setPower(int power) {
         this.power = power;
     }
-
     public void setStandbyPower(float StandbyPower) {
         this.standbypower = StandbyPower;
     }
     public void setUseRate(float UseRate) {
         this.userate = UseRate;
     }
-    public void setMeanPower(float MeanPower) {
-        this.meanpower = MeanPower;
+    public void setMeanPower() {
+        Float meanPower = (getPower()*getUseRate()+getStandbyPower()*(24-getUseRate()))/24;
+        this.meanpower = Math.round(meanPower);
     }
-
-    public void setDelete(){ delete="true"; }
-
-    public void setIcon(DeviceActivity deviceActivity, ImageView image, int index){
-        //int index = deviceActivity.return_index_icon(this.getName());
-        image.setImageResource(index);
+    public void setDelete(){ this.delete=true; }
+    public void setIcon(int index){
         this.icon = index;
+    }
+    public void displayIcon(DeviceActivity deviceActivity, ImageView image){
+        image.setImageResource(this.icon);
     }
 
     @Override
     public String toString() {
-        return "Appareil [id=" + id + ", nom=" + name + ", puissance=" + power + "]";
+        return "Appareil [id=" + id + ", nom=" + name + ", puissance=" + power + ", supression =" + delete + "]";
     }
 
 

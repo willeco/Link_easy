@@ -56,6 +56,7 @@ public class QuickConfigActivity extends AppCompatActivity {
                     final EditText instant_power  = findViewById(R.id.instant_power);
                     final EditText stand_by_power = findViewById(R.id.stand_by_power);
                     final EditText mean_power     = findViewById(R.id.mean_power);
+                    final EditText use_rate       = findViewById(R.id.device_use_rate);
                     ImageView device_icon         = findViewById(R.id.device_icon);
                     final EditText device_name    = findViewById(R.id.device_name);
                     Button delete_device_button   = findViewById(R.id.delete_device_button);
@@ -63,13 +64,16 @@ public class QuickConfigActivity extends AppCompatActivity {
                     Button confirm_button         = findViewById(R.id.confirm_button);
 
 
+                    use_rate.setText(Float.toString(device.getUseRate()));
                     instant_power.setText(Integer.toString(device.getPower()));
                     stand_by_power.setText(Float.toString(device.getStandbyPower()));
                     mean_power.setText(Float.toString(device.getMeanPower()));
 
                     device_name.setHint(device.getName());
                     int index = activity_device.return_index_icon(device.getName());
-                    device.setIcon(activity_device, device_icon, index);
+                    //device.setIcon(device.getIcon());
+                    device.setIcon(index);
+                    device.displayIcon(activity_device, device_icon);
 
                     /**
                         Interraction de l'activité
@@ -98,9 +102,11 @@ public class QuickConfigActivity extends AppCompatActivity {
                             else{
                                 device.setName(device_name.getText().toString());
                             }
+                            device.setUseRate(Float.parseFloat(use_rate.getText().toString()));
                             device.setPower(Integer.parseInt(instant_power.getText().toString()));
                             device.setStandbyPower(Float.parseFloat(stand_by_power.getText().toString()));
-                            device.setMeanPower(Float.parseFloat(mean_power.getText().toString()));
+                            device.setMeanPower();
+                            //makeText(getApplicationContext(),"Puissance moyenne = " +device.getMeanPower(), Toast.LENGTH_LONG).show();
                             db.open();
                             db.update(rowId, device);
                             db.close();
@@ -134,12 +140,14 @@ public class QuickConfigActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     customPopUpDelete.dismiss();
                                     makeText(getApplicationContext(),"Demande de suppression enregistrée.", Toast.LENGTH_SHORT).show();
-                                    /*
+                                    db.open();
                                     device.setDelete();
-                                    Log.i("####################", "#######################");
+                                    db.update(device.getId(),device);
+                                    db.close();
+                                    makeText(getApplicationContext(),"Doit etre supprimé ?"+device.getDelete(), Toast.LENGTH_SHORT).show();
+                                    Log.i("################################################################################", "#######################################################################################################");
                                     Log.i("DELETE MESSAGE BEFORE de", device.getName() +" est "+device.getDelete());
                                     finish();
-                                     */
                                 }
                             });
                         }
