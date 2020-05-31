@@ -63,10 +63,15 @@ Bien entendu, cette méthode n'est pas infaillible, c'est pourquoi nous vous lai
 * interaction avec les appareils créés
 
 #### Thomas COCHOU
+
 * création des protocoles d'affectation de puissances
 * création de la base de données
+* demande et récuperation de la télé-information
 
+### QuickConfig 
 
-
-
-
+* coresspondance entre l'appareil selectionné dans DeviceActivity et celle-ci
+* enregistrement des modifications de l'appareil dans la base de données
+* mise à jour de la puissance moyenne
+* maintien de l'icon associé à l'appareil apres modification du nom
+* suppression de l'appareil
