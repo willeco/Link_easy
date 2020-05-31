@@ -316,7 +316,9 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
             index_icon = R.drawable.lamp;
         } else if (deviceName.equals("Four")                ) {
             index_icon = R.drawable.oven;
-        } else if (deviceName.equals("Télévision")          ) {
+        } else if (deviceName.equals("Camera")                ) {
+            index_icon = R.drawable.camera;
+        }else if (deviceName.equals("Télévision")          ) {
             index_icon = R.drawable.tv;
         } else if (deviceName.equals("Aspirateur")          ) {
             index_icon = R.drawable.vacuum;
