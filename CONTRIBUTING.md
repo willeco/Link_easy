@@ -22,3 +22,26 @@ Cette activité permet à l'utilisateur de voir les informations du compteur Lin
 L'utilisateur peut également visualiser ces informations sous forme de graphiques en cliquant sur les cases PAPP ou BASE.
 
 Nous nous sommes ensuite partagé les taches pour finir le projet dans les délais.
+
+## Repartition des taches
+
+L'activité "DeviceActivity" étant plus conséquante à réaliser, nous nous y sommes consacré à deux :
+* William LE CORRE [Compte GitHub](https://github.com/willeco)
+* Thomas COCHOU [Compte GitHub](https://github.com/ThomasCochou)
+
+L'activité "DailyConsumption" (pas encore présente dans l'application Android mais en simulation) à été réalisé par :
+* Damien CRENN [Compte GitHub](https://github.com/Damiencrenn29)
+
+Pour finir l'ergonomie de l'application a été pensé et réalisé par :
+* David LE SAOUT [Compte GitHub](https://github.com/DavidLeSaout)
+
+## Contribution 
+
+### DeviceActivity
+
+Le principe de cette activité est de detecter la consommation de chaque appareils dans votre domicile. Pour ce faire l'activité vous propose d'ajouter des appareils à cette liste. 
+Nous vous proposons une méthode pour lui affecter :
+* une puissance active qui correspond à sa puissance lorsqu'il est en marche
+* une puissance passive qui correspond à sa puissance lorsqu'il n'est pas en marche mais tout de même branché à votre réseau éléctrique
+* une puissance moyenne calculée en fonction du taux d'utilisation de votre appareil.
+Bien entendu, si cette méthode n'est pas infaillible, c'est pourquoi nous vous laissons la possibilité de modifier la puissance active et passive de chaque appareils.
