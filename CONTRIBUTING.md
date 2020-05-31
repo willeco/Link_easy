@@ -29,7 +29,13 @@ L'activité "DeviceActivity" étant plus conséquante à réaliser, nous nous y 
 * William LE CORRE [Compte GitHub](https://github.com/willeco)
 * Thomas COCHOU [Compte GitHub](https://github.com/ThomasCochou)
 
-L'activité "DailyConsumption" (pas encore présente dans l'application Android mais en simulation) à été réalisé par :
+L'activité "QuickConfig" a été réalisé par :
+* William LE CORRE [Compte GitHub](https://github.com/willeco)
+
+L'activité Graph a été réalisé par :
+* Thomas COCHOU [Compte GitHub](https://github.com/ThomasCochou)
+
+L'activité "DailyConsumption" (pas encore présente dans l'application Android mais en simulation) a été réalisé par :
 * Damien CRENN [Compte GitHub](https://github.com/Damiencrenn29)
 
 Pour finir l'ergonomie de l'application a été pensé et réalisé par :
@@ -44,4 +50,23 @@ Nous vous proposons une méthode pour lui affecter :
 * une puissance active qui correspond à sa puissance lorsqu'il est en marche
 * une puissance passive qui correspond à sa puissance lorsqu'il n'est pas en marche mais tout de même branché à votre réseau éléctrique
 * une puissance moyenne calculée en fonction du taux d'utilisation de votre appareil.
-Bien entendu, si cette méthode n'est pas infaillible, c'est pourquoi nous vous laissons la possibilité de modifier la puissance active et passive de chaque appareils.
+
+Bien entendu, cette méthode n'est pas infaillible, c'est pourquoi nous vous laissons la possibilité de modifier la puissance active et passive de chaque appareils.
+
+#### William LE CORRE
+
+* création de l'activité
+* création des différents appareils
+* création du popup d'ajout d'ajout d'appareils
+* gestion d'affectation de l'appareil dans la base de données en fonction de la selection
+* affichage dynamique des appareils créés
+* interaction avec les appareils créés
+
+#### Thomas COCHOU
+* création des protocoles d'affectation de puissances
+* création de la base de données
+
+
+
+
+
