@@ -41,7 +41,8 @@
         <item>Autre catégorie</item>
     </array>
 
-    <string name="papp_def">La puissance apparente est définie comme étant la valeur maximale qui peut être prise par la puissance active1,2 pour des amplitudes de tension et d\'intensité fixées. Le rapport de la puissance active sur la puissance apparente est appelé facteur de puissance1,3 et la puissance apparente est donc la puissance active obtenue pour un facteur de puissance égal à 1. La puissance apparente sert au dimensionnement des systèmes et est la puissance nominale d une machine par exemple. L\'unité d\'expression de la puissance apparente est le voltampère (VA)1,3 (annoté S), ce qui permet de distinguer cette grandeur de la puissance active (annoté P) et de la puissance réactive (annoté Q) notamment. L\'unité d\'expression de la puissance active (puissance réelle) est le watt. L\'unité de la puissance réactive est le volt-ampère-réactif (VAR).</string>
+    <string name="papp_def">La puissance apparente est la somme de la puissance réactive et active. La puissance active est la puissance qui permet à un moteur d\'effecteur un travail par exemple tourner, la puissance réactive est la puissance consommée par le circuit du moteur.
+</string>
 
     <string name="inst_def">La puissance instantanée est tout simplement la puissance consommée à un instant donnée, aucune durée n\'est utilisée pour la calucler.</string>
 

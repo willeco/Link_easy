@@ -61,6 +61,7 @@
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/dark_linky"
         android:text="Confirmer"
+        android:padding="10dp"
         android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="@+id/device_popup_subtitle"
         app:layout_constraintTop_toTopOf="@+id/cancel_text" />
@@ -74,6 +75,7 @@
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/boutton_light"
         android:text="Annuler"
+        android:padding="10dp"
         android:textColor="@color/primary_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/device_popup_subtitle"

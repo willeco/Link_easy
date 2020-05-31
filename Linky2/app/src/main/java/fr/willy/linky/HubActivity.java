@@ -234,7 +234,7 @@ public class HubActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final CustomPopUp customPopUpInformation = new CustomPopUp(hubActivity, "papp"); //on créer le popup d'ajout
 
-                customPopUpInformation.getPower_name().setText("HP");
+                customPopUpInformation.getPower_name().setText("BASE");
                 customPopUpInformation.getPower_definition().setText(R.string.hp_def);
 
                 customPopUpInformation.test_bluid(); //on affiche le popup
@@ -253,7 +253,7 @@ public class HubActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final CustomPopUp customPopUpInformation = new CustomPopUp(hubActivity, "papp"); //on créer le popup d'ajout
 
-                customPopUpInformation.getPower_name().setText("HC");
+                customPopUpInformation.getPower_name().setText("PTEC");
                 customPopUpInformation.getPower_definition().setText(R.string.hc_def);
                 customPopUpInformation.test_bluid(); //on affiche le popup
 

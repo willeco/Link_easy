@@ -143,7 +143,6 @@ public class QuickConfigActivity extends AppCompatActivity {
                                     db.update(device.getId(),device);
                                     db.displayDevices();
                                     db.close();
-                                    makeText(getApplicationContext(),"Doit etre supprimé ?"+device.getDelete(), Toast.LENGTH_SHORT).show();
                                     Log.i("################################################################################", "#######################################################################################################");
                                     Log.i("DELETE MESSAGE BEFORE de", device.getName() +" est "+device.getDelete());
                                     finish();

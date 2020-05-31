@@ -46,6 +46,7 @@
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/dark_linky"
         android:text="Suivant"
+        android:padding="10dp"
         android:textColor="@color/primary_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

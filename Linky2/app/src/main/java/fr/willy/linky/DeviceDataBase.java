@@ -1,5 +1,6 @@
 package fr.willy.linky;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -282,13 +283,27 @@ public class DeviceDataBase {
      * --------------------------------------------
      */
 
+    @SuppressLint("LongLogTag")
     public void reorderDevice(int delete_index){
         LinkedList<Devices> devices = selectAll();
 
-        for (int i = delete_index; i < devices.size(); i++) {
+        for (int i = 0; i < devices.size(); i++) {
             Devices device = devices.get(i);
-            device.setId(i);
+            device.setId(i+1);
+            Log.i("DEVICE NAME : ", device.getName()+ " a pour ID --> "+device.getId() + " au lieu de " + (i+1));
+            update(device.getId(),device);
+            Log.i("TEST", "################################################");
+            Log.i("TEST", "################################################");
+            displayDevices();
+            Log.i("FIN DE TEST", "################################################");
+            Log.i("FIN DE TEST", "################################################");
+
+            //System.out.println(device);
         }
+        Log.i("####################################################################################################################################################", "####################################################################################################################################################");
+        Log.i("ON DOIT MODIER LES ID À PARTIR DE CET ID LÀ", String.valueOf(delete_index));
+        displayDevices();
+        Log.i("####################################################################################################################################################", "####################################################################################################################################################");
     }
 
     /**

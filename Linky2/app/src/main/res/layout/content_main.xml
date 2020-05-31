@@ -19,6 +19,8 @@
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/dark_linky"
         android:text="Rafraichir"
+        android:padding="10dp"
+
         android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -33,6 +35,8 @@
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/dark_linky"
         android:text="Consommation appareils"
+        android:padding="10dp"
+
         android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

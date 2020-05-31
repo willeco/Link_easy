@@ -48,6 +48,7 @@
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/dark_linky"
         android:text="J'ai compris"
+        android:padding="10dp"
         android:textColor="@color/primary_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +62,7 @@
         android:text="Ne plus afficher"
         android:textColor="@color/primary_text"
         app:layout_constraintBottom_toBottomOf="@+id/tuto_understand"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tuto_understand" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
