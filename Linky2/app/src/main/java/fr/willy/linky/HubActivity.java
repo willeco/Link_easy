@@ -51,6 +51,8 @@ import static android.widget.Toast.makeText;
 
 public class HubActivity extends AppCompatActivity {
 
+    private HubActivity hubActivity=this;
+
     // Variables privées de notre class Activité
     static ImageView firstLine;
     static ImageView secondLine;
@@ -63,6 +65,11 @@ public class HubActivity extends AppCompatActivity {
     static Button hpButton;
     static Button iinstButton;
     static Button hcButton;
+
+    static Button information_papp;
+    static Button information_inst;
+    static Button information_hp;
+    static Button information_hc;
 
 
     static double timerStart = 0;
@@ -120,6 +127,11 @@ public class HubActivity extends AppCompatActivity {
         secondePoint = findViewById(R.id.imageView4);
         etatText = findViewById(R.id.textView17);
 
+        information_papp = findViewById(R.id.information_papp);
+        information_inst = findViewById(R.id.information_inst);
+        information_hp = findViewById(R.id.information_hp);
+        information_hc = findViewById(R.id.information_hc);
+
 
 
         // Tentative de Récuperation adresse IP Wi-Fi du smartphone
@@ -166,6 +178,78 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
+        information_papp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CustomPopUp customPopUpInformation = new CustomPopUp(hubActivity, "papp"); //on créer le popup d'ajout
+
+                customPopUpInformation.getPower_name().setText("PAPP");
+                customPopUpInformation.getPower_definition().setText(R.string.papp_def);
+                customPopUpInformation.test_bluid(); //on affiche le popup
+
+                customPopUpInformation.getQuit_infomration().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        customPopUpInformation.dismiss();
+                    }
+                });
+            }
+        });
+
+        information_inst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CustomPopUp customPopUpInformation = new CustomPopUp(hubActivity, "papp"); //on créer le popup d'ajout
+
+                customPopUpInformation.getPower_name().setText("INST");
+                customPopUpInformation.getPower_definition().setText(R.string.inst_def);
+                customPopUpInformation.test_bluid(); //on affiche le popup
+
+                customPopUpInformation.getQuit_infomration().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        customPopUpInformation.dismiss();
+                    }
+                });
+            }
+        });
+
+        information_hp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CustomPopUp customPopUpInformation = new CustomPopUp(hubActivity, "papp"); //on créer le popup d'ajout
+
+                customPopUpInformation.getPower_name().setText("HP");
+                customPopUpInformation.getPower_definition().setText(R.string.hp_def);
+
+                customPopUpInformation.test_bluid(); //on affiche le popup
+
+                customPopUpInformation.getQuit_infomration().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        customPopUpInformation.dismiss();
+                    }
+                });
+            }
+        });
+
+        information_hc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CustomPopUp customPopUpInformation = new CustomPopUp(hubActivity, "papp"); //on créer le popup d'ajout
+
+                customPopUpInformation.getPower_name().setText("HC");
+                customPopUpInformation.getPower_definition().setText(R.string.hc_def);
+                customPopUpInformation.test_bluid(); //on affiche le popup
+
+                customPopUpInformation.getQuit_infomration().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        customPopUpInformation.dismiss();
+                    }
+                });
+            }
+        });
 
         //DEMANDE DE TELE INFO
         ask_tele_info(IP,10001);
@@ -283,7 +367,7 @@ public class HubActivity extends AppCompatActivity {
             {
 
                 etatText.setText("Demande d'informations...");
-                HubActivity.secondLine.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
+                HubActivity.secondLine.setColorFilter(R.color.dark_linky, PorterDuff.Mode.LIGHTEN);
 
                 // Bundle bundle = msg.getData();
                 // String string = bundle.getString(ClientUDP.CODE_RECEPTION);
@@ -330,7 +414,7 @@ public class HubActivity extends AppCompatActivity {
                 if(!pappButton.getText().toString().equals("PAPP") && !iinstButton.getText().toString().equals("IINST") && timeOut<=170)
                 {
                     etatText.setText("Réception...");
-                    secondePoint.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
+                    secondePoint.setColorFilter(R.color.dark_linky, PorterDuff.Mode.LIGHTEN);
                 }
             }
 
@@ -340,7 +424,7 @@ public class HubActivity extends AppCompatActivity {
             if(timeOut >= 170)
             {
                 etatText.setText("Fin de réception.");
-                thirdLine.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
+                thirdLine.setColorFilter(R.color.dark_linky, PorterDuff.Mode.LIGHTEN);
             }
         }
     };

@@ -44,13 +44,15 @@
         android:id="@+id/device_power"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/device_standby_power"
         android:layout_below="@id/device_name"
         android:layout_marginStart="5dp"
-        android:textColor="@color/secondary_text"
-        android:textSize="10dip"
         android:layout_marginTop="1dip"
+        android:layout_marginBottom="7dp"
         android:layout_toRightOf="@+id/layout_thumbnail"
         android:text="Conso. en route : 10 Watts"
+        android:textColor="@color/secondary_text"
+        android:textSize="10dip"
         android:textStyle="bold" />
 
     <!-- Standby power -->
@@ -58,13 +60,12 @@
         android:id="@+id/device_standby_power"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/device_power"
+        android:layout_alignBottom="@id/device_userate"
         android:layout_marginStart="5dp"
-        android:textColor="@color/secondary_text"
-        android:textSize="10dip"
-        android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/layout_thumbnail"
-        android:text="Conso. en veille : 10 Watts" />
+        android:text="Conso. en veille : 10 Watts"
+        android:textColor="@color/secondary_text"
+        android:textSize="10dip" />
 
     <!-- Consommation moyenne  -->
     <TextView
@@ -74,7 +75,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@id/device_name"
         android:gravity="right"
-        android:text="Consommation moyenne"
+        android:text="Conso. moyenne"
         android:layout_marginRight="5dip"
         android:textSize="10dip"
         android:textColor="@color/secondary_text" />

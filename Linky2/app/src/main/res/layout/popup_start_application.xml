@@ -41,7 +41,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
-        android:text="Avant de pouvoir bénéficier des services de cette application vous devez vous munir d'un module communiquant radiofréquences. Celui-ci permmettra la communication entre votre compteur Linky et l'application. Vous pourrez également avoir accès aux informations de votre compteur hors de chez vous."
+        android:text="Avant de pouvoir bénéficier des services de cette application vous devez vous munir d'un module communiquant radiofréquences. Celui-ci permettra la communication entre votre compteur Linky et l'application. Vous pourrez également avoir accès aux informations de votre compteur hors de chez vous."
         android:textAlignment="center"
         android:textColor="@color/secondary_text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,11 +50,12 @@
 
     <Button
         android:id="@+id/understand"
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        android:background="@color/dark_linky"
+        android:background="@android:drawable/toast_frame"
+        android:backgroundTint="@color/dark_linky"
         android:text="J'ai compris"
         android:textColor="@color/primary_text"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -55,7 +55,7 @@ public class QuickConfigActivity extends AppCompatActivity {
 
                     final EditText instant_power  = findViewById(R.id.instant_power);
                     final EditText stand_by_power = findViewById(R.id.stand_by_power);
-                    final EditText mean_power     = findViewById(R.id.mean_power);
+                    final TextView mean_power     = findViewById(R.id.mean_power);
                     final EditText use_rate       = findViewById(R.id.device_use_rate);
                     ImageView device_icon         = findViewById(R.id.device_icon);
                     final EditText device_name    = findViewById(R.id.device_name);
@@ -71,8 +71,6 @@ public class QuickConfigActivity extends AppCompatActivity {
 
                     device_name.setHint(device.getName());
                     int index = activity_device.return_index_icon(device.getName());
-                    //device.setIcon(device.getIcon());
-                    device.setIcon(index);
                     device.displayIcon(activity_device, device_icon);
 
                     /**
@@ -141,7 +139,7 @@ public class QuickConfigActivity extends AppCompatActivity {
                                     customPopUpDelete.dismiss();
                                     makeText(getApplicationContext(),"Demande de suppression enregistrée.", Toast.LENGTH_SHORT).show();
                                     db.open();
-                                    device.setDelete();
+                                    device.setDelete(1);
                                     db.update(device.getId(),device);
                                     db.displayDevices();
                                     db.close();

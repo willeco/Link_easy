@@ -23,12 +23,13 @@
         android:id="@+id/textView18"
         android:layout_width="201dp"
         android:layout_height="22dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="12dp"
         android:text="Taux d'utilisation en heures/jours :"
         android:textColor="@color/colorSlideBar"
         android:textSize="13sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:layout_editor_absoluteX="40dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView2"
@@ -48,7 +49,10 @@
         android:id="@+id/textView3"
         android:layout_width="315dp"
         android:layout_height="225dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:layout_marginTop="8dp"
+        android:textAlignment="center"
         android:text="protocol en cours de configuration"
         android:textColor="@color/secondary_text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,21 +63,27 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/boutton_light"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@android:drawable/toast_frame"
+        android:backgroundTint="@color/dark_linky"
         android:text="OK"
         android:textColor="@color/primary_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="@color/boutton_light"
+        android:background="@android:drawable/toast_frame"
+        android:backgroundTint="@color/dark_linky"
+        android:layout_marginBottom="25dp"
         android:text="Ajouter appareil"
         android:textColor="@color/primary_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
@@ -83,10 +93,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="25dp"
         android:text="Débranchable"
         android:textColor="@color/primary_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -95,10 +106,13 @@
         android:layout_width="74dp"
         android:layout_height="36dp"
         android:layout_marginTop="4dp"
+        android:layout_marginRight="25dp"
+        android:textAlignment="center"
         android:ems="10"
         android:inputType="numberDecimal"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView18"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 

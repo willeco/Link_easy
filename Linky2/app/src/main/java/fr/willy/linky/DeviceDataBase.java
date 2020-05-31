@@ -17,7 +17,7 @@ import static android.widget.Toast.makeText;
  */
 public class DeviceDataBase {
 
-    private static final int DATABASE_VERSION       = 8;
+    private static final int DATABASE_VERSION       = 9;
     private static final    String DBNAME              = "device.db";
     private static final    String DEVICE_TABLE_NAME   = "device";
 
@@ -85,6 +85,7 @@ public class DeviceDataBase {
         values.put(STANDBY_POWER, device.getStandbyPower());
         values.put(MEAN_POWER, device.getMeanPower());
         values.put(USERATE, device.getUseRate());
+        Log.i("DEVICE delete:", String.valueOf(device.getDelete()) );
         values.put(DELETEREQUEST, device.getDelete());
 
         //on insère l'objet dans la BDD via le ContentValues
@@ -113,6 +114,27 @@ public class DeviceDataBase {
         values.put(DELETEREQUEST, device.getDelete());
 
         return bdd.update(DEVICE_TABLE_NAME, values, ID + " = " +id, null);
+    }
+
+    public void updateAll()
+    {
+        LinkedList<Devices> devices = selectAll();
+
+        for (Devices device : devices) {
+            //La mise à jour d'un livre dans la BDD fonctionne plus ou moins comme une insertion
+            //il faut simplement préciser quel livre on doit mettre à jour grâce à l'ID
+            ContentValues values = new ContentValues();
+            values.put(ID, device.getId());
+            values.put(ICON, device.getIcon());
+            values.put(NAME, device.getName());
+            values.put(POWER, device.getPower());
+            values.put(STANDBY_POWER, device.getStandbyPower());
+            values.put(MEAN_POWER, device.getMeanPower());
+            values.put(USERATE, device.getUseRate());
+            values.put(DELETEREQUEST, device.getDelete());
+
+            bdd.update(DEVICE_TABLE_NAME, values, ID + " = " + device.getId(), null);
+        }
     }
 
     /**
@@ -237,30 +259,37 @@ public class DeviceDataBase {
     {
         int delete_index=0;
         LinkedList<Devices> devices = selectAll();
-        Devices d;
 
-        for (int i = 0; i < devices.size(); i++) {
-            if (devices.get(i) != null){
-
-                try{
-                    //Log.i("device ------------->", devices.get(i).toString());
-                    d = devices.get(i);
-                    Log.i("DELETE MESSAGE AFTER de", d.getName() +" est "+d.getDelete());
-                    //Log.i("device", devices.get(i).getDelete());
-                    if (devices.get(i).getDelete()==1){
-                        delete_index = i;
-                    }
-                    else{
-                        delete_index = 0;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        for (Devices device : devices){
+            Log.i("DELETE MESSAGE AFTER de", device.getName() +" est "+device.getDelete());
+            //Log.i("device", devices.get(i).getDelete());
+            if (device.getDelete()==1) {
+                Log.i("DELETE MESSAGE AFTER de", "ON AURAIT DU LE SUPPRIMER !!!!!");
+                delete_index = device.getId();
+                Log.i("DELETE MESSAGE AFTER de", "indice de Suppression -------------------> " + delete_index);
+                return delete_index;
             }
         }
         return delete_index;
     }
 
+    /**
+     * Permet de réorganiser les appareils apres en avoir supprimé un, en changeant leurs id (on ne laisse pas de trous)
+     * exemple : Avant --> 1, 2, 3, 4, 5
+     *           Suppression de 3
+     *           Apres --> 1, 2, 4, 5
+     *           Probleme d'id --> on reorganise
+     * --------------------------------------------
+     */
+
+    public void reorderDevice(int delete_index){
+        LinkedList<Devices> devices = selectAll();
+
+        for (int i = delete_index; i < devices.size(); i++) {
+            Devices device = devices.get(i);
+            device.setId(i);
+        }
+    }
 
     /**
      * Permet de convertir un cursor en un appareil
@@ -275,13 +304,13 @@ public class DeviceDataBase {
         Devices device = new Devices();
 
         device.setId(                   c.getInt(c.getColumnIndexOrThrow(ID)));
-        //device.setIcon(                 c.getInt(c.getColumnIndexOrThrow(ICON)));
+        device.setIcon(                 c.getInt(c.getColumnIndexOrThrow(ICON)));
         device.setName(                 c.getString(c.getColumnIndexOrThrow(NAME)));
         device.setPower(                c.getInt(c.getColumnIndexOrThrow(POWER)));
         device.setStandbyPower(         c.getFloat(c.getColumnIndexOrThrow(STANDBY_POWER)));
         device.setUseRate(              c.getFloat(c.getColumnIndexOrThrow(USERATE)));
         device.setMeanPower();
-        device.setDelete();
+        device.setDelete(               c.getInt(c.getColumnIndexOrThrow(DELETEREQUEST)));
 
 
 

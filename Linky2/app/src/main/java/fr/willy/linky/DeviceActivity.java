@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.GridLayout;
@@ -86,7 +87,6 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
     private int device_mean_power;
     private String selected_device;
     private boolean dont_show_again = false;
-    private boolean device_to_delete = false;
 
     static public int pappActualDevice;
 
@@ -128,20 +128,8 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         Bundle extras = getIntent().getExtras();
         ip_for_sending = extras.getString("ip_for_sending");
 
-        /*
-        db.open(); //on ouvre la base de données
-
-        //on supprime son contenu /!\ présent uniquement pendant le developpement de l'appli
-        //cette ligne sera ensuite supprimé car on veut garder en mémoire la liste des appareils et leurs infos.
-        db.removeAll();
-        db.displayDevices();
-        db.close();
-        */
         device_activity       = this; //on stock la classe dans un attribut pour y avoir acces plus tard
         button_add_device     = findViewById(R.id.button_add_device);
-
-        // OBSOLOTE Ne sert plus
-        // dynamic_device_layout = (GridLayout) findViewById(R.id.dynamic_device_layout);
 
         device_params = new ActionBar.LayoutParams(150,150);
 
@@ -163,57 +151,40 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         /**
          * NEW : Affichage de la listView contenant tous les appareils
          */
-        display_listview_of_Devices(false);
-
-
-
+        display_listview_of_Devices();
     }
 
     public void onStart() {
         super.onStart();
-
-        display_listview_of_Devices(false);
+        display_listview_of_Devices();
     }
 
     public void setPower(int power_input){power = power_input;}
     public int getPower(){return power;}
     public void setstandbypower(int standbypower_input){standbypower = standbypower_input;} //TA FOUTU QUOI LA ?
     public int getstandbypower(){return standbypower;}
-
     public DeviceDataBase getDb(){return db;}
     public String getSelected_device(){return selected_device;}
-
-    public void delete_device(){
-        device_to_delete = true;
-    }
 
     /**
      * NEW : Permet d'afficher la listeView contenant les appareils de la base de données
      * ----------------------------------------------------------------------------------
      */
-    public void display_listview_of_Devices(Boolean delete)
+    public void display_listview_of_Devices()
     {
         /**
          * Ouverture Base de données contenant les appareils électriques
          */
         db.open();
-        /*
-        if (delete.equals(true)){
-            db.deleteDevices();
-            db.remove(db.getSize());
-        }
-         */
-
-
 
         int delete_index = db.deleteDevices();
-        makeText(getApplicationContext(),"indice de suppresion : "+delete_index, Toast.LENGTH_SHORT).show();
 
         if (delete_index != 0){
-            makeText(getApplicationContext(),"Appareil en cours de suppression", Toast.LENGTH_SHORT).show();
             db.remove(delete_index);
+            //db.reorderDevice(delete_index);
+            //db.updateAll();
+            delete_index=0;
         }
-
 
         db.displayDevices();
 
@@ -290,10 +261,14 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
     public void addDevice(){
         final CustomPopUp customPopUpAdding = new CustomPopUp(device_activity, "adding"); //on créer le popup d'ajout
 
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(device_activity, R.array.device_string, R.layout.spinner);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown);
+        customPopUpAdding.getDevice_spinner().setAdapter(adapter);
         customPopUpAdding.test_bluid(); //on affiche le popup
 
         //on créer une interaction avec le champ "confirmer" du popup
         //lorsque l'on appuie sur le champ "confirmer", on confirme l'ajout de l'appareil selcetionné dans notre base de données.
+
         customPopUpAdding.getConfirm_text().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
