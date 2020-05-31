@@ -70,8 +70,26 @@ Bien entendu, cette méthode n'est pas infaillible, c'est pourquoi nous vous lai
 
 ### QuickConfig 
 
+* création de l'activité
 * coresspondance entre l'appareil selectionné dans DeviceActivity et celle-ci
 * enregistrement des modifications de l'appareil dans la base de données
 * mise à jour de la puissance moyenne
 * maintien de l'icon associé à l'appareil apres modification du nom
 * suppression de l'appareil
+
+### Graph 
+
+* création de l'activité
+* récuperation de la télé-information
+* tracer en direct l'information recupérée
+
+### DailyConsumption 
+
+* création d'un nouveau thread de communication
+* stockage de la consommation qu'en cas de besoin
+* envoie de la liste des consommations au portable lors d'une demande
+
+### Ergonomie 
+
+* design de l'application
+* ...
