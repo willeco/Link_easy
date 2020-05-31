@@ -38,16 +38,17 @@
 
     <Button
         android:id="@+id/next"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
         android:layout_marginBottom="25dp"
-        android:text="Suivant"
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/dark_linky"
+        android:text="Suivant"
         android:textColor="@color/primary_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView16"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

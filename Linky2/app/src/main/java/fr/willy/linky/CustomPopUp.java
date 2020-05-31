@@ -1,21 +1,19 @@
 package fr.willy.linky;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
-import android.bluetooth.BluetoothClass;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import static android.view.View.GONE;
 import static android.widget.Toast.makeText;
@@ -35,11 +33,14 @@ public class CustomPopUp extends Dialog {
     private DeviceActivity parent_activity;
     private LoginActivity loginActivity;
     private QuickConfigActivity quickConfigActivity;
+    private HubActivity hubActivity;
     private Button understand;
     private Button next, tuto_understand;
     private TextView dont_show_again;
     private Button button_test_config;
     private Button confirm_delete, cancel_delete;
+    private Button quit_infomration;
+    private TextView power_name, power_definition;
 
     //constructor
     public CustomPopUp(DeviceActivity deviceActivity, String popup)
@@ -103,13 +104,32 @@ public class CustomPopUp extends Dialog {
     }
 
 
+    //constructor 4
+    public CustomPopUp(HubActivity hubActivity, String power)
+    {
+        super(hubActivity, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        setContentView(R.layout.popup_information_power);
 
+        //empeche l'utilisateur de fermer le popup en appuyant à
+        //l'exterieur de celui-ci.
+        this.setCancelable(false);
+        this.power_name = findViewById(R.id.power_name);
+        this.power_definition = findViewById(R.id.power_definition);
+        this.quit_infomration = findViewById(R.id.quit_information);
+        this.hubActivity = hubActivity;
+    }
+
+
+    public Button getQuit_infomration(){ return this.quit_infomration;}
     public Button getConfirm_delete(){ return this.confirm_delete;}
     public Button getCancel_delete(){ return this.cancel_delete;}
     public Button getUnderstand(){ return this.understand;}
     public Button getNext(){ return this.next;}
     public Button getTuto_understand(){ return this.tuto_understand;}
     public TextView getDont_show_again(){ return this.dont_show_again;}
+    public TextView getPower_name(){ return this.power_name;}
+    public TextView getPower_definition(){ return this.power_definition;}
+    public Spinner getDevice_spinner(){ return this.device_spinner;}
 
 
     //changer le titre du popup

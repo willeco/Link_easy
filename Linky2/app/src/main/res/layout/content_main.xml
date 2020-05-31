@@ -17,9 +17,9 @@
         android:layout_marginVertical="30dp"
         android:layout_marginTop="16dp"
         android:background="@android:drawable/toast_frame"
-        android:backgroundTint="@color/boutton_dark"
+        android:backgroundTint="@color/dark_linky"
         android:text="Rafraichir"
-        android:textColor="@color/colorSlideBar"
+        android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,9 +31,9 @@
         android:layout_height="46dp"
         android:layout_marginTop="8dp"
         android:background="@android:drawable/toast_frame"
-        android:backgroundTint="@color/boutton_dark"
+        android:backgroundTint="@color/dark_linky"
         android:text="Consommation appareils"
-        android:textColor="@color/colorSlideBar"
+        android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -156,6 +156,50 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
         app:layout_constraintHorizontal_bias="0.222"
         app:layout_constraintStart_toEndOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/information_papp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/dark_linky"
+        android:background="@android:drawable/ic_dialog_info"
+        app:layout_constraintEnd_toEndOf="@+id/button3"
+        app:layout_constraintTop_toTopOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/information_inst"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/dark_linky"
+        android:background="@android:drawable/ic_dialog_info"
+        app:layout_constraintEnd_toEndOf="@+id/button4"
+        app:layout_constraintTop_toTopOf="@+id/button4" />
+
+    <Button
+        android:id="@+id/information_hp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/dark_linky"
+        android:background="@android:drawable/ic_dialog_info"
+        app:layout_constraintEnd_toEndOf="@+id/button5"
+        app:layout_constraintTop_toTopOf="@+id/button5" />
+
+    <Button
+        android:id="@+id/information_hc"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/dark_linky"
+        android:background="@android:drawable/ic_dialog_info"
+        app:layout_constraintEnd_toEndOf="@+id/button6"
+        app:layout_constraintTop_toTopOf="@+id/button6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

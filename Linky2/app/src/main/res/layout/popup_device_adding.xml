@@ -44,11 +44,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:background="@color/boutton_light"
         android:entries="@array/device_string"
         android:outlineAmbientShadowColor="@color/dark_linky"
         android:outlineSpotShadowColor="@color/dark_linky"
-        android:popupBackground="@color/dark_linky"
+        android:backgroundTint="@color/dark_linky"
         android:spinnerMode="dropdown"
         android:textColor="@color/white_light"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +56,7 @@
 
     <Button
         android:id="@+id/confirm_text"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Confirmer"
         android:background="@android:drawable/toast_frame"
@@ -68,7 +67,7 @@
 
     <Button
         android:id="@+id/cancel_text"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
