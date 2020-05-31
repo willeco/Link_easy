@@ -131,7 +131,7 @@ public class Graph extends AppCompatActivity {
         List axisValues = new ArrayList();
 
         //Declare and initialize the line which appears inside graph chart, this line will hold the values of Y-Axis
-        Line line = new Line(yAxisValues).setColor(Color.parseColor("#9C27B0"));
+        Line line = new Line(yAxisValues).setColor(Color.parseColor("#148C48"));
 
         // add Axis and Y-Axis data inside yAxisValues and axisValues lists
         for(int i = 0; i < axisData.length; i++){
@@ -160,7 +160,7 @@ public class Graph extends AppCompatActivity {
         data.setAxisYLeft(yAxis);
 
 
-        yAxis.setTextColor(Color.parseColor("#03A9F4"));
+        yAxis.setTextColor(Color.parseColor("#CCCCCC"));
         yAxis.setTextSize(16);
 
         yAxis.setName("PAPP");
