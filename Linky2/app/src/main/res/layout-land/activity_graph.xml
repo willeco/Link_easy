@@ -25,37 +25,41 @@
 
     <lecho.lib.hellocharts.view.LineChartView
         android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
+        android:layout_width="619dp"
+        android:layout_height="285dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/dark_linky"
+        android:foregroundTint="@color/dark_linky"
+
         android:outlineAmbientShadowColor="@color/colorSlideBar"
         android:outlineSpotShadowColor="@color/colorLinkyBar"
-        android:backgroundTint="@color/dark_linky"
-
-        android:foregroundTint="@color/dark_linky"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_return_activity" />
+        app:layout_constraintTop_toTopOf="@+id/include"
+        tools:layout_editor_absoluteX="56dp" />
 
     <Button
         android:id="@+id/button_return_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retour"
-        android:layout_marginRight="25dp"
         android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/dark_linky"
+        android:text="Retour"
         android:textColor="@color/primary_text"
         app:layout_anchorGravity="right"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@+id/chart"
+        tools:layout_editor_absoluteX="309dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

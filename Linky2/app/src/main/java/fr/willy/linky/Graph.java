@@ -38,10 +38,11 @@ public class Graph extends AppCompatActivity {
     Handler handler = new Handler();
     Runnable refresh;
 
-    float papp;
-    private List listPapp;
+    float dataToShow;
+    private List<Float> listData;
     private LineChartData data;
     private String ip_for_sending;
+    private String typeOfGraph;
 
 
 
@@ -56,49 +57,68 @@ public class Graph extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         ip_for_sending = extras.getString("ip_for_sending");
+        typeOfGraph = extras.getString("typeOfGraph");
         HubActivity.ask_tele_info(ip_for_sending,10001);
 
-        if(listPapp == null)
+        TextView uniteeData = findViewById(R.id.textView8);
+
+        if(listData == null)
         {
-            listPapp = new ArrayList();
+            listData = new ArrayList<Float>();
         }
 
-        listPapp.add(151.0f); //Pour avoir 2 points et le premier sera toujours à 150.01 au début
+        if(typeOfGraph.equals("papp"))
+        {
+            listData.add(151.0f);         //Pour avoir 2 points et le premier sera toujours à 150.01 au début
+            uniteeData.setText("PAPP (V/A)");
+        }
+        if(typeOfGraph.equals("base"))
+        {
+            listData.add(Float.parseFloat(HubActivity.base.substring(0,6))-1);
+            uniteeData.setText("BASE (kW/h)");
+
+        }
 
         refresh = new Runnable() {
             public void run() {
 
 
                 // Do something
-                papp = Integer.parseInt(HubActivity.papp);;
-                listPapp.add(papp);
+                if(typeOfGraph.equals("papp"))
+                {
+                    dataToShow = Integer.parseInt(HubActivity.papp);
+                }
+                if(typeOfGraph.equals("base"))
+                {
+                    dataToShow = Float.parseFloat(HubActivity.base.substring(0,6));
+                }
 
-                if(listPapp.size() >= 180) //Nombre de points avant défilement
+                listData.add(dataToShow);
+
+                if(listData.size() >= 180) //Nombre de points avant défilement
                 {
                     Boolean listFullOfSame = true;
 
-                    for(int i=1 ; i<listPapp.size() ; i++)
+                    for(int i=1 ; i<listData.size() ; i++)
                     {
-                        if(!listPapp.get(i).equals(listPapp.get(1)))
+                        if(!listData.get(i).equals(listData.get(1)))
                         {
                             listFullOfSame = false;
                         }
                     }
 
-                    System.out.println(listFullOfSame);
-
                     if(listFullOfSame == false)
                     {
-                        listPapp.remove(0);
+                        listData.remove(0);
                     }
                     else
                     {
-                        listPapp.remove(1);
+                        listData.remove(1);
                     }
 
                 }
 
-                data = drawInTime(listPapp);
+                data = drawInTime(listData);
                 lineChartView.setLineChartData(data);
 
                 handler.postDelayed(refresh, 50);
@@ -121,7 +141,7 @@ public class Graph extends AppCompatActivity {
     }
 
 
-    private LineChartData drawInTime(List listPapp) {
+    private LineChartData drawInTime(List listData) {
 
         String[] axisData = {};
 
@@ -138,8 +158,8 @@ public class Graph extends AppCompatActivity {
             axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
         }
 
-        for (int i = 0; i < listPapp.size(); i++){
-            float floatData = (float)listPapp.get(i);
+        for (int i = 0; i < listData.size(); i++){
+            float floatData = (float)listData.get(i);
             yAxisValues.add(new PointValue(i, floatData));
         }
 
@@ -155,15 +175,25 @@ public class Graph extends AppCompatActivity {
         LineChartData data = new LineChartData();
         data.setLines(lines);
 
-
         Axis yAxis = new Axis();
         data.setAxisYLeft(yAxis);
 
 
         yAxis.setTextColor(Color.parseColor("#CCCCCC"));
-        yAxis.setTextSize(16);
+        if(typeOfGraph.equals("papp"))
+        {
+            yAxis.setTextSize(16);
+            yAxis.setName("                ");
 
-        yAxis.setName("PAPP");
+        }
+        if(typeOfGraph.equals("base"))
+        {
+            yAxis.setTextSize(10);
+            yAxis.setName("                ");
+
+        }
+
+
 
         //Au cas ou une data depasse l'axe des Y
         Viewport viewport = new Viewport(lineChartView.getMaximumViewport());

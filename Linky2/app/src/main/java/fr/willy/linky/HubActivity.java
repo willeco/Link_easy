@@ -62,9 +62,9 @@ public class HubActivity extends AppCompatActivity {
     static TextView etatText;
 
     static Button pappButton;
-    static Button hpButton;
+    static Button baseButton;
     static Button iinstButton;
-    static Button hcButton;
+    static Button ptecButton;
 
     static Button information_papp;
     static Button information_inst;
@@ -84,11 +84,10 @@ public class HubActivity extends AppCompatActivity {
 
     static String papp = "0"; //on initialise à Zero
     static String iinst = "0";
-    static String hp = "0";
-    static String hc = "0";
+    static String base = "0";//random
+    static String ptec = "0";
 
     static String IP;
-
 
 
     @Override
@@ -117,8 +116,8 @@ public class HubActivity extends AppCompatActivity {
 
         pappButton = findViewById(R.id.button3);
         iinstButton = findViewById(R.id.button4);
-        hpButton = findViewById(R.id.button5);
-        hcButton = findViewById(R.id.button6);
+        baseButton = findViewById(R.id.button5);
+        ptecButton = findViewById(R.id.button6);
 
         firstLine = findViewById(R.id.imageView5);
         secondLine = findViewById(R.id.imageView2);
@@ -131,7 +130,6 @@ public class HubActivity extends AppCompatActivity {
         information_inst = findViewById(R.id.information_inst);
         information_hp = findViewById(R.id.information_hp);
         information_hc = findViewById(R.id.information_hc);
-
 
 
         // Tentative de Récuperation adresse IP Wi-Fi du smartphone
@@ -156,13 +154,30 @@ public class HubActivity extends AppCompatActivity {
         pappButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), Graph.class);
-                myIntent.putExtra("ip_for_sending",IP);
-                activity = 1;
-                startActivity(myIntent);
+                if(!papp.equals("0"))
+                {
+                    Intent myIntent = new Intent(view.getContext(), Graph.class);
+                    myIntent.putExtra("ip_for_sending",IP);
+                    myIntent.putExtra("typeOfGraph","papp");
+                    activity = 1;
+                    startActivity(myIntent);
+                }
+            }
+        });
 
-                //L'app crash si on n'a pas demandé de TI
-
+        baseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                {
+                if(!base.equals("0"))
+                {
+                    Intent myIntent = new Intent(view.getContext(), Graph.class);
+                    myIntent.putExtra("ip_for_sending",IP);
+                    myIntent.putExtra("typeOfGraph","base");
+                    activity = 1;
+                    startActivity(myIntent);
+                }
+                }
 
             }
         });
@@ -400,14 +415,14 @@ public class HubActivity extends AppCompatActivity {
                 }
                 try {
                     JSONObject jsonObj = new JSONObject( trame_linky );
-                    hp               = jsonObj.getString("HCHP");
-                    hpButton.setText(hp);
+                    base               = jsonObj.getString("BASE");
+                    baseButton.setText("Base\n\n"+base+"\nWatt/heure");
                 } catch (Exception e) {
                 }
                 try {
                     JSONObject jsonObj = new JSONObject( trame_linky );
-                    hc               = jsonObj.getString("HCHC");
-                    hcButton.setText(hc);
+                    ptec               = jsonObj.getString("PTEC");
+                    ptecButton.setText("PTEC\n\n"+ptec+"\ntruc");
                 } catch (Exception e) {
                 }
 

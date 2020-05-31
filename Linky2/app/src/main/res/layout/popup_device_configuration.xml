@@ -81,7 +81,7 @@
         android:layout_marginBottom="25dp"
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/dark_linky"
-        android:text="Ajouter appareil"
+        android:text="OK"
         android:textColor="@color/primary_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
