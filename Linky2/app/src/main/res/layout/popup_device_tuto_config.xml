@@ -40,11 +40,11 @@
 
     <Button
         android:id="@+id/tuto_understand"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
         android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/dark_linky"
         android:text="J'ai compris"

@@ -76,11 +76,11 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/dark_linky"
-        android:layout_marginBottom="25dp"
         android:text="Ajouter appareil"
         android:textColor="@color/primary_text"
         app:layout_constraintBottom_toBottomOf="parent"
