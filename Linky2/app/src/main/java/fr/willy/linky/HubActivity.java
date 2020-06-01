@@ -427,9 +427,12 @@ public class HubActivity extends AppCompatActivity {
                 }
                 try {
                     JSONObject jsonObj = new JSONObject( trame_linky );
+
                     ptec               = jsonObj.getString("PTEC");
-                    ptecButton.setText("PTEC\n\n"+ptec+"\ntruc");
+                    ptecButton.setText("PTEC\n\n"+"FORFAIT EN COURS"+"\n"+ptec);
+
                 } catch (Exception e) {
+                    ptecButton.setText("PTEC\n\n"+"FORFAIT EN COURS"+"\nBASE");
                 }
 
                 if(!pappButton.getText().toString().equals("PAPP") && !iinstButton.getText().toString().equals("IINST") && timeOut<=170)
