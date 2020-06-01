@@ -36,7 +36,7 @@ End with an example of getting some data out of the system or using it for a lit
 ## Lancer le test
 
 * Avant d'avoir accès aux fonctionnalités de notre application, il vous faut renseigner l'adresse IP de votre module radio
-* Après cela, vous êtes invité à renseigner celle-ci dans le champ "Login" de la page d'acceuil de l'application
+* Après cela, vous êtes invités à renseigner celle-ci dans le champ "Login" de la page d'acceuil de l'application
 * Appuyer sur confirmer
 ```
 La demande de télé-information a été envoyée.
@@ -61,7 +61,7 @@ Pour revenir à une activité précédente, il vous suffit d'utiliser la touche 
 
 ## Créé Avec
 
-* [AndroidStudio](https://cutt.ly/TyTR5ou) - Notre outil de dévellopement principal pour la plateforme Android
+* [AndroidStudio](https://cutt.ly/TyTR5ou) - Notre outil de développement principal pour la plateforme Android
 * [GitHub](https://github.com/) - Notre plateforme de collaboration
 * [Visual Studio Code](https://code.visualstudio.com/) - Notre éditeur de texte pour le simulateur
 * [Java](https://www.java.com/fr/) - Principal langage de programmation du projet
@@ -70,7 +70,7 @@ Pour revenir à une activité précédente, il vous suffit d'utiliser la touche 
 
 ## Collaboration
 
-Veuillez lire [CONTRIBUTING.md](https://github.com/ThomasCochou/Link_easy/blob/master/CONTRIBUTING.md) pour plus de détails sur notre organisation. 
+Veuillez lire [CONTRIBUTING.md](https://github.com/ThomasCochou/Link_easy/blob/master/CONTRIBUTING.md) pour plus de détails à propos de notre organisation. 
 
 ## Auteur
 
