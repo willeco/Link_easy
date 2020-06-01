@@ -189,7 +189,8 @@ public class CustomPopUp extends Dialog {
 
                 faitButton.setText("OK");
                 deviceTextView.setText(device);
-                protocolTextView.setText("Gna gna gna explication + éteint ton appareil");
+                protocolTextView.setText("Pour configurer votre appareil, veillez à être proche de celui ci. Si vous avez la possibilité de le débrancher veuillez cocher " +
+                        "la case ci-dessous, puis indiquez le taux d'utilisation de l'appareil. A présent veuillez éteindre votre appareil.");
 
                 tauxUtilisationEdit.addTextChangedListener(new TextWatcher() {
 
@@ -229,13 +230,13 @@ public class CustomPopUp extends Dialog {
                         if (debranchable.isChecked() == true) {
                             new CountDownTimer(5000, 1000) {
                                 public void onTick(long millisUntilFinished) {
-                                    protocolTextView.setText("DEBRANCHE TON APPAREIL !\n" + String.valueOf(counter[0]) + " secondes");
+                                    protocolTextView.setText("Veuillez débrancher votre appareil.\n" + String.valueOf(counter[0]) + " secondes");
                                     counter[0]--;
-                                    protocolTextView.setText("DEBRANCHE TON APPAREIL !\n" + String.valueOf(counter[0]) + " secondes");
+                                    protocolTextView.setText("Veuillez débrancher votre appareil.\n" + String.valueOf(counter[0]) + " secondes");
                                 }
 
                                 public void onFinish() {
-                                    protocolTextView.setText("DEBRANCHE TON APPAREIL !\n0 secondes");
+                                    protocolTextView.setText("Veuillez débrancher votre appareil.\n0 secondes");
                                     faitButton.setVisibility(View.VISIBLE);
                                 }
                             }.start();
@@ -245,20 +246,20 @@ public class CustomPopUp extends Dialog {
                                 @Override
                                 public void onClick(View v) {
                                     pappUnplugged[0] = Integer.parseInt(HubActivity.papp);
-                                    protocolTextView.setText("BRANCHE ET ALLUME TON APPAREIL ! \n" + String.valueOf(counter[0]) + " secondes\npappUnplugged = " + pappUnplugged[0]);
+                                    protocolTextView.setText("Veuillez rebrancher et allumer votre appareil.\n" + String.valueOf(counter[0]) + " secondes");
 
                                     counter[0] = 6;
                                     faitButton.setVisibility(GONE);
 
                                     new CountDownTimer(5000, 1000) {
                                         public void onTick(long millisUntilFinished) {
-                                            protocolTextView.setText("BRANCHE ET ALLUME TON APPAREIL ! \n" + String.valueOf(counter[0]) + " secondes\npappUnplugged = " + pappUnplugged[0]);
+                                            protocolTextView.setText("Veuillez rebrancher et allumer votre appareil.\n" + String.valueOf(counter[0]) + " secondes");
                                             counter[0]--;
-                                            protocolTextView.setText("BRANCHE ET ALLUME TON APPAREIL ! \n" + String.valueOf(counter[0]) + " secondes\npappUnplugged = " + pappUnplugged[0]);
+                                            protocolTextView.setText("Veuillez rebrancher et allumer votre appareil. \n" + String.valueOf(counter[0]) + " secondes");
                                         }
 
                                         public void onFinish() {
-                                            protocolTextView.setText("BRANCHE ET ALLUME TON APPAREIL ! \n0 secondes\npappUnplugged = " + pappUnplugged[0]);
+                                            protocolTextView.setText("Veuillez rebrancher et allumer votre appareil.\n0 secondes");
                                             faitButton.setVisibility(View.VISIBLE);
                                         }
                                     }.start();
@@ -274,13 +275,13 @@ public class CustomPopUp extends Dialog {
 
                                             new CountDownTimer(5000, 1000) {
                                                 public void onTick(long millisUntilFinished) {
-                                                    protocolTextView.setText("ETEINT TON APPAREIL ! \n" + String.valueOf(counter[0]) + " secondes\npappOn = " + pappOn[0]);
+                                                    protocolTextView.setText("Veuillez éteindre votre appareil.\n" + String.valueOf(counter[0]) + " secondes");
                                                     counter[0]--;
-                                                    protocolTextView.setText("ETEINT TON APPAREIL ! \n" + String.valueOf(counter[0]) + " secondes\npappOn = " + pappOn[0]);
+                                                    protocolTextView.setText("Veuillez éteindre votre appareil.\n" + String.valueOf(counter[0]) + " secondes");
                                                 }
 
                                                 public void onFinish() {
-                                                    protocolTextView.setText("ETEINT TON APPAREIL ! \n0 secondes\npappOn = " + pappOn[0]);
+                                                    protocolTextView.setText("Veuillez éteindre votre appareil.\n0 secondes");
                                                     faitButton.setVisibility(View.VISIBLE);
                                                 }
                                             }.start();
@@ -295,7 +296,7 @@ public class CustomPopUp extends Dialog {
                                                     diffPappUnpluggedOff[0] = pappOff[0] - pappUnplugged[0];
                                                     parent_activity.setPower(diffPappOnOff[0]);
                                                     parent_activity.setstandbypower(diffPappUnpluggedOff[0]);
-                                                    protocolTextView.setText("OK on est bon \n pappOff = " + pappOff[0] + "\n pappOn = " + pappOn[0] + "\n pappUnplugged = " + pappUnplugged[0]);
+                                                    protocolTextView.setText("La configuration est terminé.");
                                                     ajouterButton.setVisibility(View.VISIBLE);
 
 
@@ -317,20 +318,20 @@ public class CustomPopUp extends Dialog {
 
 
                         } else {
-                            protocolTextView.setText("ALLUME TON APPAREIL ! \n");
+                            protocolTextView.setText("Veuillez allumer votre appareil.\n");
 
                             counter[0] = 6;
                             faitButton.setVisibility(GONE);
 
                             new CountDownTimer(5000, 1000) {
                                 public void onTick(long millisUntilFinished) {
-                                    protocolTextView.setText("ALLUME TON APPAREIL ! \n" + String.valueOf(counter[0]) + " secondes");
+                                    protocolTextView.setText("Veuillez allumer votre appareil.\n" + String.valueOf(counter[0]) + " secondes");
                                     counter[0]--;
-                                    protocolTextView.setText("ALLUME TON APPAREIL ! \n" + String.valueOf(counter[0]) + " secondes");
+                                    protocolTextView.setText("Veuillez allumer votre appareil.\n" + String.valueOf(counter[0]) + " secondes");
                                 }
 
                                 public void onFinish() {
-                                    protocolTextView.setText("ALLUME TON APPAREIL ! \n0 secondes");
+                                    protocolTextView.setText("Veuillez allumer votre appareil.\n0 secondes");
                                     faitButton.setVisibility(View.VISIBLE);
                                 }
                             }.start();
@@ -346,13 +347,13 @@ public class CustomPopUp extends Dialog {
 
                                     new CountDownTimer(5000, 1000) {
                                         public void onTick(long millisUntilFinished) {
-                                            protocolTextView.setText("ETEINT TON APPAREIL ! \n" + String.valueOf(counter[0]) + " secondes\npappOn = " + pappOn[0]);
+                                            protocolTextView.setText("Veuillez éteindre votre appareil.\n" + String.valueOf(counter[0]) + " secondes");
                                             counter[0]--;
-                                            protocolTextView.setText("ETEINT TON APPAREIL ! \n" + String.valueOf(counter[0]) + " secondes\npappOn = " + pappOn[0]);
+                                            protocolTextView.setText("Veuillez éteindre votre appareil.\n" + String.valueOf(counter[0]) + " secondes");
                                         }
 
                                         public void onFinish() {
-                                            protocolTextView.setText("ETEINT TON APPAREIL ! \n0 secondes\npappOn = " + pappOn[0]);
+                                            protocolTextView.setText("Veuillez éteindre votre appareil.\n0 secondes");
                                             faitButton.setVisibility(View.VISIBLE);
                                         }
                                     }.start();
@@ -366,7 +367,7 @@ public class CustomPopUp extends Dialog {
                                             diffPappOnOff[0] = pappOn[0] - pappOff[0];
                                             parent_activity.setPower(diffPappOnOff[0]);
                                             ;
-                                            protocolTextView.setText("OK on est bon \n pappOff = " + pappOff[0] + "\n pappOn = " + pappOn[0]);
+                                            protocolTextView.setText("La configuration est terminé.");
                                             ajouterButton.setVisibility(View.VISIBLE);
 
 
