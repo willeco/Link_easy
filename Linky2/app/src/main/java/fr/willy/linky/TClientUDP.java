@@ -18,6 +18,7 @@ public class TClientUDP implements Runnable {
     private ClientUDP           clientUDP           = null;
     private DatagramSocket      socket              = null;
     private volatile boolean    fini                = false;
+    private boolean isStart;
 
 
     private static final int MAX_UDP_DATAGRAM_LEN   = 1500;
@@ -33,6 +34,7 @@ public class TClientUDP implements Runnable {
         // Socket utilisé pour envoyer les paquets UDP
         this.socket             = socket;
         fini                    = false;
+        isStart = true;
 
         HubActivity.etatText.setText("Connexion...");
     }
@@ -52,24 +54,29 @@ public class TClientUDP implements Runnable {
         while (!fini)
         {
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            HubActivity.firstLine.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if(isStart == true)
+            {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                HubActivity.firstLine.setColorFilter(R.color.colorLinkyBar, PorterDuff.Mode.LIGHTEN);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                HubActivity.firstPoint.setColorFilter(R.color.white, PorterDuff.Mode.LIGHTEN);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                isStart = false;
             }
 
-            HubActivity.firstPoint.setColorFilter(R.color.white, PorterDuff.Mode.LIGHTEN);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
 
 
