@@ -91,5 +91,10 @@ Bien entendu, cette méthode n'est pas infaillible, c'est pourquoi nous vous lai
 
 ### Ergonomie 
 
-* design de l'application
-* ...
+* choix du thème principal de l'application (noir, gris, vert)
+* design des pages de l'application sur Adobe XD
+* choix des affichages du menu principal
+* création d'un background dégradé gris/noir afin d'économiser de la batterie
+* implémentation du design dans le code XML
+* création de tutoriel pour faciliter l'utilisation de l'application
+* simplifier au maximum l'utilisation des différents boutons
