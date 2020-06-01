@@ -45,11 +45,11 @@
     <string name="papp_def">La puissance apparente est la somme de la puissance réactive et active. La puissance active est la puissance qui permet à un moteur d\'effecteur un travail par exemple tourner, la puissance réactive est la puissance consommée par le circuit du moteur.
 </string>
 
-    <string name="inst_def">La puissance instantanée est tout simplement la puissance consommée à un instant donnée, aucune durée n\'est utilisée pour la calucler.</string>
+    <string name="inst_def">L\intensité instantanée est tout simplement l\'intensité consommée à un instant donnée, aucune durée n\'est utilisée pour la calucler.</string>
 
-    <string name="hp_def">Durant les heures pleines la consommation électrique est la plus élevée. Pendant ces périodes de la journée, l\'électricité consommée sera facturée plus cher. En général, ces heures pleines sont définies en pleine journée.</string>
+    <string name="base_def">Indique votre consommation en forfait de BASE.</string>
 
-    <string name="hc_def">Durant les heures creuses la consommation électrique est la moins élevée. Pendant ces périodes de la journée, l\'électricité consommée sera facturée moins cher. En général, ces heures creuses sont définies la nuit.</string>
+    <string name="ptec_def">Indique votre période tarifiaire en cours.</string>
 
 
     <string name="lolo">Je suis fou amoureux de toi Lorette</string>

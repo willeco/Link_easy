@@ -129,6 +129,7 @@
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/boutton_dark"
         android:text="Supprimer l'appreil"
+        android:padding="10dp"
         android:textColor="@color/colorAccent"
         app:layout_constraintStart_toStartOf="@+id/device_use_rate"
         app:layout_constraintTop_toBottomOf="@+id/mean_power" />

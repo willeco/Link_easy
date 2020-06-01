@@ -20,7 +20,15 @@
         android:id="@+id/include"
         layout="@layout/content_graph"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <lecho.lib.hellocharts.view.LineChartView
@@ -28,15 +36,20 @@
         android:layout_width="619dp"
         android:layout_height="285dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:backgroundTint="@color/dark_linky"
         android:foregroundTint="@color/dark_linky"
-
         android:outlineAmbientShadowColor="@color/colorSlideBar"
         android:outlineSpotShadowColor="@color/colorLinkyBar"
+        android:padding="16dp"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center"
-        app:layout_constraintTop_toTopOf="@+id/include"
-        tools:layout_editor_absoluteX="56dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include" />
 
     <Button
         android:id="@+id/button_return_activity"

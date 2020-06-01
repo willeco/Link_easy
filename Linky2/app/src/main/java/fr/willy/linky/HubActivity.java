@@ -68,8 +68,8 @@ public class HubActivity extends AppCompatActivity {
 
     static Button information_papp;
     static Button information_inst;
-    static Button information_hp;
-    static Button information_hc;
+    static Button information_base;
+    static Button information_ptec;
 
 
     static double timerStart = 0;
@@ -128,8 +128,8 @@ public class HubActivity extends AppCompatActivity {
 
         information_papp = findViewById(R.id.information_papp);
         information_inst = findViewById(R.id.information_inst);
-        information_hp = findViewById(R.id.information_hp);
-        information_hc = findViewById(R.id.information_hc);
+        information_base = findViewById(R.id.information_hp);
+        information_ptec = findViewById(R.id.information_hc);
 
 
         // Tentative de Récuperation adresse IP Wi-Fi du smartphone
@@ -229,13 +229,13 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
-        information_hp.setOnClickListener(new View.OnClickListener() {
+        information_base.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final CustomPopUp customPopUpInformation = new CustomPopUp(hubActivity, "papp"); //on créer le popup d'ajout
 
                 customPopUpInformation.getPower_name().setText("BASE");
-                customPopUpInformation.getPower_definition().setText(R.string.hp_def);
+                customPopUpInformation.getPower_definition().setText(R.string.base_def);
 
                 customPopUpInformation.test_bluid(); //on affiche le popup
 
@@ -248,13 +248,13 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
-        information_hc.setOnClickListener(new View.OnClickListener() {
+        information_ptec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final CustomPopUp customPopUpInformation = new CustomPopUp(hubActivity, "papp"); //on créer le popup d'ajout
 
                 customPopUpInformation.getPower_name().setText("PTEC");
-                customPopUpInformation.getPower_definition().setText(R.string.hc_def);
+                customPopUpInformation.getPower_definition().setText(R.string.ptec_def);
                 customPopUpInformation.test_bluid(); //on affiche le popup
 
                 customPopUpInformation.getQuit_infomration().setOnClickListener(new View.OnClickListener() {

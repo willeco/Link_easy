@@ -118,48 +118,49 @@
         android:id="@+id/button3"
         android:layout_width="173dp"
         android:layout_height="158dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/linky_background"
         android:text="PAPP"
         android:textColor="@color/primary_text"
-        android:background="@color/darkless_background"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="173dp"
         android:layout_height="158dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/linky_background"
         android:text="PTEC"
-        android:background="@color/darkless_background"
         android:textColor="@color/primary_text"
         app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
-        app:layout_constraintStart_toEndOf="@+id/button5" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="173dp"
         android:layout_height="158dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/linky_background"
         android:text="BASE"
         android:textColor="@color/primary_text"
-        android:background="@color/darkless_background"
-        app:layout_constraintStart_toStartOf="@+id/button3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="173dp"
+        android:layout_width="170dp"
         android:layout_height="158dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/linky_background"
         android:text="IINST"
         android:textColor="@color/primary_text"
-        android:background="@color/darkless_background"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.222"
-        app:layout_constraintStart_toEndOf="@+id/button3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintTop_toTopOf="@+id/button3" />
 
     <Button
         android:id="@+id/information_papp"
