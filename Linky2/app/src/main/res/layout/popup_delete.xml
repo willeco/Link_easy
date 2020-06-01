@@ -30,7 +30,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:text="Etes-vous sûr de vouloir supprimer cet appareil ?"
+        android:text="Êtes-vous sûr de vouloir supprimer cet appareil ?"
         android:textColor="@color/secondary_text"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"

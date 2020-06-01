@@ -189,8 +189,8 @@ public class CustomPopUp extends Dialog {
 
                 faitButton.setText("OK");
                 deviceTextView.setText(device);
-                protocolTextView.setText("Pour configurer votre appareil, veillez à être proche de celui ci. Si vous avez la possibilité de le débrancher veuillez cocher " +
-                        "la case ci-dessous, puis indiquez le taux d'utilisation de l'appareil. A présent veuillez éteindre votre appareil.");
+                protocolTextView.setText("Pour configurer votre appareil, veillez à être proche de celui ci. Si vous avez la possibilité de le débrancher, veuillez cocher " +
+                        "la case ci-dessous, puis indiquez le taux d'utilisation de l'appareil. A présent, veuillez éteindre votre appareil.");
 
                 tauxUtilisationEdit.addTextChangedListener(new TextWatcher() {
 
@@ -296,14 +296,14 @@ public class CustomPopUp extends Dialog {
                                                     diffPappUnpluggedOff[0] = pappOff[0] - pappUnplugged[0];
                                                     parent_activity.setPower(diffPappOnOff[0]);
                                                     parent_activity.setstandbypower(diffPappUnpluggedOff[0]);
-                                                    protocolTextView.setText("La configuration est terminé.");
+                                                    protocolTextView.setText("La configuration est terminée.");
                                                     ajouterButton.setVisibility(View.VISIBLE);
 
 
                                                     // Insertion d'un appareil
 
                                                     int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
-                                                    Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), parent_activity.getstandbypower(), (pappOn[0]*Float.parseFloat(tauxUtilisationDouble[0])+pappOff[0]*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24 , Float.parseFloat(tauxUtilisationDouble[0]),0);
+                                                    Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), parent_activity.getstandbypower(), (parent_activity.getPower()*Float.parseFloat(tauxUtilisationDouble[0])+parent_activity.getstandbypower()*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24 , Float.parseFloat(tauxUtilisationDouble[0]),0);
                                                     parent_activity.getDb().insert(a);
                                                     parent_activity.getDb().close();
                                                     parent_activity.display_listview_of_Devices();

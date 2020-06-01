@@ -30,7 +30,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="25dp"
-        android:text="Pour modifier le contenu de vos appareils deja existants, il vous suffit de maintenir votre doigt sur l'appareil dont vous désirez modifer les informations."
+        android:text="Pour modifier le contenu de vos appareils deja existants, il vous suffit de maintenir votre doigt sur l'appareil dont vous désirez modifier les informations."
         android:textColor="@color/secondary_text"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"

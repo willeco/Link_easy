@@ -128,7 +128,7 @@
         android:layout_marginTop="15dp"
         android:background="@android:drawable/toast_frame"
         android:backgroundTint="@color/boutton_dark"
-        android:text="Supprimer l'appreil"
+        android:text="Supprimer l'appareil"
         android:padding="10dp"
         android:textColor="@color/colorAccent"
         app:layout_constraintStart_toStartOf="@+id/device_use_rate"

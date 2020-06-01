@@ -41,7 +41,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
-        android:text="Avant de pouvoir bénéficier des services de cette application vous devez vous munir d'un module communiquant radiofréquences. Celui-ci permettra la communication entre votre compteur Linky et l'application. Vous pourrez également avoir accès aux informations de votre compteur hors de chez vous."
+        android:text="Avant de pouvoir bénéficier des services de cette application, vous devez vous munir d'un module communiquant radiofréquences. Celui-ci permettra la communication entre votre compteur Linky et l'application. Vous pourrez également avoir accès aux informations de votre compteur hors de chez vous."
         android:textAlignment="center"
         android:textColor="@color/secondary_text"
         app:layout_constraintEnd_toEndOf="parent"
