@@ -29,7 +29,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="25dp"
-        android:text="Vous pouvez ajouter un appareil à votre liste pour détécter sa consommation en appuyant sur le bouton 'Ajout d'appareil'."
+        android:text="Vous pouvez ajouter un appareil à votre liste pour détecter sa consommation en appuyant sur le bouton 'Ajout d'appareil'."
         android:textColor="@color/secondary_text"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
