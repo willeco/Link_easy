@@ -162,6 +162,9 @@ public class HubActivity extends AppCompatActivity {
                     activity = 1;
                     startActivity(myIntent);
                 }
+                else{
+                    makeText(getApplicationContext(),"Vous n'avez pas encore reçu cette information", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -176,6 +179,9 @@ public class HubActivity extends AppCompatActivity {
                     myIntent.putExtra("typeOfGraph","base");
                     activity = 1;
                     startActivity(myIntent);
+                }
+                else{
+                    makeText(getApplicationContext(),"Vous n'avez pas encore reçu cette information", Toast.LENGTH_SHORT).show();
                 }
                 }
 
