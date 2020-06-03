@@ -45,7 +45,7 @@ Lorsque vous commencez à recevoir l'information de votre compteur Linky, la bar
 
 * Pour obtenir une définition des informations transmises, vous pouvez appuyer sur l'icon ![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/i.png)
 
-* Enfin, vous avez la possibilté de rechercher la consommation individuelle de chaque appareil dans votre maison en appuyant sur le bouton correspondant
+* Enfin, vous avez la possibilté de rechercher la consommation individuelle de chaque appareil dans votre maison en appuyant sur le bouton ![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/bouton_devices.png)
 
 ### Consommation individuelle de chaque appareil
 
