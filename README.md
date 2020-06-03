@@ -87,4 +87,4 @@ Ce projet a été réalisé dans le cadre de nos études au sein de l'[ENIB](htt
 
 ## Remerciements
 
-* Lorette Louvel pour le design de l'application [son book](https://iffdec.com/)
+* Lorette Louvel pour le design de l'application [son book](https://lorettelouvel.myportfolio.com)
