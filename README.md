@@ -7,44 +7,47 @@ Nous proposons également de visualiser la consommation individuelle de chaque a
 
 L'application est uniquement disponible sur Android. 
 
-### Prerequisites
+### Prerequis
 
 Pour pouvoir utiliser notre application, vous devez être en possesion d'un compteur Linky, d'un module radio ainsi que d'une connexion Wifi.
+Pour récupérer l'adresse IP de votre box vous pouvez aller sur le site [adresseip](https://adresseip.com/)
 
-```
-Give examples
-```
+### Installation
 
-### Installing
+#### Module Radio
+Pour télécharger les fichiers du module radio, [cliquez ici](https://urlz.fr/cQcs).
 
-A step by step series of examples that tell you how to get a development env running
+#### Application
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+Pour installer l'application sur votre smartphone vous pouvez télécharger le fichier [apk](https://urlz.fr/cQcF) du projet.
 
 ## Lancer le test
 
 * Avant d'avoir accès aux fonctionnalités de notre application, il vous faut renseigner l'adresse IP de votre module radio
-* Après cela, vous êtes invités à renseigner celle-ci dans le champ "Login" de la page d'acceuil de l'application
-* Appuyer sur confirmer
-```
+
+![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/connexion.png)
+
+* Appuyer sur connexion
+
 La demande de télé-information a été envoyée.
 Votre portable est désormais en attente de réception de la consommation de votre domicile.
-```
+
+![30% center](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/connexion_en_cours.png)
+
+Lorsque vous commencez à recevoir l'information de votre compteur Linky, la barre de progression de l'application vous en informe.
+
+![30% center](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/reception.png)
+
 * Plusieurs informations vous sont présentées (exemple : PAPP), vous pouvez appuyer sur ces informations pour voir leurs évolutions en direct à travers un graphique
-* Vous pouvez également visualiser votre consommation journalière en appuyant sur le bouton correspondant
+
+![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/puissances.png)
+![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/graph.png)
+
+* Pour obtenir une définition des informations transmises, vous pouvez appuyer sur l'icon ![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/i.png)
+
 * Enfin, vous avez la possibilté de rechercher la consommation individuelle de chaque appareil dans votre maison en appuyant sur le bouton correspondant
+
+![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/bouton_devices.png)
 
 ### Consommation individuelle de chaque appareil
 
@@ -84,5 +87,4 @@ Ce projet a été réalisé dans le cadre de nos études au sein de l'[ENIB](htt
 
 ## Remerciements
 
-* Lorette Louvel pour le design de l'application [son book](https://iffdec.com/)
-* etc
+* Lorette Louvel pour le design de l'application [son book](https://lorettelouvel.myportfolio.com)
