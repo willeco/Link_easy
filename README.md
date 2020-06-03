@@ -7,31 +7,19 @@ Nous proposons également de visualiser la consommation individuelle de chaque a
 
 L'application est uniquement disponible sur Android. 
 
-### Prerequisites
+### Prerequis
 
 Pour pouvoir utiliser notre application, vous devez être en possesion d'un compteur Linky, d'un module radio ainsi que d'une connexion Wifi.
+Pour récupérer l'adresse IP de votre box vous pouvez aller sur le site [adresseip](https://adresseip.com/)
 
-```
-Give examples
-```
+### Installation
 
-### Installing
+#### Module Radio
+Pour télécharger les fichiers du module radio, [cliquez ici](https://urlz.fr/cQcs).
 
-A step by step series of examples that tell you how to get a development env running
+#### Application
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+Pour installer l'application sur votre smartphone vous pouvez télécharger le fichier [apk](https://urlz.fr/cQcF) du projet.
 
 ## Lancer le test
 
