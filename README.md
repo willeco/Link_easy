@@ -25,14 +25,19 @@ Pour installer l'application sur votre smartphone vous pouvez télécharger le f
 
 * Avant d'avoir accès aux fonctionnalités de notre application, il vous faut renseigner l'adresse IP de votre module radio
 
-![40% center](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/connexion.png)
+![30% center](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/connexion.png)
 
-* Après cela, vous êtes invités à renseigner celle-ci dans le champ "Login" de la page d'acceuil de l'application
-* Appuyer sur confirmer
-```
+* Appuyer sur connexion
+
 La demande de télé-information a été envoyée.
 Votre portable est désormais en attente de réception de la consommation de votre domicile.
-```
+
+![30% center](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/connexion_en_cours.png)
+
+Lorsque vous commencez à recevoir l'information de votre compteur Linky, la barre de progression de l'application vous en informe.
+
+![30% center](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/reception.png)
+
 * Plusieurs informations vous sont présentées (exemple : PAPP), vous pouvez appuyer sur ces informations pour voir leurs évolutions en direct à travers un graphique
 * Vous pouvez également visualiser votre consommation journalière en appuyant sur le bouton correspondant
 * Enfin, vous avez la possibilté de rechercher la consommation individuelle de chaque appareil dans votre maison en appuyant sur le bouton correspondant
