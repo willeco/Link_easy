@@ -91,6 +91,7 @@ public class Devices {
         this.meanpower = Math.round(meanPower);
     }
 
+
     public void setDelete(int delete){ this.delete=delete; }
     public void setIcon(int index){
         this.icon = index;

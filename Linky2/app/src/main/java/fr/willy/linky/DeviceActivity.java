@@ -33,108 +33,111 @@ import static android.widget.Toast.makeText;
 public class DeviceActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     /**
-     L'idee c'est de pouvoir ajouter un appareil à la liste, pour voir sa consommation energetique.
+     Le but est de pouvoir ajouter un appareil à la liste, pour voir sa consommation energetique.
      On choisi l'appareil parmis une liste déroulante. Si l'appareil souhaité n'est pas présent,
-     on peut choisir "autre catégorie". Suite à ce choix, l'utilisateur se voit suivre un protocole grace à
-     un popup. Ce protocole sert à chercher la consommation individuelle de l'appareil. Le protocole peut varier
-     en fonction de l'appareil mais les informations désirées sont identiques. D'où l'interet d'utiliser l'orientée objet.
+     on peut choisir "autre catégorie".
+     Suite à ce choix, l'utilisateur se voit suivre un protocole grace à un popup.
+     Ce protocole sert à calculer la consommation de l'appareil. Le protocole peut varier en fonction
+     de l'appareil mais les informations désirées sont identiques. D'où l'interet d'utiliser l'orientée objet.
 
      L'appareil possede plusieurs attributs :
+     - un id
      - un icon
      - un nom
-     - une puissance active
-     - une puissance passive
+     - une puissance en route
+     - une puissance en veille
      - un taux d'utilisation
      - une puissance moyenne
-     - un cout annuel (ou mensuel peu importe)
+     (à venir)
      - un protocol
 
-     Une fois que l'appareil est créé, l'utilisateur a la possibilité de configurer différement celui-ci (exemple : taux d'utilisation) et de le supprimer.
+     Une fois que l'appareil est créé, l'utilisateur a la possibilité de configurer différement celui-ci
+     (exemple : taux d'utilisation) et de le supprimer. (Géré dans QuickConfigActivity)
+*/
 
+    /*
+     (à venir)
      L'utilisateur peut également choisir le type de classement pour les appareils créés dans la base de données :
-     - conso active instantannée
-     - conso passive instantannée
-     - conso effective (en fonction du taux d'utilisation)
+     - conso en route instantannée
+     - conso en veille instantannée
+     - conso moyenne (en fonction du taux d'utilisation)
      - cout annuel
      */
 
-    private ListView list_devices_in_list_view;
+    private ListView        list_devices_in_list_view;
+    private Button          button_add_device;      //bouton permettant d'ajouter un appareil (génération du popup)
+    private DeviceActivity  device_activity = this; //on stock notre activité dans un attribut pour pouvoir avoir accès à son contenu partout
+    private DeviceDataBase  db              = null; //Préparation instance de la base de données (contenant les appareils de la maison)
 
-    private ArrayList<String> device_list ; //liste des appareils disponibles (créée dans res/values/string)
-    private Button button_add_device; //bouton permettant d'ajouter un appareil (génération du popup)
-    private DeviceActivity device_activity = this; //on stock notre activité dans un attribut pour pouvoir avoir accès à son contenu partout
+    private String          ip_for_sending,
+                            selected_device;
 
-    /**
-     ** Préparation instance de la base de données (contenant les appareils de la maison)
+    private int             power,
+                            standbypower;
+
+    private boolean         dont_show_again = false;
+    private ImageView       air_conditioner,alarm,camera,car_load,cmv,cooking_hood
+                            ,cooking_tools,dishwasher,food_processor,freezer,fridge,garage_doors
+                            ,garden_mower,garden_tools,hair_dryer,heat_pump,hot_water_tank,lamp
+                            ,laptop,microwave,movement_detector,other,oven,phone_load,portal
+                            ,printer,radiator,sewing_machine,shutters,straightener,toaster
+                            ,tumble_dryer,tv,vacuum,washing_machine;
+
+
+
+
+
+
+
+
+   /**
+     * ####################################################################################################
+     * Création de l'activité
      */
-    private DeviceDataBase db = null;
-
-    private GridLayout dynamic_device_layout; //scrollview avec la liste des appareils
-    private ViewGroup.LayoutParams device_params, device_params1;
-
-    private Button delete_device;
-
-    private ImageView air_conditioner,alarm,camera,car_load,cmv,cooking_hood
-            ,cooking_tools,dishwasher,food_processor,freezer,fridge,garage_doors
-            ,garden_mower,garden_tools,hair_dryer,heat_pump,hot_water_tank,lamp
-            ,laptop,microwave,movement_detector,other,oven,phone_load,portal
-            ,printer,radiator,sewing_machine,shutters,straightener,toaster
-            ,tumble_dryer,tv,vacuum,washing_machine;
-
-    private String ip_for_sending;
-    private int power;
-    private int standbypower; //TEST
-    private int device_mean_power;
-    private String selected_device;
-    private boolean dont_show_again = false;
-
-    static public int pappActualDevice;
-
-    @SuppressLint("LongLogTag")
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_device); //on charge le layout de l'activité =! du layout du popup
+        setContentView(R.layout.activity_device); //on charge le layout de l'activité
 
-        if (dont_show_again != true){
-            final CustomPopUp customPopUpTutoAdd = new CustomPopUp(device_activity, "tuto add"); //on créer le popup d'ajout
+        /**
+         * début du tutoriel
+         */
+        final CustomPopUp customPopUpTutoAdd = new CustomPopUp(device_activity, "tuto add"); //création d'un popup tutoriel
+        customPopUpTutoAdd.test_bluid(); //on affiche le popup
 
-            customPopUpTutoAdd.test_bluid(); //on affiche le popup
+        customPopUpTutoAdd.getNext().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { //interaction avec le popup
+                customPopUpTutoAdd.dismiss();
+                final CustomPopUp customPopUpTutoConfig = new CustomPopUp(device_activity, "tuto config"); //on passe au popup suivant
+                customPopUpTutoConfig.test_bluid(); //on affiche le popup
 
-            customPopUpTutoAdd.getNext().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    customPopUpTutoAdd.dismiss();
-                    final CustomPopUp customPopUpTutoConfig = new CustomPopUp(device_activity, "tuto config"); //on créer le popup d'ajout
+                customPopUpTutoConfig.getTuto_understand().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) { //interaction avec le popup
+                        customPopUpTutoConfig.getDont_show_again().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //pas encore utilisable
+                                //dont_show_again = true;
+                            }
+                        });
+                        customPopUpTutoConfig.dismiss();
+                    }
+                });
+            }
+        });
+        /**
+         * fin du tutoriel
+         */
 
-                    customPopUpTutoConfig.test_bluid(); //on affiche le popup
-
-                    customPopUpTutoConfig.getTuto_understand().setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            customPopUpTutoConfig.getDont_show_again().setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dont_show_again = true;
-                                }
-                            });
-                            customPopUpTutoConfig.dismiss();
-                        }
-                    });
-                }
-            });
-        }
-
+        //récuperation de l'adresse IP
         Bundle extras = getIntent().getExtras();
         ip_for_sending = extras.getString("ip_for_sending");
 
-        device_activity       = this; //on stock la classe dans un attribut pour y avoir acces plus tard
+        /**
+         * Ajout d'appareils
+         */
         button_add_device     = findViewById(R.id.button_add_device);
-
-        device_params = new ActionBar.LayoutParams(150,150);
-
-        //on créer une interaction avec le bouton "ajouter un appareil"
-        //génération d'un popup, pour selectionner l'appareil en question dans une liste.
         button_add_device.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,159 +146,175 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         });
 
         /**
-         * NEW : Création Instance Base de données contenant les appareils électriques
+         * Création de la base de données
          */
         Log.i("BD:", "Création instance base de données  ");
         db = new DeviceDataBase(this);
 
         /**
-         * NEW : Affichage de la listView contenant tous les appareils
+         * Affichage des appareils
          */
         display_listview_of_Devices();
     }
+    /**
+     * ####################################################################################################
+     */
 
-    public void onStart() {
-        super.onStart();
-        display_listview_of_Devices();
-    }
 
-    public void setPower(int power_input){power = power_input;}
-    public int getPower(){return power;}
-    public void setstandbypower(int standbypower_input){standbypower = standbypower_input;} //TA FOUTU QUOI LA ?
-    public int getstandbypower(){return standbypower;}
-    public DeviceDataBase getDb(){return db;}
-    public String getSelected_device(){return selected_device;}
+
+
+
+
+
 
     /**
-     * NEW : Permet d'afficher la listeView contenant les appareils de la base de données
-     * ----------------------------------------------------------------------------------
+     * ####################################################################################################
+     * Permet de relancer l'activité en cas de besoin
+     */
+    public void onStart() {
+        super.onStart();
+        display_listview_of_Devices(); //raffraichissement de l'affichage
+    }
+    /**
+     * ####################################################################################################
+     */
+
+
+
+
+
+
+
+
+    // Création des Getter
+    public int getPower(){              return power;}
+    public int getstandbypower(){       return standbypower;}
+    public String getSelected_device(){ return selected_device;}
+    public DeviceDataBase getDb(){      return db;}
+
+
+    // Création des Setter
+    public void setPower(       int power_input){       power = power_input;}
+    public void setstandbypower(int standbypower_input){standbypower = standbypower_input;} //TA FOUTU QUOI LA ?
+
+
+
+
+
+
+
+
+    /* ####################################################################################################
+     * Fonction permettant l'affichage des appareils
      */
     public void display_listview_of_Devices()
     {
+        db.open(); //Ouverture Base de données contenant les appareils électriques
+
         /**
-         * Ouverture Base de données contenant les appareils électriques
+         * suppression d'un appareil si demande il y a eu
          */
-        db.open();
-
-        int delete_index = db.deleteDevices();
-
-        if (delete_index != 0){
-            db.remove(delete_index);
-            //db.reorderDevice(delete_index);
-            //db.updateAll();
+        int delete_index = db.deleteDevices();  //Récupère l'id de l'appareil
+        if (delete_index != 0){                 //si il y a un appareil à supprimer
+            db.remove(delete_index);            //on le supprime
             delete_index=0;
         }
 
-        db.displayDevices();
-
         /**
-         * Retrieving the Cursor
-         *
-         * Perform A Query for all equipement from the database
-         * In order to use a CursorAdapter, we need to query a SQLite database and
-         * get back a Cursor representing the result set
-         * => Cursors are like iterators or pointers, they contain NOTHING
-         * but a mechanism for transversing the data
-         * The Cursor must include a column named _id or this class will not work.
-         * https://stackoverflow.com/questions/3359414/android-column-id-does-not-exist
-         */
-        Log.i("BD:", "Récupération Cursor sur tous les équipements  ");
-        Cursor myCursor = db.return_cursor_bd();
-
-        /**
-         * Attaching the Adapter to a ListView
+         * Affichage des appareils
          */
         list_devices_in_list_view = (ListView)findViewById(R.id.list_device);
-
-        Log.i("BD:", "Création d'un Cursor Adapteur pour remplir listView  ");
+        Cursor myCursor = db.return_cursor_bd();
         DeviceCursorAdapter myAdapter = new DeviceCursorAdapter(this, myCursor);
-
-        Log.i("BD:", "Remplissage listView  ");
         list_devices_in_list_view.setAdapter(myAdapter);
-
         list_devices_in_list_view.setClickable(true);
 
-        db.close();
 
+        db.close(); //Fermeture de la base de données
+
+        /**
+         * Interaction avec les appareils pour les modifier
+         */
         list_devices_in_list_view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
 
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
+                //vibration de 40 ms
                 Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                // Vibrate for 500 milliseconds
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     v.vibrate(VibrationEffect.createOneShot(40, VibrationEffect.DEFAULT_AMPLITUDE));
                 } else {
-                    //deprecated in API 26
                     v.vibrate(40);
                 }
 
-                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+                Cursor cursor = (Cursor) parent.getItemAtPosition(position); //on récupère l'appareil
 
                 if (cursor != null) {
-
-                    Intent intent = new Intent(view.getContext(), QuickConfigActivity.class);
-
-                    int rowId = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
-
-                    //makeText(getApplicationContext(),"indice de l'appareil avant config : "+rowId, Toast.LENGTH_SHORT).show();
-                    intent.putExtra("rowid", rowId);
-
-
-
+                    int rowId = cursor.getInt(cursor.getColumnIndexOrThrow("_id")); //on récupère l'id de l'appareil
+                    Intent intent = new Intent(view.getContext(), QuickConfigActivity.class);   //on créer l'activité de configuration
+                    intent.putExtra("rowid", rowId);                                     //on passe l'id à cette activité
                     startActivity(intent);
-
                 }
                 return false;
             }
         });
-
-
     }
 
-    /**
-     * Protocole d'ajout d'appareils dans la base de données
-     * -----------------------------------------------------
+
+
+
+
+
+
+
+    /* ####################################################################################################
+     * Fonction permettant l'ajout d'un appareil
      */
     public void addDevice(){
+
+        /**
+         * Choix de l'appareil à ajouter grâce à un pop up
+         */
         final CustomPopUp customPopUpAdding = new CustomPopUp(device_activity, "adding"); //on créer le popup d'ajout
-
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(device_activity, R.array.device_string, R.layout.spinner);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource( device_activity,                //affichage d'un menu déroulant
+                                                                R.array.device_string,          //montrant la liste des appareils disponibles
+                                                                R.layout.spinner);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown);
-        customPopUpAdding.getDevice_spinner().setAdapter(adapter);
-        customPopUpAdding.test_bluid(); //on affiche le popup
+        customPopUpAdding.getDevice_spinner().setAdapter(adapter); //on applique le menu déroulant au pop up
+        customPopUpAdding.test_bluid();                            //on affiche le popup
 
-        //on créer une interaction avec le champ "confirmer" du popup
-        //lorsque l'on appuie sur le champ "confirmer", on confirme l'ajout de l'appareil selcetionné dans notre base de données.
-
+        /**
+         * Confirmation d'ajout
+         */
         customPopUpAdding.getConfirm_text().setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //interaction, confirmation de l'ajout
 
-                selected_device = customPopUpAdding.getSpinnerData(); //on récupere l'appareil selectionné dans la liste du popup
+                selected_device = customPopUpAdding.getSpinnerData(); //on récupere l'appareil selectionné dans le menu déroulant du pop up
                 if (selected_device.equals("Choisir appareil")){
                     makeText(getApplicationContext(),"Choix invalide, veuillez choisir une autre catégorie.", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    // Ouverture de la Base de données
+                    //ouverture de la base de données
                     db.open();
-                    Log.i("BD:", "Préparation ajout à la base de données contenant " + db.getSize() + " appareils ");
+                    customPopUpAdding.dismiss();
 
-
-                    customPopUpAdding.dismiss();//on ferme le popup
-
-                    final CustomPopUp customPopUpConfig = new CustomPopUp(device_activity, "config"); //on créer le popup de config
-                    customPopUpConfig.test_bluid(); //on affiche le popup
-                    customPopUpConfig.configuration_protocol(selected_device,customPopUpConfig,ip_for_sending);
+                    /**
+                     * Lancement du protocole de calcul de puissances
+                     */
+                    final CustomPopUp customPopUpProtocol = new CustomPopUp(device_activity, "config");         //on créer le pop up du protocole
+                    customPopUpProtocol.test_bluid();                                                                  //on affiche le popup
+                    customPopUpProtocol.configuration_protocol( selected_device, ip_for_sending); //on lance le protocole à suivre
                 }
             }
         });
-
-        //idem pour le champ "annuler" sauf que cette fois-ci on annule la procédure et on prévient l'utilisateur.
+        /**
+         * Annulation de l'ajout
+         */
         customPopUpAdding.getCancel_text().setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //interaction, on annule l'ajout
 
                 makeText(getApplicationContext(),"Ajout annulé", Toast.LENGTH_SHORT).show();
                 customPopUpAdding.dismiss();
@@ -304,9 +323,14 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
 
-    /**
-     *  MAJ : Retourne un index sur la "ressource drawable" en fonction du nom de device
-     *  --------------------------------------------------------------------------------
+
+
+
+
+
+
+     /* ####################################################################################################
+     * Fonction permettant de retourner l'index lié à l'image drawable en fonction du nom de l'appareil
      */
     public int return_index_icon(String deviceName)
     {
@@ -386,15 +410,21 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
         return(index_icon);
     }
 
-    /**
-     * NEW : Permet à partir d'un cursor de remplir la ligne d'une liste View
-     * ---------------------------------------------------------------------------------------------
-     * We need to define the adapter to describe the process of projecting the Cursor's data into a View.
-     * To do this we need to override the newView method and the bindView method.
-     * The naive approach to this (without any view caching) looks like the following:
+
+
+
+
+
+
+
+    /* ####################################################################################################
+     * Fonction permettant de remplir une listeView à partir d'un cursor
+     *
+     *      We need to define the adapter to describe the process of projecting the Cursor's data into a View.
+     *      To do this we need to override the newView method and the bindView method.
+     *      The naive approach to this (without any view caching) looks like the following:
      */
     public class DeviceCursorAdapter extends CursorAdapter {
-
         // Constructeur
         public DeviceCursorAdapter(Context context, Cursor cursor) {
             super(context, cursor, 0);
@@ -409,42 +439,48 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
         // The bindView method is used to bind all data to a given view
         // such as setting the text on a TextView.
+        @SuppressLint("SetTextI18n")
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
 
             int icon_index;
 
             // Find fields to populate in inflated template
-            TextView tvDeviceName  = (TextView)  view.findViewById(R.id.device_name);
-            TextView tvDevicePower = (TextView)  view.findViewById(R.id.device_power);
-            TextView tvDeviceStandbyPower = (TextView)  view.findViewById(R.id.device_standby_power);
-            TextView tvDeviceMeanPower = (TextView)  view.findViewById(R.id.device_mean_power);
-            TextView tvDeviceUseRate = (TextView) view.findViewById(R.id.device_userate);
-            ImageView imDevice     = (ImageView) view.findViewById(R.id.device_thumbnail);
+            TextView tvDeviceName           = (TextView)  view.findViewById(R.id.device_name);
+            TextView tvDevicePower          = (TextView)  view.findViewById(R.id.device_power);
+            TextView tvDeviceStandbyPower   = (TextView)  view.findViewById(R.id.device_standby_power);
+            TextView tvDeviceMeanPower      = (TextView)  view.findViewById(R.id.device_mean_power);
+            TextView tvDeviceUseRate        = (TextView)  view.findViewById(R.id.device_userate);
+            ImageView imDevice              = (ImageView) view.findViewById(R.id.device_thumbnail);
 
             // Extract properties from cursor
-            String device_name   = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-            String device_power  = cursor.getString(cursor.getColumnIndexOrThrow("power"));
-            String device_stand_by_power  = cursor.getString(cursor.getColumnIndexOrThrow("standbypower"));
-            String device_mean_power  = cursor.getString(cursor.getColumnIndexOrThrow("meanpower"));
-            String device_use_rate = cursor.getString(cursor.getColumnIndexOrThrow("userate"));
-            int icon = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow("icon")));
-
-            // Get index on the drawable icon
+            String device_name              = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+            String device_power             = cursor.getString(cursor.getColumnIndexOrThrow("power"));
+            String device_stand_by_power    = cursor.getString(cursor.getColumnIndexOrThrow("standbypower"));
+            String device_mean_power        = cursor.getString(cursor.getColumnIndexOrThrow("meanpower"));
+            String device_use_rate          = cursor.getString(cursor.getColumnIndexOrThrow("userate"));
+            int    icon                     = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow("icon")));
 
             // Populate fields with extracted properties
-            tvDeviceName.setText(device_name);
-            tvDevicePower.setText("Consommation allumé : " + device_power + " Watts");
-            tvDeviceStandbyPower.setText("Consommation éteint : " + device_stand_by_power + " Watts");
-            tvDeviceMeanPower.setText( device_mean_power + " Watts");
-            tvDeviceUseRate.setText( "Utilisation : "+device_use_rate.toString() + "h/j");
+            tvDeviceName.setText(           device_name);
+            tvDevicePower.setText(          "Consommation allumé : " + device_power + " Watts");
+            tvDeviceStandbyPower.setText(   "Consommation éteint : " + device_stand_by_power + " Watts");
+            tvDeviceMeanPower.setText(      device_mean_power + " Watts");
+            tvDeviceUseRate.setText(        "Utilisation : "+device_use_rate.toString() + "h/j");
             imDevice.setImageResource(icon);
         }
     }
 
 
 
-    //on affiche dans un Toast l'appreil selectionné.
+
+
+
+
+
+    /* ####################################################################################################
+     * Fonction permettant d'afficher dans un Toast l'appreil selectionné.
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         makeText(this, parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();

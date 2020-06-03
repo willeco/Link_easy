@@ -42,14 +42,12 @@
         <item>Autre catégorie</item>
     </array>
 
-    <string name="papp_def">La puissance apparente est la somme de la puissance réactive et active. La puissance active est la puissance qui permet à un moteur d\'effecteur un travail par exemple tourner, la puissance réactive est la puissance consommée par le circuit du moteur.
-</string>
-
+    <string name="papp_def">La puissance apparente est la somme de la puissance réactive et active. La puissance active est la puissance qui permet à un moteur d\'effecteur un travail par exemple tourner, la puissance réactive est la puissance consommée par le circuit du moteur.</string>
     <string name="inst_def">L\'intensité instantanée est tout simplement l\'intensité consommée à un instant donné, aucune durée n\'est utilisée pour la calucler.</string>
-
     <string name="base_def">Il s\'agit de votre consommation depuis l\'installation de votre compteur Linky en kW/h.</string>
-
     <string name="ptec_def">Indique si vous êtes actuellement en heures creuses ou pleines. Durant les heures pleines, la consommation électrique est la plus élevée. Pendant ces périodes de la journée, l\'électricité consommée sera facturée plus chère. En général, ces heures pleines sont définies en pleine journée. Inversement, les heures creuses vous sont facturées moins chères et sont en général définies la nuit.</string>
+
+    <string name="protocol_start">Pour configurer votre appareil, veillez à être proche de celui ci. Si vous avez la possibilité de le débrancher, veuillez cocher la case ci-dessous, puis indiquez le taux d\'utilisation de l\'appareil. A présent, veuillez éteindre votre appareil.</string>
 
 
     <string name="lolo">Je suis fou amoureux de toi Lorette</string>

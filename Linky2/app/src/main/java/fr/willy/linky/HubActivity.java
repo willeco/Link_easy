@@ -208,7 +208,7 @@ public class HubActivity extends AppCompatActivity {
                 customPopUpInformation.getPower_definition().setText(R.string.papp_def);
                 customPopUpInformation.test_bluid(); //on affiche le popup
 
-                customPopUpInformation.getQuit_infomration().setOnClickListener(new View.OnClickListener() {
+                customPopUpInformation.getQuit_information().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         customPopUpInformation.dismiss();
@@ -226,7 +226,7 @@ public class HubActivity extends AppCompatActivity {
                 customPopUpInformation.getPower_definition().setText(R.string.inst_def);
                 customPopUpInformation.test_bluid(); //on affiche le popup
 
-                customPopUpInformation.getQuit_infomration().setOnClickListener(new View.OnClickListener() {
+                customPopUpInformation.getQuit_information().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         customPopUpInformation.dismiss();
@@ -245,7 +245,7 @@ public class HubActivity extends AppCompatActivity {
 
                 customPopUpInformation.test_bluid(); //on affiche le popup
 
-                customPopUpInformation.getQuit_infomration().setOnClickListener(new View.OnClickListener() {
+                customPopUpInformation.getQuit_information().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         customPopUpInformation.dismiss();
@@ -263,7 +263,7 @@ public class HubActivity extends AppCompatActivity {
                 customPopUpInformation.getPower_definition().setText(R.string.ptec_def);
                 customPopUpInformation.test_bluid(); //on affiche le popup
 
-                customPopUpInformation.getQuit_infomration().setOnClickListener(new View.OnClickListener() {
+                customPopUpInformation.getQuit_information().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         customPopUpInformation.dismiss();
