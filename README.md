@@ -39,10 +39,11 @@ Lorsque vous commencez à recevoir l'information de votre compteur Linky, la bar
 ![30% center](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/reception.png)
 
 * Plusieurs informations vous sont présentées (exemple : PAPP), vous pouvez appuyer sur ces informations pour voir leurs évolutions en direct à travers un graphique
+
 ![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/puissances.png)
 ![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/graph.png)
 
-* Pour obtenir une définition des informations transmises, vous pouvez appuyer sur l'icon ![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/connexion.png)
+* Pour obtenir une définition des informations transmises, vous pouvez appuyer sur l'icon ![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/i.png)
 
 * Enfin, vous avez la possibilté de rechercher la consommation individuelle de chaque appareil dans votre maison en appuyant sur le bouton correspondant
 
