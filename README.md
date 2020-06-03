@@ -25,7 +25,7 @@ Pour installer l'application sur votre smartphone vous pouvez télécharger le f
 
 * Avant d'avoir accès aux fonctionnalités de notre application, il vous faut renseigner l'adresse IP de votre module radio
 
-![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/connexion.png =250x250)
+![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/connexion.png)
 
 * Appuyer sur connexion
 
