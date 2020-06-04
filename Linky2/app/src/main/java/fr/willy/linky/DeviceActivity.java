@@ -1,9 +1,6 @@
 package fr.willy.linky;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,14 +16,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CursorAdapter;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import androidx.appcompat.app.AppCompatActivity;
 
 import static android.widget.Toast.makeText;
 
@@ -204,9 +199,9 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
 
 
-    /* ####################################################################################################
-     * Fonction permettant l'affichage des appareils
-     */
+    // ---------------------------------------------------------------------------------------------
+    // Fonction permettant l'affichage des appareils
+    // ---------------------------------------------------------------------------------------------
     public void display_listview_of_Devices()
     {
         db.open(); //Ouverture Base de données contenant les appareils électriques
@@ -268,9 +263,9 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
 
 
-    /* ####################################################################################################
-     * Fonction permettant l'ajout d'un appareil
-     */
+    // ---------------------------------------------------------------------------------------------
+    // Fonction permettant l'ajout d'un appareil
+    // ---------------------------------------------------------------------------------------------
     public void addDevice(){
 
         /**
@@ -329,9 +324,9 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
 
 
-     /* ####################################################################################################
-     * Fonction permettant de retourner l'index lié à l'image drawable en fonction du nom de l'appareil
-     */
+    // ---------------------------------------------------------------------------------------------
+    // Fonction permettant de retourner l'index lié à l'image drawable en fonction du nom de l'appareil
+    // ---------------------------------------------------------------------------------------------
     public int return_index_icon(String deviceName)
     {
         int index_icon;
@@ -417,12 +412,13 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
 
 
-    /* ####################################################################################################
-     * Fonction permettant de remplir une listeView à partir d'un cursor
-     *
+    /* ---------------------------------------------------------------------------------------------
+    * Fonction permettant de remplir une listeView à partir d'un cursor
+
      *      We need to define the adapter to describe the process of projecting the Cursor's data into a View.
      *      To do this we need to override the newView method and the bindView method.
      *      The naive approach to this (without any view caching) looks like the following:
+     * ---------------------------------------------------------------------------------------------
      */
     public class DeviceCursorAdapter extends CursorAdapter {
         // Constructeur
@@ -478,9 +474,9 @@ public class DeviceActivity extends AppCompatActivity implements AdapterView.OnI
 
 
 
-    /* ####################################################################################################
-     * Fonction permettant d'afficher dans un Toast l'appreil selectionné.
-     */
+    // ---------------------------------------------------------------------------------------------
+    // Fonction permettant d'afficher dans un Toast l'appreil selectionné.
+    // ---------------------------------------------------------------------------------------------
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         makeText(this, parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();

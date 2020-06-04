@@ -292,7 +292,7 @@ public class CustomPopUp extends Dialog {
 
 
                                     /**
-                                     * Protocole terminé, on passe à la calcul des puissances
+                                     * Protocole terminé, on passe au calcul des puissances
                                      */
                                     faitButton.setOnClickListener(new View.OnClickListener(){
                                         @Override
