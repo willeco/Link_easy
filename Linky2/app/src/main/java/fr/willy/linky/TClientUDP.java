@@ -109,46 +109,26 @@ public class TClientUDP implements Runnable {
 
             // -------------------------------------------------------------------------------------
             // Réception des paquets émis par le LINKY  :
-            // Attention programme MAL CONCUE : la réception est bloquante
-            // Si le linky n'envoie pas des paquets, il sera impossible d'en émettre de nouveau
-            //
             // -------------------------------------------------------------------------------------
 
-            // Le fait de vouloir recevoir des paquets en passant le test à true
-            // oblige a appuyer 2 fois sur le bouton !!!! Bug à corriger
             if (true) {
                 // Une fois tous les paquets transmis, on peut recevoir les paquets en provenance du Linky
                 try
                 {
                     // Réception paquet en provenance du Linky (Fonction bloquante : Attention)
-                    //Log.i("UDP:", "En attente de réception d'un paquet");
 
-                    // set the timeout in millisecounds.
-                    // https://stackoverflow.com/questions/10055913/set-timeout-for-socket-receive
                     this.socket.setSoTimeout(1000);
-
-                    //Test
 
 
                     // recieve data until timeout
                     this.socket.receive(dp);
 
-                    // On récupère le message
-                    // dp.getPort()
                     lText               = new String(dp.getData());
 
 
                     // Diffusion du message vers l'interface
                     this.clientUDP.streamMessage(this.clientUDP.CODE_RECEPTION, lText);
 
-
-                    // Pour observer le paquet reçu avec les LOG,
-                    //
-                    //      1°) il faut que le smartphone soit connecté
-                    //          à l'ordi en USB. (Débuggage USB activé sur le smartphone)
-                    //
-                    //      2°) Les log sont accessibles dans la fenêtre logcat (Choisir le filtre Info)
-                    //Log.i("UDP packet reçu:", lText);
                 }
                 catch (IOException e)
                 {

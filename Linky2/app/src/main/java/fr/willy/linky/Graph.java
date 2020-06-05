@@ -27,11 +27,10 @@ import lecho.lib.hellocharts.view.LineChartView;
 
 import static android.media.CamcorderProfile.get;
 
+//Cette classe permet l'affichage des graphiques
 
 public class Graph extends AppCompatActivity {
 
-
-    //Test push master
 
     protected LineChartView lineChartView;
 
@@ -58,6 +57,7 @@ public class Graph extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         ip_for_sending = extras.getString("ip_for_sending");
         typeOfGraph = extras.getString("typeOfGraph");
+        //A la creation de la classe on fait une demande de tele information.
         HubActivity.ask_tele_info(ip_for_sending,10001);
 
         TextView uniteeData = findViewById(R.id.textView8);
@@ -67,9 +67,10 @@ public class Graph extends AppCompatActivity {
             listData = new ArrayList<Float>();
         }
 
+        //Le graphique ne s'affiche pas si il n'y a pas au moins 2 valeurs differentes dans la list, on ajoute donc une valeur par defaut.
         if(typeOfGraph.equals("papp"))
         {
-            listData.add(151.0f);         //Pour avoir 2 points et le premier sera toujours à 150.01 au début
+            listData.add(151.0f);
             uniteeData.setText("PAPP (V/A)");
         }
         if(typeOfGraph.equals("base"))
@@ -83,7 +84,7 @@ public class Graph extends AppCompatActivity {
             public void run() {
 
 
-                // Do something
+                //On parse les valeurs à ajouté en Float
                 if(typeOfGraph.equals("papp"))
                 {
                     dataToShow = Integer.parseInt(HubActivity.papp);
@@ -93,12 +94,17 @@ public class Graph extends AppCompatActivity {
                     dataToShow = Float.parseFloat(HubActivity.base.substring(0,6));
                 }
 
+                //On ajoute la valeur
                 listData.add(dataToShow);
 
-                if(listData.size() >= 180) //Nombre de points avant défilement
+
+                //On gere le defilement du graphique
+                if(listData.size() >= 180)
                 {
                     Boolean listFullOfSame = true;
 
+                    //On verifie que la liste de points n'est pas constitué entièrement de la même valeur (sans prendre en compte la valeur par défaut) car
+                    //Lié au problème précedent, il est toujours nécessaire d'avoir 2 points différents pour afficher le graph.
                     for(int i=1 ; i<listData.size() ; i++)
                     {
                         if(!listData.get(i).equals(listData.get(1)))
@@ -107,10 +113,12 @@ public class Graph extends AppCompatActivity {
                         }
                     }
 
+                    //Si la liste possède 2 valeurs différentes on supprime la valeur par défaut
                     if(listFullOfSame == false)
                     {
                         listData.remove(0);
                     }
+                    //Sinon on supprime la première valeur après la valeur par défaut
                     else
                     {
                         listData.remove(1);
@@ -118,6 +126,7 @@ public class Graph extends AppCompatActivity {
 
                 }
 
+                //On affiche le graph
                 data = drawInTime(listData);
                 lineChartView.setLineChartData(data);
 

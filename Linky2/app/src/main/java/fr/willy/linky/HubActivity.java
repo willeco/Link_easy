@@ -48,6 +48,7 @@ import java.io.Serializable;
 
 import static android.widget.Toast.makeText;
 
+//Classe gérant le menu principal
 
 public class HubActivity extends AppCompatActivity {
 
@@ -96,6 +97,7 @@ public class HubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState); //Creation du super
         setContentView(R.layout.activity_main);
 
+        //On récupère l'ip du login
         Intent intent = getIntent();
         if (intent.hasExtra("ip_for_sending")) {
             IP = intent.getStringExtra("ip_for_sending");
@@ -107,7 +109,6 @@ public class HubActivity extends AppCompatActivity {
         Toolbar toolbar             = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //FloatingActionButton fab    = findViewById(R.id.fab);
 
         // Get widgets
         // -----------------------------------------------------------------------------------------
@@ -141,6 +142,7 @@ public class HubActivity extends AppCompatActivity {
         // -----------------------------------------------------------------------------------------
         button_ask_tele_info.setOnClickListener(handler_ask_tele_info);
 
+        //Bouton de demande de téléinformation
         button_ask_tele_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,6 +153,7 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
+        //Bouton PAPP affichant le graph
         pappButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,6 +171,7 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
+        //Bouton BASE affichant le graph
         baseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -188,7 +192,7 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
-        //permet de changer d'activité (consommation individuelle de chaque appareils de la maison)
+        //Bouton consommation appareil pour changer d'activité
         button_device_consumption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,6 +203,7 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
+        //Bouton information PAPP
         information_papp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -217,6 +222,7 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
+        //Bouton information IINST
         information_inst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -235,6 +241,7 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
+        //Bouton information BASE
         information_base.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -254,6 +261,7 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
+        //Bouton information PTEC
         information_ptec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -272,7 +280,7 @@ public class HubActivity extends AppCompatActivity {
             }
         });
 
-        //DEMANDE DE TELE INFO
+        //A la fin de la creation de l'activité on lance automatiquement une télé info
         ask_tele_info(IP,10001);
 
 
@@ -314,8 +322,6 @@ public class HubActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         activity = 0;
-
-        //Toast.makeText(getApplicationContext(), "Linky = OnStart()", Toast.LENGTH_LONG).show();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -329,14 +335,11 @@ public class HubActivity extends AppCompatActivity {
         if(activity == 0){
             if (m_client_udp != null)
             {
-                Toast.makeText(getApplicationContext(), "Linky : Fin du Thread", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Linky : Fin du Thread", Toast.LENGTH_LONG).show();
                 m_client_udp.fermer();
             }
         }
 
-
-        // Avertir l'utilisateur
-       // Toast.makeText(getApplicationContext(), "Linky: onStop called", Toast.LENGTH_LONG).show();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -344,7 +347,6 @@ public class HubActivity extends AppCompatActivity {
     // ---------------------------------------------------------------------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -376,6 +378,8 @@ public class HubActivity extends AppCompatActivity {
     {
         public void handleMessage(Message msg)
         {
+
+            //La téléinformation dure 1 minute, donc on prends le temps pour afficher "fin de reception" une fois le timer terminé et donc la teleinfo aussi.
             timeOut = timeOut + timerEnd - timerStart;
             timerStart = 0;
             timerEnd = 0;
@@ -390,20 +394,9 @@ public class HubActivity extends AppCompatActivity {
                 etatText.setText("Demande d'informations...");
                 HubActivity.secondLine.setColorFilter(R.color.dark_linky, PorterDuff.Mode.LIGHTEN);
 
-                // Bundle bundle = msg.getData();
-                // String string = bundle.getString(ClientUDP.CODE_RECEPTION);
-                // m_tview_etat.setText( string );
                 String trame_linky = (String) msg.obj;
 
-
-
-                // Transformation de trame en un objet JSON pour faciliter le parsing
-                // https://www.tutorialspoint.com/android/android_json_parser.htm
-
-                // https://stackoverflow.com/questions/11407943/this-handler-class-should-be-static-or-leaks-might-occur-incominghandler
-                // Lire le post 32 "Here is a generic example of using a weak reference and
-                // static handler class to resolve the problem (as recommended in the Lint documentation)"
-
+                //Chaque message est traité et analysé pour afficher en temps réel son information
 
                 try {
                      JSONObject jsonObj = new JSONObject( trame_linky ); //passage de string à JSON
@@ -435,6 +428,7 @@ public class HubActivity extends AppCompatActivity {
                     ptecButton.setText("PTEC\n\n"+"FORFAIT EN COURS"+"\nBASE");
                 }
 
+                //On ne passe pas en reception tant que l'on a pas l'info de la PAPP et l'IINST (Assez peu pertinnent car l'on est deja en reception)
                 if(!pappButton.getText().toString().equals("PAPP") && !iinstButton.getText().toString().equals("IINST") && timeOut<=170)
                 {
                     etatText.setText("Réception...");
@@ -463,29 +457,7 @@ public class HubActivity extends AppCompatActivity {
         }
     };
 
-    // ---------------------------------------------------------------------------------------------
-    // Fonction : Affichage message d'erreur
-    // ---------------------------------------------------------------------------------------------
-    public void DisplayMessage(String message, boolean error_message) {
 
-
-        Calendar calndr     = Calendar.getInstance();
-
-        // Affichage message d'erreur dans un Toast
-        Toast toast         = Toast.makeText(getApplicationContext(),  message + " " + calndr.getTime() , Toast.LENGTH_LONG);
-        TextView toast_id   = (TextView) toast.getView().findViewById(android.R.id.message);
-
-        // Gestion de la couleur du texte
-        if ( error_message )  {
-            toast_id.setTextColor(Color.RED);
-        }
-
-        toast.show();
-
-        // Affichage du meme message d'erreur dans la zone Etat
-
-
-    }
 
     // ---------------------------------------------------------------------------------------------
     // Fonction : Transformation Entier en adresse IP pour affichage
@@ -509,12 +481,8 @@ public class HubActivity extends AppCompatActivity {
     {
 
 
-        // Step 3 - Create a datagram socket to ask teleinformation
         try {
 
-            // Attention, a chaque fois, que l'on appui sur le bouton, un Thread est créé par
-            // la classe UDP. A revoir. car la mémoire du téléphone risque de saturer
-            // Le Thread ne sera jamais tué.
             if (m_client_udp == null)
             {
                 m_client_udp = new ClientUDP(m_handler);
@@ -522,6 +490,8 @@ public class HubActivity extends AppCompatActivity {
 
             if (m_client_udp != null)
             {
+                //Lors de l'envoi du message "Hello", le serveur comprends "Demande de télé info"
+                //Si l'on veut récupérer le graph d'une journée il faudra envoyé un message différent.
                 m_client_udp.envoyer("Hello", IP, 10001); // à l'IP du Rpi et au port 10001
             }
 

@@ -65,6 +65,8 @@ public class CustomPopUp extends Dialog {
         //empeche l'utilisateur de fermer le popup en appuyant à
         //l'exterieur de celui-ci.
         this.setCancelable(false);
+
+
         this.confirm_text = findViewById(R.id.confirm_text);
         this.cancel_text  = findViewById(R.id.cancel_text);
         this.titleView    = findViewById(R.id.device_popup_title);
@@ -204,6 +206,7 @@ public class CustomPopUp extends Dialog {
                         faitButton.setVisibility(View.GONE);
                     }
 
+                    //Si le texte du taux d'utilisation est change, on affiche "ok"
                     public void afterTextChanged(Editable s) {
                         if(tauxUtilisationEdit.getText().toString().matches(""))
                         {
@@ -227,6 +230,8 @@ public class CustomPopUp extends Dialog {
                         debranchable.setVisibility(GONE);
                         HubActivity.ask_tele_info(ip_for_sending, 10001);
 
+
+                        //Demarage du protocol pour un appareil debranchable
                         if (debranchable.isChecked() == true) {
                             new CountDownTimer(5000, 1000) {
                                 public void onTick(long millisUntilFinished) {
@@ -303,9 +308,19 @@ public class CustomPopUp extends Dialog {
                                                     // Insertion d'un appareil
 
                                                     int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
-                                                    Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), parent_activity.getstandbypower(), (parent_activity.getPower()*Float.parseFloat(tauxUtilisationDouble[0])+parent_activity.getstandbypower()*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24 , Float.parseFloat(tauxUtilisationDouble[0]),0);
+
+                                                    //Creation de l'objet device
+                                                    Devices a = new Devices(parent_activity.getDb().getSize() + 1,
+                                                            icon_index,
+                                                            parent_activity.getSelected_device(),
+                                                            parent_activity.getPower(),
+                                                            parent_activity.getstandbypower(),
+                                                            (parent_activity.getPower()*Float.parseFloat(tauxUtilisationDouble[0])+parent_activity.getstandbypower()*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24 ,
+                                                            Float.parseFloat(tauxUtilisationDouble[0]),0);
+
                                                     parent_activity.getDb().insert(a);
                                                     parent_activity.getDb().close();
+
                                                     parent_activity.display_listview_of_Devices();
                                                     makeText(parent_activity.getApplicationContext(), parent_activity.getSelected_device() + " ajouté. ", Toast.LENGTH_SHORT).show();
 
@@ -316,7 +331,7 @@ public class CustomPopUp extends Dialog {
                                 }
                             });
 
-
+                        //Demarrage du protocol pour un device non debranchable
                         } else {
                             protocolTextView.setText("Veuillez allumer votre appareil.\n");
 
@@ -373,6 +388,7 @@ public class CustomPopUp extends Dialog {
 
                                             // Insertion d'un appareil
                                             int icon_index = parent_activity.return_index_icon(parent_activity.getSelected_device());
+                                            //Creation de l'objet device
                                             Devices a = new Devices(parent_activity.getDb().getSize() + 1, icon_index, parent_activity.getSelected_device(), parent_activity.getPower(), 0, (pappOn[0]*Float.parseFloat(tauxUtilisationDouble[0])+pappOff[0]*(24-Float.parseFloat(tauxUtilisationDouble[0])))/24, Float.parseFloat(tauxUtilisationDouble[0]),0);
                                             parent_activity.getDb().insert(a);
                                             parent_activity.getDb().close();

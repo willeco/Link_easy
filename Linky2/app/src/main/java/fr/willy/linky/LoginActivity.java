@@ -11,12 +11,13 @@ import android.widget.Toast;
 
 import static android.widget.Toast.makeText;
 
+//Classe gérant l'activité LOGIN
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText login_text;
     Button login;
     Button activity;
-    Button understand;
     LoginActivity loginActivity = this;
 
     @Override
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         login      = findViewById(R.id.login);
         activity   = findViewById(R.id.activity);
 
+        //Texte de base
         login_text.setText("83.205.137.12");
 
         customPopUStartApplication.getUnderstand().setOnClickListener(new View.OnClickListener() {
@@ -50,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else{
                     Intent myIntentDevice = new Intent(v.getContext(), HubActivity.class);
+                    //On envoie l'ip au Hub
                     myIntentDevice.putExtra("ip_for_sending",ip);
                     startActivity(myIntentDevice);
                     finish();
