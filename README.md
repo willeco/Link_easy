@@ -9,12 +9,13 @@ L'application est uniquement disponible sur Android.
 
 ### Prerequis
 
-Pour pouvoir utiliser notre application, vous devez connecter à votre compteur Linky, un module radio capable de diffuser en Wi-Fi, la téléinformation sur votre réseau local. Si vous n'êtes pas à domicile, vous pouvez quand même récupérer, en temps réel, la téléinformation du compteur LINKY en récupérer l'adresse IP de votre box visible de l'extérieur via le site [adresseip](https://adresseip.com/) puis en redirigeant le flux UDP via une règle NAT. 
+Pour pouvoir utiliser notre application, vous devez connecter à votre compteur Linky, un module radio capable de diffuser en Wi-Fi, la téléinformation sur votre réseau local domestique. 
 
 ### Installation
 
 #### Module Radio
-Pour télécharger les fichiers sources en langage Python du module radio, [cliquez ici](https://urlz.fr/cQcs). Notre module radio est constitué d'un raspberry PI connecté en WiFi à une Box Internet et relié aux bornes I1 et I2 de la téléinformation du compteur Linky via un module de chez GCE Electronics connecté en USB. La communication entre le smarphone et le raspberry s'effectue via l'envoi de datagramme en UDP en utilisant le port 10001. 
+Pour télécharger les fichiers sources en langage Python du module radio, [cliquez ici](https://urlz.fr/cQcs). Notre module radio est constitué d'un raspberry PI connecté en Wi-Fi à notre Box Internet. Ce raspberry PI doit être relié aux bornes I1 et I2 de la téléinformation du compteur Linky via un module de chez GCE Electronics (USB). La communication entre le smarphone et le raspberry s'effectue via l'envoi de datagramme en UDP en utilisant le port 10001. Pour pouvoir utiliser l'application Android, vous devrez lors de son lancement renseigner l'adresse IP du module radio au sein de votre réseau domestique.  
+Toutefois, même si vous n'êtes pas à domicile, il vous sera quand même possible de récupérer, en temps réel, la téléinformation du compteur LINKY sur votre smartphone. Pour cela, il vous sera nécessaire d'identifier l'adresse IP extérieure de votre box Internet en utilisant les services d'un site comme celui ci [adresseip](https://adresseip.com/). Ensuite, configurez votre box Internet de manière à ce qu'elle redirige le flux UDP du port 10001 vers votre module radio à partir d'une règle NAT. 
 
 #### Application
 
