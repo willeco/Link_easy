@@ -1,7 +1,7 @@
 # Link'easy
 
-Le projet vise à faciliter la recherche des appareils énergivores de la maison en se servant de la téléinformation du compteur linky d’une manière plus pratique que celle proposée actuellement. Effectivement, pour interroger son compteur Linky, il est nécessaire de se placer devant l’afficheur et d’utiliser les touches de défilement (+) ou (-) afin de visualiser la puissance apparente.
-Nous proposons également de visualiser la consommation individuelle de chaque appareil de votre domicile.
+Le projet vise à faciliter la recherche des appareils énergivores de la maison en diffusant en temps réel la téléinformation du compteur linky vers votre smartphone. Effectivement, pour interroger son compteur Linky, il est nécessaire de se placer devant l’afficheur et d’utiliser les touches de défilement (+) ou (-) afin de visualiser la puissance apparente.
+Nous proposons également de classifier les appareils de votre domicile en fonction de leur consommation individuelle.
 
 ## Avant propos
 
@@ -9,13 +9,12 @@ L'application est uniquement disponible sur Android.
 
 ### Prerequis
 
-Pour pouvoir utiliser notre application, vous devez être en possesion d'un compteur Linky, d'un module radio ainsi que d'une connexion Wifi.
-Pour récupérer l'adresse IP de votre box vous pouvez aller sur le site [adresseip](https://adresseip.com/)
+Pour pouvoir utiliser notre application, vous devez connecter à votre compteur Linky, un module radio capable de diffuser en Wi-Fi, la téléinformation sur votre réseau local. Si vous n'êtes pas à domicile, vous pouvez quand même récupérer, en temps réel, la téléinformation du compteur LINKY en récupérer l'adresse IP de votre box visible de l'extérieur via le site [adresseip](https://adresseip.com/) puis en redirigeant le flux UDP via une règle NAT. 
 
 ### Installation
 
 #### Module Radio
-Pour télécharger les fichiers du module radio, [cliquez ici](https://urlz.fr/cQcs).
+Pour télécharger les fichiers sources en langage Python du module radio, [cliquez ici](https://urlz.fr/cQcs). Notre module radio est constitué d'un raspberry PI connecté en WiFi à une Box Internet et relié aux bornes I1 et I2 de la téléinformation du compteur Linky via un module de chez GCE Electronics connecté en USB. La communication entre le smarphone et le raspberry s'effectue via l'envoi de datagramme en UDP en utilisant le port 10001. 
 
 #### Application
 
@@ -23,7 +22,7 @@ Pour installer l'application sur votre smartphone vous pouvez télécharger le f
 
 ## Lancer le test
 
-* Avant d'avoir accès aux fonctionnalités de notre application, il vous faut renseigner l'adresse IP de votre module radio
+* Avant d'avoir accès aux fonctionnalités de notre application, il vous faut renseigner l'adresse IP de votre module radio (en l'occurence l'adresse IP du Raspberry PI sur le réseau local)
 
 ![](https://github.com/ThomasCochou/Link_easy/blob/master/Images%20CR/connexion.png)
 
